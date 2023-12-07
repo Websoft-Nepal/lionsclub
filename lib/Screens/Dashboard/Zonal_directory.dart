@@ -1,0 +1,91 @@
+import 'package:flutter/material.dart';
+
+import '../../main.dart';
+
+class ZonalD extends StatefulWidget {
+  const ZonalD({Key? key}) : super(key: key);
+
+  @override
+  _ZonalDState createState() => _ZonalDState();
+}
+
+class _ZonalDState extends State<ZonalD> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Color(0xFFEEEEEE),
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: sColor,
+        title: Row(
+          children: [
+            Container(
+              height: 50,
+              width: 50,
+              child: Image.asset('assets/logo.png'),
+            ),
+            // Spacer(),
+            Text(
+              'Zonal Directory',
+              style: TextStyle(color: Colors.white),
+            ),
+            Spacer(
+              flex: 2,
+            )
+          ],
+        ),
+      ),
+      body: GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 16.0,
+          mainAxisSpacing: 16.0,
+        ),
+        itemCount: 10,
+        itemBuilder: (BuildContext context, int index) {
+          return _buildGridItem();
+        },
+      ),
+    );
+  }
+
+  Widget _buildGridItem() {
+    return Container(
+      height: 200.0, // Adjust this value to change the height of the Card
+      child: Card(
+        elevation: 2.0,
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Column(
+            // mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              CircleAvatar(
+                radius: 50.0,
+                backgroundImage: AssetImage('assets/officer.jpeg'),
+              ),
+              SizedBox(height: 3.0),
+              Text(
+                'Ram Bahadhur',
+                style: TextStyle(
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 3.0),
+              Text(
+                'Chief',
+                style: TextStyle(fontSize: 14.0,fontWeight: FontWeight.w700,color:sColor),
+              ),
+              SizedBox(height: 3.0),
+              Text(
+                'lions club international\nDistrict 325 M, nepal',
+                style: TextStyle(fontSize: 10.0),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

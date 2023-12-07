@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
-import 'package:lionsclub/Screens/Zonal_directory.dart';
-import 'package:lionsclub/Screens/dIstrict_directory.dart';
+import 'package:lionsclub/Screens/Dashboard/Zonal_directory.dart';
+import 'package:lionsclub/Screens/Dashboard/dIstrict_directory.dart';
+import 'package:lionsclub/Screens/Home/dashboard.dart';
+import 'package:lionsclub/Screens/Home/dashboard_main.dart';
+import 'package:lionsclub/Screens/about.dart';
+import 'package:lionsclub/Screens/notification.dart';
 
-import '../Screens/clubs.dart';
+import '../Screens/Dashboard/clubs.dart';
 import '../main.dart';
 
 class Home1 extends StatefulWidget {
@@ -137,10 +141,42 @@ class _Home1State extends State<Home1> {
             Container(
                 height: 50, width: 50, child: Image.asset('assets/logo.png')),
             Spacer(),
-            badges.Badge(
-              badgeContent: Text(''),
-              child: Icon(Icons.notifications),
-            )
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: GestureDetector(
+                onTap: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Notice()),
+                  );
+                },
+                child:Stack(
+                  children: [
+                    Icon(Icons.notifications, color: zColor),
+                    Positioned(
+                      right: 0,
+                      top: 0,
+                      bottom: 12,
+                      child: Container(
+
+                        padding: EdgeInsets.all(2),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.white, width: 1), // Adjust border color and width
+                        ),
+                        child: badges.Badge(
+                          badgeContent: Text(''),
+                          // elevation: 0, // Set elevation to 0 to remove shadow
+                          // padding: EdgeInsets.all(2), // Adjust padding as needed
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+
+              ),
+            ),
+
           ],
         ),
       ),
@@ -186,10 +222,10 @@ class _Home1State extends State<Home1> {
       ),
       body: <Widget>[
         Container(
-          child: Center(child: const Text('Dashboard')),
+          child: MainBoard(),
         ),
         Container(
-          child: Center(child: const Text('Profile section')),
+          child:Dashboard() ,
         ),
       ][currentPageIndex],
     );

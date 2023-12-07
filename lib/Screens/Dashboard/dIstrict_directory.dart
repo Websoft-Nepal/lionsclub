@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../main.dart';
-import '../main.dart';
+import '../../main.dart';
+import '../../main.dart';
 class District_Directory extends StatefulWidget {
   const District_Directory({super.key});
 
@@ -21,7 +21,7 @@ class _District_DirectoryState extends State<District_Directory> {
           children: [
             Container(
                 height: 50, width: 50, child: Image.asset('assets/logo.png')),
-            Spacer(),
+            // Spacer(),
             Text(
               'District Directory',
               style: TextStyle(color: Colors.white),
@@ -47,12 +47,16 @@ class _District_DirectoryState extends State<District_Directory> {
   Widget _buildGridItem(int index) {
     return Container(
       margin: EdgeInsets.all(15.0),
-      decoration: BoxDecoration(
+      // decoration: BoxDecoration(
+      //   color: sColor,
+      //   borderRadius: BorderRadius.circular(12.0), // Adjust the radius as needed
+      // ),
+      child: Card(
         color: sColor,
-        borderRadius: BorderRadius.circular(12.0), // Adjust the radius as needed
-      ),
-      child: Center(
-        child: Text('Item $index',style: TextStyle(color: Colors.white),),
+        elevation: 5,
+        child: Center(
+          child: Text('District Advisor$index',style: TextStyle(color: Colors.white),),
+        ),
       ),
     );
   }

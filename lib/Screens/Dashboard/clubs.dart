@@ -13,7 +13,7 @@ class Club extends StatelessWidget {
           children: [
             Container(
                 height: 50, width: 50, child: Image.asset('assets/logo.png')),
-            Spacer(),
+            SizedBox(width: 5,),
             Text(
               'Clubs',
               style: TextStyle(color: Colors.white),

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
-import '../main.dart';
-class ZonalD extends StatefulWidget {
-  const ZonalD({super.key});
+import '../../main.dart';
+import '../../main.dart';
+class Notice extends StatefulWidget {
+  const Notice({super.key});
 
   @override
-  State<ZonalD> createState() => _ZonalDState();
+  State<Notice> createState() => _NoticeState();
 }
 
-class _ZonalDState extends State<ZonalD> {
+class _NoticeState extends State<Notice> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +23,7 @@ class _ZonalDState extends State<ZonalD> {
                 height: 50, width: 50, child: Image.asset('assets/logo.png')),
             Spacer(),
             Text(
-              'Zonal Directory',
+              'Notifications',
               style: TextStyle(color: Colors.white),
             ),
             Spacer(
@@ -33,4 +34,5 @@ class _ZonalDState extends State<ZonalD> {
       ),
     );
   }
+
 }
