@@ -175,21 +175,21 @@ class _DashboardState extends State<Dashboard> {
                   ),
                 )),
           ),
-          Spacer(),
+          Spacer(flex: 2),
           Row(
             children: [
               Spacer(),
               SignInButton(Buttons.Facebook,
-                  mini: true, onPressed: _launchURL),
+                  mini: true, onPressed: _launchURLf),
               SignInButton(
                 Buttons.Twitter,
                 mini: true,
-                onPressed: () {},
+                onPressed: _launchURLt,
               ),
               SignInButton(
                 Buttons.LinkedIn,
                 mini: true,
-                onPressed: () {},
+                onPressed: _launchURLl,
               ),
               Spacer()
             ],
@@ -202,10 +202,26 @@ class _DashboardState extends State<Dashboard> {
     );
   }
 
-  void _launchURL() async {
-    final Uri url = Uri.parse('https://flutter.dev');
+  void _launchURLf() async {
+    final Uri url = Uri.parse('https://facebook.com');
     if (!await launchUrl(url)) {
       throw Exception('Could not launch $url');
     }
   }
+
+  void _launchURLt() async {
+    final Uri url = Uri.parse('https://x.com');
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
+    }
+  }
+
+
+  void _launchURLl() async {
+    final Uri url = Uri.parse('https://linkedin.com');
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
+    }
+  }
+
 }

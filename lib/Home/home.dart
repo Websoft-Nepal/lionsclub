@@ -195,12 +195,12 @@ class _Home1State extends State<Home1> {
           NavigationDestination(
             selectedIcon: Icon(
               Icons.home,
-              color: sColor,
+              color: zColor,
               size: 30,
             ),
             icon: Icon(
               Icons.home_outlined,
-              color: sColor,
+              color: zColor,
               size: 30,
             ),
             label: 'Home',
@@ -209,12 +209,12 @@ class _Home1State extends State<Home1> {
               // selectedIcon: Icon(Icons.settings,color: Colors.blue,size:30,),
               selectedIcon: Icon(
                 Icons.person,
-                color: sColor,
+                color: zColor,
                 size: 30,
               ),
               icon: Icon(
                 Icons.person_outlined,
-                color: sColor,
+                color: zColor,
                 size: 30,
               ),
               label: 'Profile'),

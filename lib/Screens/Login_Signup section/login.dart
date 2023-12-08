@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lionsclub/main.dart';
 
-import 'SignUp.dart';
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
 
@@ -82,28 +81,25 @@ class _SignInState extends State<SignIn> {
     ),
     ),
 
-        TextButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => SignUp()),
-            ); },
-          child: RichText(
-    text: TextSpan(
-    text: 'Don\'t have an account? ',
-    style: DefaultTextStyle.of(context).style,
-    children: <TextSpan>[
-    TextSpan(
-    text: 'Sign up',
-    style: TextStyle(
-    color: zColor, // Set the desired color
-    fontWeight: FontWeight.bold,
-    ),
-    ),
-      ],
-    ),
-          ),
-        )
+    //     TextButton(
+    //       onPressed: () {
+    //         },
+    //       child: RichText(
+    // text: TextSpan(
+    // text: 'Don\'t have an account? ',
+    // style: DefaultTextStyle.of(context).style,
+    // children: <TextSpan>[
+    // TextSpan(
+    // text: 'Sign up',
+    // style: TextStyle(
+    // color: zColor, // Set the desired color
+    // fontWeight: FontWeight.bold,
+    // ),
+    // ),
+    //   ],
+    // ),
+    //       ),
+    //     )
     ]
     );
   }

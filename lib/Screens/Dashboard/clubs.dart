@@ -26,6 +26,9 @@ class Club extends StatelessWidget {
       ),
       body: ListView(
         children: [
+
+          // -->Search
+
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Card(
@@ -51,6 +54,10 @@ class Club extends StatelessWidget {
               ),
             ),
           ),
+
+
+
+          // 1 section
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text('Total Clubs :200'),
@@ -58,6 +65,8 @@ class Club extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Card(
+              surfaceTintColor: Colors.white,
+              color: Colors.white,
               child: Row(
                 children: [
                   const Padding(
@@ -122,6 +131,8 @@ class Club extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Card(
+              surfaceTintColor: Colors.white,
+              color: Colors.white,
               child: Row(
                 children: [
                   Padding(
@@ -186,6 +197,8 @@ class Club extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Card(
+              surfaceTintColor: Colors.white,
+              color: Colors.white,
               child: Row(
                 children: [
                   Padding(
@@ -250,6 +263,8 @@ class Club extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Card(
+              surfaceTintColor: Colors.white,
+              color: Colors.white,
               child: Row(
                 children: [
                   const Padding(
@@ -314,6 +329,8 @@ class Club extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Card(
+              surfaceTintColor: Colors.white,
+              color: Colors.white,
               child: Row(
                 children: [
                   Padding(
@@ -378,6 +395,8 @@ class Club extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Card(
+              surfaceTintColor: Colors.white,
+              color: Colors.white,
               child: Row(
                 children: [
                   Padding(

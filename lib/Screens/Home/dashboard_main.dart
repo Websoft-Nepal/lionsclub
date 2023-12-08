@@ -20,6 +20,11 @@ class _MainBoardState extends State<MainBoard> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(children: [
+        // -->1st
+        // ClipRRect(
+        //     borderRadius: BorderRadius.circular(200),
+        //     child: Image.asset('assets/officerm.png',fit: BoxFit.fill,)),
+
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: CarouselSlider.builder(
@@ -50,6 +55,8 @@ class _MainBoardState extends State<MainBoard> {
             ),
           ),
         ),
+
+        // -->2nd
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(
@@ -68,6 +75,7 @@ class _MainBoardState extends State<MainBoard> {
               Container(
                 width: 300,
                 child: Card(
+                  surfaceTintColor: Colors.white,
                   color: Colors.white,
                   elevation: 3.0, // Set the elevation for a shadow effect
                   margin: EdgeInsets.all(15.0), // Set margin to provide spacing around the card
@@ -114,20 +122,18 @@ class _MainBoardState extends State<MainBoard> {
                             children: [
                               Text('Focused Program'),
                               Spacer(),
-                              Container(
-                                height: 25,
-                                width: 75,
-                                child: Container(
 
+                                Container(
                                     decoration: BoxDecoration(
-                                        color: Colors.orange,//->set color btnBg
+                                        color: zColor,//->set color btnBg
                                       borderRadius: BorderRadius.circular(12)
                                     ),
-                                    height: 30,
-                                    child: Center(child: Text('more')))
+                                    height: 20,
+                                    width: 40,
+                                    child: Center(child: Text('more',style: TextStyle(color: Colors.white),)))
 
                                 ,
-                              )
+
                             ],
                           ),
                         )
@@ -140,6 +146,7 @@ class _MainBoardState extends State<MainBoard> {
               Container(
                 width: 300,
                 child: Card(
+                   surfaceTintColor: Colors.white,
                   color: Colors.white,
                   elevation: 3.0, // Set the elevation for a shadow effect
                   margin: EdgeInsets.all(15.0), // Set margin to provide spacing around the card
@@ -187,19 +194,13 @@ class _MainBoardState extends State<MainBoard> {
                                 Text('Focused Program'),
                                 Spacer(),
                                 Container(
-                                  height: 25,
-                                  width: 75,
-                                  child: Container(
-
-                                      decoration: BoxDecoration(
-                                          color: Colors.orange,//->set color btnBg
-                                          borderRadius: BorderRadius.circular(12)
-                                      ),
-                                      height: 30,
-                                      child: Center(child: Text('more')))
-
-                                  ,
-                                )
+                                    decoration: BoxDecoration(
+                                        color: zColor,//->set color btnBg
+                                        borderRadius: BorderRadius.circular(12)
+                                    ),
+                                    height: 20,
+                                    width: 40,
+                                    child: Center(child: Text('more',style: TextStyle(color: Colors.white),)))
                               ],
                             ),
                           )
@@ -212,6 +213,7 @@ class _MainBoardState extends State<MainBoard> {
               Container(
                 width: 300,
                 child: Card(
+                  surfaceTintColor: Colors.white,
                   color: Colors.white,
                   elevation: 3.0, // Set the elevation for a shadow effect
                   margin: EdgeInsets.all(15.0), // Set margin to provide spacing around the card
@@ -259,19 +261,13 @@ class _MainBoardState extends State<MainBoard> {
                                 Text('Focused Program'),
                                 Spacer(),
                                 Container(
-                                  height: 25,
-                                  width: 75,
-                                  child: Container(
-
-                                      decoration: BoxDecoration(
-                                          color: Colors.orange,//->set color btnBg
-                                          borderRadius: BorderRadius.circular(12)
-                                      ),
-                                      height: 30,
-                                      child: Center(child: Text('more')))
-
-                                  ,
-                                )
+                                    decoration: BoxDecoration(
+                                        color: zColor,//->set color btnBg
+                                        borderRadius: BorderRadius.circular(12)
+                                    ),
+                                    height: 20,
+                                    width: 40,
+                                    child: Center(child: Text('more',style: TextStyle(color: Colors.white),)))
                               ],
                             ),
                           )
@@ -284,6 +280,7 @@ class _MainBoardState extends State<MainBoard> {
               Container(
                 width: 300,
                 child: Card(
+                  surfaceTintColor: Colors.white,
                   color: Colors.white,
                   elevation: 3.0, // Set the elevation for a shadow effect
                   margin: EdgeInsets.all(15.0), // Set margin to provide spacing around the card
@@ -331,19 +328,13 @@ class _MainBoardState extends State<MainBoard> {
                                 Text('Focused Program'),
                                 Spacer(),
                                 Container(
-                                  height: 25,
-                                  width: 75,
-                                  child: Container(
-
-                                      decoration: BoxDecoration(
-                                          color: Colors.orange,//->set color btnBg
-                                          borderRadius: BorderRadius.circular(12)
-                                      ),
-                                      height: 30,
-                                      child: Center(child: Text('more')))
-
-                                  ,
-                                )
+                                    decoration: BoxDecoration(
+                                        color: zColor,//->set color btnBg
+                                        borderRadius: BorderRadius.circular(12)
+                                    ),
+                                    height: 20,
+                                    width: 40,
+                                    child: Center(child: Text('more',style: TextStyle(color: Colors.white),)))
                               ],
                             ),
                           )
@@ -356,7 +347,7 @@ class _MainBoardState extends State<MainBoard> {
               Container(
                 width: 300,
                 child: Card(
-                  color: Colors.white,
+                  surfaceTintColor: Colors.white,
                   elevation: 3.0, // Set the elevation for a shadow effect
                   margin: EdgeInsets.all(15.0), // Set margin to provide spacing around the card
                   child: Padding(
@@ -368,12 +359,12 @@ class _MainBoardState extends State<MainBoard> {
                           Container(
                             width: 250,
                             decoration:BoxDecoration(
-
                             ) ,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Container(
                                 decoration:BoxDecoration(
+                                  color:Colors.white,
                                     borderRadius: BorderRadius.circular(12)
                                 ) ,
                                 height: 150,
@@ -403,19 +394,13 @@ class _MainBoardState extends State<MainBoard> {
                                 Text('Focused Program'),
                                 Spacer(),
                                 Container(
-                                  height: 25,
-                                  width: 75,
-                                  child: Container(
-
-                                      decoration: BoxDecoration(
-                                          color: Colors.orange,//->set color btnBg
-                                          borderRadius: BorderRadius.circular(12)
-                                      ),
-                                      height: 30,
-                                      child: Center(child: Text('more')))
-
-                                  ,
-                                )
+                                    decoration: BoxDecoration(
+                                        color: zColor,//->set color btnBg
+                                        borderRadius: BorderRadius.circular(12)
+                                    ),
+                                    height: 20,
+                                    width: 40,
+                                    child: Center(child: Text('more',style:TextStyle(color: Colors.white),)))
                               ],
                             ),
                           )
@@ -428,6 +413,7 @@ class _MainBoardState extends State<MainBoard> {
               Container(
                 width: 300,
                 child: Card(
+                  surfaceTintColor: Colors.white,
                   color: Colors.white,
                   elevation: 3.0, // Set the elevation for a shadow effect
                   margin: EdgeInsets.all(15.0), // Set margin to provide spacing around the card
@@ -475,19 +461,13 @@ class _MainBoardState extends State<MainBoard> {
                                 Text('Focused Program'),
                                 Spacer(),
                                 Container(
-                                  height: 25,
-                                  width: 75,
-                                  child: Container(
-
-                                      decoration: BoxDecoration(
-                                          color: Colors.orange,//->set color btnBg
-                                          borderRadius: BorderRadius.circular(12)
-                                      ),
-                                      height: 30,
-                                      child: Center(child: Text('more')))
-
-                                  ,
-                                )
+                                    decoration: BoxDecoration(
+                                        color: zColor,//->set color btnBg
+                                        borderRadius: BorderRadius.circular(12)
+                                    ),
+                                    height: 20,
+                                    width: 40,
+                                    child: Center(child: Text('more',style: TextStyle(color: Colors.white),)))
                               ],
                             ),
                           )
