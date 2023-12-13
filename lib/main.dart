@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:lionsclub/Home/slider.dart';
+// import 'package:lionsclub/Home/slider.dart';?
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'Home/home.dart';
+import 'Screens/Home/home.dart';
 const Color pColor = Color(0xFFFCCB08);
 const Color sColor = Color(0xFF11468F);
 const Color tColor = Color(0xFF141414);
+const Color ttColor = Color(0xFF666666);
 const Color bColor = Color(0xFFEEEEEE);
 const Color zColor = Color(0xFFFF6347);
 const Color btnBg = Color(0xFFF8F2ED);

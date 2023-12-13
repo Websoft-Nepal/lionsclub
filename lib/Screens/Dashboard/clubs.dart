@@ -63,8 +63,9 @@ class Club extends StatelessWidget {
             child: Text('Total Clubs :200'),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(right: 18.0,left: 18,top: 8),
             child: Card(
+              elevation: 5,
               surfaceTintColor: Colors.white,
               color: Colors.white,
               child: Row(
@@ -76,11 +77,11 @@ class Club extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsets.all(8.0),
+                          padding: EdgeInsets.only(right: 8,left: 8,bottom: 5),
                           child: Text(
                             'Baglung City',
                             style: TextStyle(
-                                fontSize: 20,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w800,
                                 color: Color(0xFF141414)),
                           ),
@@ -97,10 +98,11 @@ class Club extends StatelessWidget {
                                     'Charter Date ',
                                     style: TextStyle(
                                         fontSize: 16,
-                                        fontWeight: FontWeight.w800,
+                                        // fontWeight: FontWeight.w800,
                                         color: Color(0xFF141414)),
                                   ),
-                                  Text('2017/01/08')
+                                  SizedBox(height: 5,),
+                                  Text('2017/01/08',style: TextStyle(fontWeight: FontWeight.w100,color: Color(0xFF666666)),)
                                 ],
                               ),
                               SizedBox(width: 10),
@@ -110,10 +112,11 @@ class Club extends StatelessWidget {
                                     'Member',
                                     style: TextStyle(
                                         fontSize: 16,
-                                        fontWeight: FontWeight.w800,
+                                        // fontWeight: FontWeight.w800,
                                         color: Color(0xFF141414)),
                                   ),
-                                  Text('27')
+                                  SizedBox(height: 5,),
+                                  Text('27',style: TextStyle(color: Color(0xFF666666)),)
                                 ],
                               )
                             ],
@@ -122,147 +125,16 @@ class Club extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Spacer(),
-                  Container(height: 100, child: Image.asset('assets/logo.png'))
+                  SizedBox(width:18,),
+                  Container(height: 80, child: Image.asset('assets/logo.png'))
                 ],
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(right: 18.0,left: 18,top: 8),
             child: Card(
-              surfaceTintColor: Colors.white,
-              color: Colors.white,
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            'Pokhara City',
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w800,
-                                color: Color(0xFF141414)),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Column(
-                                children: [
-                                  Text(
-                                    'Charter Date ',
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w800,
-                                        color: Color(0xFF141414)),
-                                  ),
-                                  Text('2017/01/08')
-                                ],
-                              ),
-                              SizedBox(width: 10),
-                              Column(
-                                children: [
-                                  Text(
-                                    'Member',
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w800,
-                                        color: Color(0xFF141414)),
-                                  ),
-                                  Text('27')
-                                ],
-                              )
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Spacer(),
-                  Container(height: 100, child: Image.asset('assets/logo.png'))
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Card(
-              surfaceTintColor: Colors.white,
-              color: Colors.white,
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            'Dharan City',
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w800,
-                                color: Color(0xFF141414)),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Column(
-                                children: [
-                                  Text(
-                                    'Charter Date ',
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w800,
-                                        color: Color(0xFF141414)),
-                                  ),
-                                  Text('2017/01/08')
-                                ],
-                              ),
-                              SizedBox(width: 10),
-                              Column(
-                                children: [
-                                  Text(
-                                    'Member',
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w800,
-                                        color: Color(0xFF141414)),
-                                  ),
-                                  Text('27')
-                                ],
-                              )
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Spacer(),
-                  Container(height: 100, child: Image.asset('assets/logo.png'))
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Card(
+              elevation: 5,
               surfaceTintColor: Colors.white,
               color: Colors.white,
               child: Row(
@@ -274,11 +146,11 @@ class Club extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsets.all(8.0),
+                          padding: EdgeInsets.only(right: 8,left: 8,bottom: 5),
                           child: Text(
-                            'Damauli City',
+                            'Baglung City',
                             style: TextStyle(
-                                fontSize: 20,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w800,
                                 color: Color(0xFF141414)),
                           ),
@@ -295,10 +167,11 @@ class Club extends StatelessWidget {
                                     'Charter Date ',
                                     style: TextStyle(
                                         fontSize: 16,
-                                        fontWeight: FontWeight.w800,
+                                        // fontWeight: FontWeight.w800,
                                         color: Color(0xFF141414)),
                                   ),
-                                  Text('2017/01/08')
+                                  SizedBox(height: 5,),
+                                  Text('2017/01/08',style: TextStyle(fontWeight: FontWeight.w100,color: Color(0xFF666666)),)
                                 ],
                               ),
                               SizedBox(width: 10),
@@ -308,10 +181,11 @@ class Club extends StatelessWidget {
                                     'Member',
                                     style: TextStyle(
                                         fontSize: 16,
-                                        fontWeight: FontWeight.w800,
+                                        // fontWeight: FontWeight.w800,
                                         color: Color(0xFF141414)),
                                   ),
-                                  Text('27')
+                                  SizedBox(height: 5,),
+                                  Text('27',style: TextStyle(color: Color(0xFF666666)),)
                                 ],
                               )
                             ],
@@ -320,37 +194,38 @@ class Club extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Spacer(),
-                  Container(height: 100, child: Image.asset('assets/logo.png'))
+                  SizedBox(width:18,),
+                  Container(height: 80, child: Image.asset('assets/logo.png'))
                 ],
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(right: 18.0,left: 18,top: 8),
             child: Card(
+              elevation: 5,
               surfaceTintColor: Colors.white,
               color: Colors.white,
               child: Row(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(12.0),
+                  const Padding(
+                    padding: EdgeInsets.all(12.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.only(right: 8,left: 8,bottom: 5),
                           child: Text(
                             'Baglung City',
                             style: TextStyle(
-                                fontSize: 20,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w800,
                                 color: Color(0xFF141414)),
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(8.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -361,10 +236,11 @@ class Club extends StatelessWidget {
                                     'Charter Date ',
                                     style: TextStyle(
                                         fontSize: 16,
-                                        fontWeight: FontWeight.w800,
+                                        // fontWeight: FontWeight.w800,
                                         color: Color(0xFF141414)),
                                   ),
-                                  Text('2017/01/08')
+                                  SizedBox(height: 5,),
+                                  Text('2017/01/08',style: TextStyle(fontWeight: FontWeight.w100,color: Color(0xFF666666)),)
                                 ],
                               ),
                               SizedBox(width: 10),
@@ -374,10 +250,11 @@ class Club extends StatelessWidget {
                                     'Member',
                                     style: TextStyle(
                                         fontSize: 16,
-                                        fontWeight: FontWeight.w800,
+                                        // fontWeight: FontWeight.w800,
                                         color: Color(0xFF141414)),
                                   ),
-                                  Text('27')
+                                  SizedBox(height: 5,),
+                                  Text('27',style: TextStyle(color: Color(0xFF666666)),)
                                 ],
                               )
                             ],
@@ -386,37 +263,38 @@ class Club extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Spacer(),
-                  Container(height: 100, child: Image.asset('assets/logo.png'))
+                  SizedBox(width:18,),
+                  Container(height: 80, child: Image.asset('assets/logo.png'))
                 ],
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(right: 18.0,left: 18,top: 8),
             child: Card(
+              elevation: 5,
               surfaceTintColor: Colors.white,
               color: Colors.white,
               child: Row(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(12.0),
+                  const Padding(
+                    padding: EdgeInsets.all(12.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.only(right: 8,left: 8,bottom: 5),
                           child: Text(
                             'Baglung City',
                             style: TextStyle(
-                                fontSize: 20,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w800,
                                 color: Color(0xFF141414)),
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(8.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -427,10 +305,11 @@ class Club extends StatelessWidget {
                                     'Charter Date ',
                                     style: TextStyle(
                                         fontSize: 16,
-                                        fontWeight: FontWeight.w800,
+                                        // fontWeight: FontWeight.w800,
                                         color: Color(0xFF141414)),
                                   ),
-                                  Text('2017/01/08')
+                                  SizedBox(height: 5,),
+                                  Text('2017/01/08',style: TextStyle(fontWeight: FontWeight.w100,color: Color(0xFF666666)),)
                                 ],
                               ),
                               SizedBox(width: 10),
@@ -440,10 +319,11 @@ class Club extends StatelessWidget {
                                     'Member',
                                     style: TextStyle(
                                         fontSize: 16,
-                                        fontWeight: FontWeight.w800,
+                                        // fontWeight: FontWeight.w800,
                                         color: Color(0xFF141414)),
                                   ),
-                                  Text('27')
+                                  SizedBox(height: 5,),
+                                  Text('27',style: TextStyle(color: Color(0xFF666666)),)
                                 ],
                               )
                             ],
@@ -452,12 +332,221 @@ class Club extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Spacer(),
-                  Container(height: 100, child: Image.asset('assets/logo.png'))
+                  SizedBox(width:18,),
+                  Container(height: 80, child: Image.asset('assets/logo.png'))
                 ],
               ),
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.only(right: 18.0,left: 18,top: 8),
+            child: Card(
+              elevation: 5,
+              surfaceTintColor: Colors.white,
+              color: Colors.white,
+              child: Row(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(12.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(right: 8,left: 8,bottom: 5),
+                          child: Text(
+                            'Baglung City',
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w800,
+                                color: Color(0xFF141414)),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Column(
+                                children: [
+                                  Text(
+                                    'Charter Date ',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        // fontWeight: FontWeight.w800,
+                                        color: Color(0xFF141414)),
+                                  ),
+                                  SizedBox(height: 5,),
+                                  Text('2017/01/08',style: TextStyle(fontWeight: FontWeight.w100,color: Color(0xFF666666)),)
+                                ],
+                              ),
+                              SizedBox(width: 10),
+                              Column(
+                                children: [
+                                  Text(
+                                    'Member',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        // fontWeight: FontWeight.w800,
+                                        color: Color(0xFF141414)),
+                                  ),
+                                  SizedBox(height: 5,),
+                                  Text('27',style: TextStyle(color: Color(0xFF666666)),)
+                                ],
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(width:18,),
+                  Container(height: 80, child: Image.asset('assets/logo.png'))
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 18.0,left: 18,top: 8),
+            child: Card(
+              elevation: 5,
+              surfaceTintColor: Colors.white,
+              color: Colors.white,
+              child: Row(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(12.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(right: 8,left: 8,bottom: 5),
+                          child: Text(
+                            'Baglung City',
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w800,
+                                color: Color(0xFF141414)),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Column(
+                                children: [
+                                  Text(
+                                    'Charter Date ',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        // fontWeight: FontWeight.w800,
+                                        color: Color(0xFF141414)),
+                                  ),
+                                  SizedBox(height: 5,),
+                                  Text('2017/01/08',style: TextStyle(fontWeight: FontWeight.w100,color: Color(0xFF666666)),)
+                                ],
+                              ),
+                              SizedBox(width: 10),
+                              Column(
+                                children: [
+                                  Text(
+                                    'Member',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        // fontWeight: FontWeight.w800,
+                                        color: Color(0xFF141414)),
+                                  ),
+                                  SizedBox(height: 5,),
+                                  Text('27',style: TextStyle(color: Color(0xFF666666)),)
+                                ],
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(width:18,),
+                  Container(height: 80, child: Image.asset('assets/logo.png'))
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 18.0,left: 18,top: 8),
+            child: Card(
+              elevation: 5,
+              surfaceTintColor: Colors.white,
+              color: Colors.white,
+              child: Row(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(12.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(right: 8,left: 8,bottom: 5),
+                          child: Text(
+                            'Baglung City',
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w800,
+                                color: Color(0xFF141414)),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Column(
+                                children: [
+                                  Text(
+                                    'Charter Date ',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        // fontWeight: FontWeight.w800,
+                                        color: Color(0xFF141414)),
+                                  ),
+                                  SizedBox(height: 5,),
+                                  Text('2017/01/08',style: TextStyle(fontWeight: FontWeight.w100,color: Color(0xFF666666)),)
+                                ],
+                              ),
+                              SizedBox(width: 10),
+                              Column(
+                                children: [
+                                  Text(
+                                    'Member',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        // fontWeight: FontWeight.w800,
+                                        color: Color(0xFF141414)),
+                                  ),
+                                  SizedBox(height: 5,),
+                                  Text('27',style: TextStyle(color: Color(0xFF666666)),)
+                                ],
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(width:18,),
+                  Container(height: 80, child: Image.asset('assets/logo.png'))
+                ],
+              ),
+            ),
+          ),
+
+
         ],
       ),
     );

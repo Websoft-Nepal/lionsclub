@@ -7,8 +7,8 @@ import 'package:lionsclub/Screens/Home/dashboard_main.dart';
 import 'package:lionsclub/Screens/about.dart';
 import 'package:lionsclub/Screens/notification.dart';
 
-import '../Screens/Dashboard/clubs.dart';
-import '../main.dart';
+import '../Dashboard/clubs.dart';
+import '../../main.dart';
 
 class Home1 extends StatefulWidget {
   const Home1({super.key});
@@ -186,10 +186,11 @@ class _Home1State extends State<Home1> {
             currentPageIndex = index;
           });
         },
-        elevation: 1,
-        height: 60,
-        indicatorColor: Colors.white10,
-        backgroundColor: Colors.white,
+        elevation: 0.3,
+        height: 65,
+        indicatorColor: Colors.white,
+        backgroundColor: Colors.white12,
+        // surfaceTintColor: Colors.white24,
         selectedIndex: currentPageIndex,
         destinations: const <Widget>[
           NavigationDestination(

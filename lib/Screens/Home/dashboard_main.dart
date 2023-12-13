@@ -19,11 +19,15 @@ class _MainBoardState extends State<MainBoard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: ListView(children: [
+
+
         // -->1st
         // ClipRRect(
         //     borderRadius: BorderRadius.circular(200),
         //     child: Image.asset('assets/officerm.png',fit: BoxFit.fill,)),
+
 
         Padding(
           padding: const EdgeInsets.all(8.0),
@@ -56,15 +60,121 @@ class _MainBoardState extends State<MainBoard> {
           ),
         ),
 
+
+        Padding(
+          padding: const EdgeInsets.only(left: 8.0,right: 8,top:8,bottom: 20),
+          child: Text('Dashboard',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left:18.0,right: 18),
+          child: Column(
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,// Column size will wrap its content
+                    children: [
+                      Icon(Icons.contact_emergency_outlined,color: Colors.red),
+                      SizedBox(height: 6,),// Icon // Spacer
+                      Text('District',style:TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w100,
+                          color: ttColor
+                      ),), // Text
+                    ],
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,// Column size will wrap its content
+                    children: [
+                      Icon(Icons.people,color: sColor),
+                      SizedBox(height: 6,),// Icon // Spacer
+                      Text('Clubs',style:TextStyle(
+                          fontSize: 12,
+                          color: ttColor
+                      ),), // Text
+                    ],
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,// Column size will wrap its content
+                    children: [
+                      Icon(Icons.map,color: pColor),
+                      SizedBox(height: 6,),// Icon // Spacer
+                      Text('\t\t\tZonal\nDirectory',style:TextStyle(
+                          fontSize: 10,
+                          color: ttColor
+                      ),), // Text
+                    ],
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,// Column size will wrap its content
+                    children: [
+                      Icon(Icons.newspaper,color: zColor),
+                      SizedBox(height: 6,),// Icon // Spacer
+                      Text('News',style:TextStyle(
+                          fontSize: 10,
+                          color: ttColor
+                      ),), // Text
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(height: 10,),
+              Row(
+                // mainAxisAlignment: MainAxisAlignment.spa,
+                children: [
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,// Column size will wrap its content
+                    children: [
+                      Icon(Icons.contact_emergency_outlined,color: Colors.red),
+                      SizedBox(height: 6,),// Icon // Spacer
+                      Text('Emergency\n   Contact',style:TextStyle(
+                          fontSize: 10,
+                          color: Colors.black
+                      ),), // Text
+                    ],
+                  ),
+                  Spacer(),
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,// Column size will wrap its content
+                    children: [
+                      Icon(Icons.contact_emergency_outlined,color: Colors.red),
+                      SizedBox(height: 6,),// Icon // Spacer
+                      Text('Emergency\n   Contact',style:TextStyle(
+                          fontSize: 10,
+                          color: Colors.black
+                      ),), // Text
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+
+        SizedBox(height: 15,),
         // -->2nd
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.only(right:8.0,left: 8.0,top: 8.0,bottom: 0),
           child: Row(
             children: [
               Text('Focus Program',style: TextStyle(fontSize: 18,fontWeight:FontWeight.bold),),
               Spacer(),
               TextButton(onPressed: () {  },
-              child: Text('view more',style: TextStyle(fontSize: 18,color:zColor),))
+              child: Text('View more',style: TextStyle(fontSize: 14,color:zColor),))
             ],
           ),
         ),
@@ -111,7 +221,7 @@ class _MainBoardState extends State<MainBoard> {
                           child: Text(
                             'Child and Women Support Program ',
                             style: TextStyle(
-                              fontSize: 16.0,
+                              fontSize: 14.0,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -120,7 +230,7 @@ class _MainBoardState extends State<MainBoard> {
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
                             children: [
-                              Text('Focused Program'),
+                              Text('Focused Program',style: TextStyle(fontSize:12,color: ttColor),),
                               Spacer(),
 
                                 Container(
@@ -130,7 +240,7 @@ class _MainBoardState extends State<MainBoard> {
                                     ),
                                     height: 20,
                                     width: 40,
-                                    child: Center(child: Text('more',style: TextStyle(color: Colors.white),)))
+                                    child: const Text('more',textAlign: TextAlign.center,style: TextStyle(fontSize:12,color: Colors.white),))
 
                                 ,
 
@@ -344,12 +454,13 @@ class _MainBoardState extends State<MainBoard> {
                   ),
                 ),
               ),
-              Container(
+              SizedBox(
                 width: 300,
                 child: Card(
+                  color: Colors.white,
                   surfaceTintColor: Colors.white,
                   elevation: 3.0, // Set the elevation for a shadow effect
-                  margin: EdgeInsets.all(15.0), // Set margin to provide spacing around the card
+                  margin: const EdgeInsets.all(15.0), // Set margin to provide spacing around the card
                   child: Padding(
                     padding: const EdgeInsets.all(5.0),
                     child: Column(

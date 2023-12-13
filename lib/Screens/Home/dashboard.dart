@@ -51,7 +51,7 @@ class _DashboardState extends State<Dashboard> {
                       ),
                       Text(
                         'Contact',
-                        style: TextStyle(fontSize: 18),
+                        style: TextStyle(fontSize: 16),
                       ),
                       Spacer(),
                       Spacer(
@@ -87,16 +87,14 @@ class _DashboardState extends State<Dashboard> {
                       ),
                       Text(
                         'Terms and condition',
-                        style: TextStyle(fontSize: 18),
+                        style: TextStyle(fontSize: 16),
                       ),
-                      SizedBox(
-                        width: 15,
+
+                      Spacer(
+                        flex: 2,
                       ),
                       Spacer(
                         flex: 1,
-                      ),
-                      Spacer(
-                        flex: 2,
                       ),
                       Icon(Icons.arrow_forward_ios_sharp)
                     ],
@@ -125,7 +123,7 @@ class _DashboardState extends State<Dashboard> {
                       ),
                       Text(
                         'Privacy',
-                        style: TextStyle(fontSize: 18),
+                        style: TextStyle(fontSize: 16),
                       ),
                       Spacer(),
                       Spacer(
@@ -161,7 +159,7 @@ class _DashboardState extends State<Dashboard> {
                       ),
                       Text(
                         'About',
-                        style: TextStyle(fontSize: 18),
+                        style: TextStyle(fontSize: 16),
                       ),
                       Spacer(),
                       Spacer(
