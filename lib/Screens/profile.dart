@@ -27,6 +27,8 @@ class _AboutState extends State<About> {
             ),
             Spacer(
               flex: 2,
+
+
             )
           ],
         ),
