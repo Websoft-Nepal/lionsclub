@@ -12,20 +12,20 @@ class _AboutState extends State<About> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFEEEEEE),
+      backgroundColor: const Color(0xFFEEEEEE),
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.white),
-        backgroundColor: Color(0xFF11468F),
+        iconTheme: const IconThemeData(color: Colors.white),
+        backgroundColor: const Color(0xFF11468F),
         title: Row(
           children: [
-            Container(
+            SizedBox(
                 height: 50, width: 50, child: Image.asset('assets/logo.png')),
-            Spacer(),
-            Text(
+            const Spacer(),
+            const Text(
               'District Directory',
               style: TextStyle(color: Colors.white),
             ),
-            Spacer(
+            const Spacer(
               flex: 2,
 
 
@@ -34,7 +34,7 @@ class _AboutState extends State<About> {
         ),
       ),
       body: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2, // Number of columns
           childAspectRatio: 1.9, // Width to height ratio of each item
         ),
@@ -47,7 +47,7 @@ class _AboutState extends State<About> {
   }
   Widget _buildGridItem(int index) {
     return Container(
-      margin: EdgeInsets.all(15.0),
+      margin: const EdgeInsets.all(15.0),
       decoration: BoxDecoration(
         color: sColor,
         borderRadius: BorderRadius.circular(12.0), // Adjust the radius as needed

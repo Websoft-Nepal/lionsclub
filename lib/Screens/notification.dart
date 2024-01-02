@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../main.dart';
-import '../../main.dart';
 class Notice extends StatefulWidget {
   const Notice({super.key});
 
@@ -19,10 +18,10 @@ class _NoticeState extends State<Notice> {
         backgroundColor: sColor,
         title: Row(
           children: [
-            Container(
+            SizedBox(
                 height: 50, width: 50, child: Image.asset('assets/logo.png')),
             Spacer(),
-            Text(
+            const Text(
               'Notifications',
               style: TextStyle(color: Colors.white),
             ),

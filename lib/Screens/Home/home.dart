@@ -4,15 +4,12 @@ import 'package:lionsclub/Screens/Dashboard/Zonal_directory.dart';
 import 'package:lionsclub/Screens/Dashboard/dIstrict_directory.dart';
 import 'package:lionsclub/Screens/Home/dashboard.dart';
 import 'package:lionsclub/Screens/Home/dashboard_main.dart';
-import 'package:lionsclub/Screens/about.dart';
 import 'package:lionsclub/Screens/notification.dart';
-
 import '../Dashboard/clubs.dart';
 import '../../main.dart';
 
 class Home1 extends StatefulWidget {
   const Home1({super.key});
-
   @override
   State<Home1> createState() => _Home1State();
 }
@@ -23,9 +20,6 @@ class _Home1State extends State<Home1> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Drawer(
-        // Add a ListView to the drawer. This ensures the user can scroll
-        // through the options in the drawer if there isn't enough vertical
-        // space to fit everything.
         child: ListView(
           // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
@@ -38,12 +32,12 @@ class _Home1State extends State<Home1> {
                 children: [
                   Row(
                     children: [
-                      Spacer(),
-                      Container(
+                      const Spacer(),
+                      SizedBox(
                           height: 100,
                           width: 100,
                           child: Image.asset('assets/logo.png')),
-                      Container(
+                      SizedBox(
                           height: 100,
                           width: 100,
                           child: Image.asset('assets/logo.png')),
@@ -75,7 +69,7 @@ class _Home1State extends State<Home1> {
               },
             ),
             ListTile(
-              title: Row(
+              title: const Row(
                 children: [
                   Icon(Icons.store_mall_directory,color: sColor,),
                   SizedBox(width: 10),

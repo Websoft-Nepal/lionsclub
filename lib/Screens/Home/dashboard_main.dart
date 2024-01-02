@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:lionsclub/main.dart';
 
+import '../message.dart';
+
 class MainBoard extends StatefulWidget {
   const MainBoard({super.key});
 
@@ -13,7 +15,7 @@ class _MainBoardState extends State<MainBoard> {
   final imageUrls = [
     "assets/c1.jpg",
     "https://www.gpo.gov.np/images/uploaded/imagepath/6e597028-8799-4e7f-b115-504eb18305f81f5e9d24-e40b-474e-9bb6-23e53679fbbe74603fbe-dd44-4c7a-9408-0fa1a9b8a027423394eb-53e0-44d3-9dbf-9522ad6067a8gpo.jpg"
-    // "https://oag.gov.np/uploads/OAG%2013.jpg"
+    "https://oag.gov.np/uploads/OAG%2013.jpg"
   ];
 
   @override
@@ -26,7 +28,7 @@ class _MainBoardState extends State<MainBoard> {
         // -->1st
         // ClipRRect(
         //     borderRadius: BorderRadius.circular(200),
-        //     child: Image.asset('assets/officerm.png',fit: BoxFit.fill,)),
+        //     child: Image.asset('assets/officer.png',fit: BoxFit.fill,)),
 
 
         Padding(
@@ -47,8 +49,8 @@ class _MainBoardState extends State<MainBoard> {
               enableInfiniteScroll: true,
               reverse: false,
               autoPlay: true,
-              autoPlayInterval: Duration(seconds: 3),
-              autoPlayAnimationDuration: Duration(milliseconds: 800),
+              autoPlayInterval: const Duration(seconds: 3),
+              autoPlayAnimationDuration: const Duration(milliseconds: 800),
               autoPlayCurve: Curves.fastOutSlowIn,
               enlargeCenterPage: true,
               enlargeStrategy: CenterPageEnlargeStrategy.scale,
@@ -61,31 +63,37 @@ class _MainBoardState extends State<MainBoard> {
         ),
 
 
-        Padding(
-          padding: const EdgeInsets.only(left: 8.0,right: 8,top:8,bottom: 20),
+        const Padding(
+          padding: EdgeInsets.only(left: 8.0,right: 8,top:8,bottom: 20),
           child: Text('Dashboard',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
         ),
-        Padding(
-          padding: const EdgeInsets.only(left:18.0,right: 18),
+         Padding(
+          padding: EdgeInsets.only(left:18.0,right: 18),
           child: Column(
             children: [
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,// Column size will wrap its content
-                    children: [
-                      Icon(Icons.contact_emergency_outlined,color: Colors.red),
-                      SizedBox(height: 6,),// Icon // Spacer
-                      Text('District',style:TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w100,
-                          color: ttColor
-                      ),), // Text
-                    ],
+                  InkWell(
+                    onTap:(){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>Message()));
+
+    },
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,// Column size will wrap its content
+                      children: [
+                        Icon(Icons.person,color:zColor),
+                        SizedBox(height: 6,),// Icon // Spacer
+                        Text('\t\t\t\tHello\nChairman',style:TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w100,
+                            color: ttColor
+                        ),), // Text
+                      ],
+                    ),
                   ),
                   Column(
                     mainAxisSize: MainAxisSize.min,
@@ -118,7 +126,7 @@ class _MainBoardState extends State<MainBoard> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,// Column size will wrap its content
                     children: [
-                      Icon(Icons.newspaper,color: zColor),
+                      Icon(Icons.newspaper,color:zColor),
                       SizedBox(height: 6,),// Icon // Spacer
                       Text('News',style:TextStyle(
                           fontSize: 10,
@@ -130,7 +138,6 @@ class _MainBoardState extends State<MainBoard> {
               ),
               SizedBox(height: 10,),
               Row(
-                // mainAxisAlignment: MainAxisAlignment.spa,
                 children: [
                   Column(
                     mainAxisSize: MainAxisSize.min,
@@ -142,7 +149,7 @@ class _MainBoardState extends State<MainBoard> {
                       Text('Emergency\n   Contact',style:TextStyle(
                           fontSize: 10,
                           color: Colors.black
-                      ),), // Text
+                      ),),
                     ],
                   ),
                   Spacer(),
@@ -165,7 +172,7 @@ class _MainBoardState extends State<MainBoard> {
           ),
         ),
 
-        SizedBox(height: 15,),
+        const SizedBox(height: 15,),
         // -->2nd
         Padding(
           padding: const EdgeInsets.only(right:8.0,left: 8.0,top: 8.0,bottom: 0),
