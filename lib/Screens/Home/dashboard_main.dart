@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:lionsclub/Screens/Dashboard/Zonal_directory.dart';
+import 'package:lionsclub/Screens/Dashboard/clubs.dart';
+import 'package:lionsclub/Screens/Dashboard/dIstrict_directory.dart';
+import 'package:lionsclub/Screens/notification.dart';
 import 'package:lionsclub/main.dart';
 
+import '../Login_Signup section/icon.dart';
 import '../message.dart';
 
 class MainBoard extends StatefulWidget {
@@ -29,7 +34,14 @@ class _MainBoardState extends State<MainBoard> {
         // ClipRRect(
         //     borderRadius: BorderRadius.circular(200),
         //     child: Image.asset('assets/officer.png',fit: BoxFit.fill,)),
-
+     Padding(
+       padding: const EdgeInsets.all(8.0),
+       child: Text('Welcome to Lions District 325 m,Nepal',style: TextStyle(color: sColor,fontWeight: FontWeight.bold,fontSize: 21),),
+     ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text('"Lead With Empathy"',style: TextStyle(color: tColor,fontSize:18,fontWeight: FontWeight.bold),),
+        ),
 
         Padding(
           padding: const EdgeInsets.all(8.0),
@@ -75,97 +87,67 @@ class _MainBoardState extends State<MainBoard> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  InkWell(
-                    onTap:(){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>Message()));
+                  MyCustomIconButton(
+                    icon: Icons.person,
+                    color: zColor,
+                    iconName: '     Hello\nChairman', // You can pass the icon name dynamically
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const Message()));
+                    },
+                  ),
 
-    },
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,// Column size will wrap its content
-                      children: [
-                        Icon(Icons.person,color:zColor),
-                        SizedBox(height: 6,),// Icon // Spacer
-                        Text('\t\t\t\tHello\nChairman',style:TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w100,
-                            color: ttColor
-                        ),), // Text
-                      ],
-                    ),
+                  MyCustomIconButton(
+                    icon:Icons.people,
+                    color: sColor,
+                    iconName: 'Clubs', // You can pass the icon name dynamically
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  Club()));
+                    },
                   ),
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,// Column size will wrap its content
-                    children: [
-                      Icon(Icons.people,color: sColor),
-                      SizedBox(height: 6,),// Icon // Spacer
-                      Text('Clubs',style:TextStyle(
-                          fontSize: 12,
-                          color: ttColor
-                      ),), // Text
-                    ],
+                  MyCustomIconButton(
+                    icon:Icons.map,
+                    color: pColor,
+                    iconName: ' Zonal\nDirectory', // You can pass the icon name dynamically
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  ZonalD()));
+                    },
                   ),
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,// Column size will wrap its content
-                    children: [
-                      Icon(Icons.map,color: pColor),
-                      SizedBox(height: 6,),// Icon // Spacer
-                      Text('\t\t\tZonal\nDirectory',style:TextStyle(
-                          fontSize: 10,
-                          color: ttColor
-                      ),), // Text
-                    ],
-                  ),
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,// Column size will wrap its content
-                    children: [
-                      Icon(Icons.newspaper,color:zColor),
-                      SizedBox(height: 6,),// Icon // Spacer
-                      Text('News',style:TextStyle(
-                          fontSize: 10,
-                          color: ttColor
-                      ),), // Text
-                    ],
+                  MyCustomIconButton(
+                    icon:Icons.newspaper,
+                    color: ttColor,
+                    iconName: 'News', // You can pass the icon name dynamically
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  Club()));
+                    },
                   ),
                 ],
               ),
               SizedBox(height: 10,),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,// Column size will wrap its content
-                    children: [
-                      Icon(Icons.contact_emergency_outlined,color: Colors.red),
-                      SizedBox(height: 6,),// Icon // Spacer
-                      Text('Emergency\n   Contact',style:TextStyle(
-                          fontSize: 10,
-                          color: Colors.black
-                      ),),
-                    ],
+                  MyCustomIconButton(
+                    icon:Icons.location_on,
+                    color: pColor,
+                    iconName: '  District\nDirectory', // You can pass the icon name dynamically
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  District_Directory()));
+                    },
                   ),
-                  Spacer(),
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,// Column size will wrap its content
-                    children: [
-                      Icon(Icons.contact_emergency_outlined,color: Colors.red),
-                      SizedBox(height: 6,),// Icon // Spacer
-                      Text('Emergency\n   Contact',style:TextStyle(
-                          fontSize: 10,
-                          color: Colors.black
-                      ),), // Text
-                    ],
+                  MyCustomIconButton(
+                    icon:Icons.notifications,
+                    color: zColor,
+                    iconName: 'Notification', // You can pass the icon name dynamically
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  Notice()));
+                    },
                   ),
+
+                  Container(),
+                  Container(),
+                  Container(),
+                  Container()
                 ],
               ),
             ],
@@ -178,10 +160,10 @@ class _MainBoardState extends State<MainBoard> {
           padding: const EdgeInsets.only(right:8.0,left: 8.0,top: 8.0,bottom: 0),
           child: Row(
             children: [
-              Text('Focus Program',style: TextStyle(fontSize: 18,fontWeight:FontWeight.bold),),
-              Spacer(),
+              const Text('Focus Program',style: TextStyle(fontSize: 18,fontWeight:FontWeight.bold),),
+              const Spacer(),
               TextButton(onPressed: () {  },
-              child: Text('View more',style: TextStyle(fontSize: 14,color:zColor),))
+              child: const Text('View more',style: TextStyle(fontSize: 14,color:zColor),))
             ],
           ),
         ),
@@ -223,8 +205,8 @@ class _MainBoardState extends State<MainBoard> {
                           ),
                         ),
                         // Text at the bottom
-                        Padding(
-                          padding: const EdgeInsets.all(5.0),
+                        const Padding(
+                          padding: EdgeInsets.all(5.0),
                           child: Text(
                             'Child and Women Support Program ',
                             style: TextStyle(

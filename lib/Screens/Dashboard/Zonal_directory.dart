@@ -50,9 +50,7 @@ class _ZonalDState extends State<ZonalD> {
   }
 
   Widget _buildGridItem() {
-    return Container(
-      height: 200.0, // Adjust this value to change the height of the Card
-      child: Card(
+    return Card(
         elevation: 2.0,
         child: Padding(
           padding: EdgeInsets.all(16.0),
@@ -60,11 +58,13 @@ class _ZonalDState extends State<ZonalD> {
             // mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              CircleAvatar(
-                radius: 50.0,
-                backgroundImage: AssetImage('assets/officer.jpeg'),
+              Expanded(
+                child: CircleAvatar(
+                  radius: 49.0,
+                  backgroundImage: AssetImage('assets/officer.jpeg'),
+                ),
               ),
-              SizedBox(height: 3.0),
+              // SizedBox(height: 3.0),
               Text(
                 'Ram Bahadhur',
                 style: TextStyle(
@@ -72,12 +72,12 @@ class _ZonalDState extends State<ZonalD> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 3.0),
+              // SizedBox(height: 3.0),
               Text(
                 'Chief',
                 style: TextStyle(fontSize: 14.0,fontWeight: FontWeight.w700,color:sColor),
               ),
-              SizedBox(height: 3.0),
+              // SizedBox(height: 3.0),
               Text(
                 'lions club international\nDistrict 325 M, nepal',
                 style: TextStyle(fontSize: 10.0),
@@ -85,7 +85,6 @@ class _ZonalDState extends State<ZonalD> {
             ],
           ),
         ),
-      ),
-    );
+      );
   }
 }

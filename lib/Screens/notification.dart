@@ -31,6 +31,13 @@ class _NoticeState extends State<Notice> {
           ],
         ),
       ),
+
+      body: ListView(
+        children: [
+
+          
+        ],
+      ),
     );
   }
 
