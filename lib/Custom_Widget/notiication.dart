@@ -3,30 +3,65 @@ import 'package:lionsclub/main.dart';
 
 class MyNotification extends StatelessWidget {
   final String Title;
-  final String Description;
-  MyNotification({
-    required this.Title,
-    required this.Description
+  final String ImageURl;
+  final VoidCallback onTap;
 
+  const MyNotification({super.key,
+    required this.Title,
+    required this.ImageURl,
+    required this.onTap
   });
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
-              child: Text('Lions club international district 325 j, NEpal third cabinet meeting 2022/023 presentation online open',style: TextStyle(color: tColor,fontWeight: FontWeight.bold,fontSize: 18),),
-            ),
-            Text('01 Feb,2023',style: TextStyle(color: ttColor),)
-
-          ],
+    return GestureDetector(
+      onTap: onTap,
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  CircleAvatar(
+                    radius: 50.0,
+                    backgroundImage: Image.network(
+                      ImageURl,
+                      fit: BoxFit.cover,
+                    ).image,
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(bottom: 8.0),
+                            child: Text(Title,
+                              style: TextStyle(
+                                color: tColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              ),
+                              maxLines: 2, // Set maximum lines to 2
+                              overflow: TextOverflow.ellipsis, // Handle overflow with ellipsis
+                            ),
+                          ),
+                          Text(
+                            '01 Feb, 2023',
+                            style: TextStyle(color: ttColor),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

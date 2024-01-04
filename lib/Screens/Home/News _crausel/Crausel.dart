@@ -31,8 +31,17 @@ class _Crausel_newsState extends State<Crausel_news> {
             Navigator.push(context, MaterialPageRoute(builder: (context)=>Notice()));
           },
             child: buildCarouselItem('https://lionsclubkathmandu.org.np/wp-content/uploads/2023/12/367377413_372563901809892_1545061826286089042_n-768x1024.jpg', 'Scholarship Distribution For The hardworking students','Feb-01,2023')),
-        buildCarouselItem('https://lionsclubkathmandu.org.np/wp-content/uploads/2023/12/385552352_1814252202337140_5702902529929741264_n-768x1024.jpg', 'Peace Poster Certificate Distribution PProgram at our club-24th December','Feb-01,2023'),
-        buildCarouselItem('https://lionsclubkathmandu.org.np/wp-content/uploads/2023/12/377222402_1586162258586403_642019498667824248_n-768x1024.jpg', 'Free Eye care & Sweater School uniform and first adi distribution','Feb-01,2023'),
+        GestureDetector(
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>Notice()));
+            },
+            child: buildCarouselItem('https://lionsclubkathmandu.org.np/wp-content/uploads/2023/12/385552352_1814252202337140_5702902529929741264_n-768x1024.jpg', 'Peace Poster Certificate Distribution PProgram at our club-24th December','Feb-01,2023')),
+        GestureDetector(
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>Notice()));
+            },
+
+            child: buildCarouselItem('https://lionsclubkathmandu.org.np/wp-content/uploads/2023/12/377222402_1586162258586403_642019498667824248_n-768x1024.jpg', 'Free Eye care & Sweater School uniform and first adi distribution','Feb-01,2023')),
         buildCarouselItem('https://lionsclubkathmandu.org.np/wp-content/uploads/2023/12/370118347_861529925459932_4931753913859187089_n-4-1024x768.jpg', 'Immediate pst international President Lion Brain E.Sheehan Visited','Feb-01,2023'),
 
       ],

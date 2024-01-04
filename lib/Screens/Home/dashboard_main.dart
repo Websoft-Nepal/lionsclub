@@ -150,8 +150,10 @@ class _MainBoardState extends State<MainBoard> {
             children: [
               const Text('Focus Program',style: TextStyle(fontSize: 18,fontWeight:FontWeight.bold),),
               const Spacer(),
-              TextButton(onPressed: () {  },
-              child: const Text('View more',style: TextStyle(fontSize: 14,color:zColor),))
+
+              IconButton(onPressed: (){}, icon: Icon(Icons.arrow_forward,color: zColor,))
+              // TextButton(onPressed: () {  },
+              // child: const Text('View more',style: TextStyle(fontSize: 14,color:zColor),))
             ],
           ),
         ),
@@ -578,7 +580,9 @@ class _MainBoardState extends State<MainBoard> {
             children: [
               const Text('Latest News ',style: TextStyle(fontSize: 18,fontWeight:FontWeight.bold),),
               const Spacer(),
-              IconButton(onPressed: (){}, icon:Icon(Icons.arrow_forward,color: zColor,))
+              IconButton(onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>Notice()));
+              }, icon:Icon(Icons.arrow_forward,color: zColor,))
             ],
           ),
         ),

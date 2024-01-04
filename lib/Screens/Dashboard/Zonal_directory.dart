@@ -79,7 +79,7 @@ class _ZonalDState extends State<ZonalD> {
               ),
               // SizedBox(height: 3.0),
               Text(
-                'lions club international\nDistrict 325 M, nepal',
+                'lions club international District 325 M, nepal',
                 style: TextStyle(fontSize: 10.0),
               ),
             ],
