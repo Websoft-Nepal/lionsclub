@@ -3,10 +3,11 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:lionsclub/Screens/Dashboard/Zonal_directory.dart';
 import 'package:lionsclub/Screens/Dashboard/clubs.dart';
 import 'package:lionsclub/Screens/Dashboard/dIstrict_directory.dart';
+import 'package:lionsclub/Screens/Home/News%20_crausel/Crausel.dart';
 import 'package:lionsclub/Screens/notification.dart';
 import 'package:lionsclub/main.dart';
 
-import '../Login_Signup section/icon.dart';
+import '../../Custom_Widget/icon.dart';
 import '../message.dart';
 
 class MainBoard extends StatefulWidget {
@@ -42,7 +43,6 @@ class _MainBoardState extends State<MainBoard> {
           padding: const EdgeInsets.all(8.0),
           child: Text('"Lead With Empathy"',style: TextStyle(color: tColor,fontSize:18,fontWeight: FontWeight.bold),),
         ),
-
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: CarouselSlider.builder(
@@ -117,7 +117,7 @@ class _MainBoardState extends State<MainBoard> {
                     color: ttColor,
                     iconName: 'News', // You can pass the icon name dynamically
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  Club()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  Notice()));
                     },
                   ),
                 ],
@@ -125,7 +125,7 @@ class _MainBoardState extends State<MainBoard> {
               SizedBox(height: 10,),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   MyCustomIconButton(
                     icon:Icons.location_on,
@@ -135,19 +135,7 @@ class _MainBoardState extends State<MainBoard> {
                       Navigator.push(context, MaterialPageRoute(builder: (context) =>  District_Directory()));
                     },
                   ),
-                  MyCustomIconButton(
-                    icon:Icons.notifications,
-                    color: zColor,
-                    iconName: 'Notification', // You can pass the icon name dynamically
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  Notice()));
-                    },
-                  ),
 
-                  Container(),
-                  Container(),
-                  Container(),
-                  Container()
                 ],
               ),
             ],
@@ -167,6 +155,7 @@ class _MainBoardState extends State<MainBoard> {
             ],
           ),
         ),
+
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
@@ -580,6 +569,22 @@ class _MainBoardState extends State<MainBoard> {
             ],
           ),
         ),
+
+        const SizedBox(height: 15,),
+        // -->2nd
+        Padding(
+          padding: const EdgeInsets.only(right:8.0,left: 8.0,top: 8.0,bottom: 0),
+          child: Row(
+            children: [
+              const Text('Latest News ',style: TextStyle(fontSize: 18,fontWeight:FontWeight.bold),),
+              const Spacer(),
+              IconButton(onPressed: (){}, icon:Icon(Icons.arrow_forward,color: zColor,))
+            ],
+          ),
+        ),
+
+        Crausel_news(),
+
 
             ],
           ),

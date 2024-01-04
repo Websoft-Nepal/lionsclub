@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lionsclub/Custom_Widget/notiication.dart';
 
 import '../../main.dart';
 class Notice extends StatefulWidget {
@@ -34,6 +35,7 @@ class _NoticeState extends State<Notice> {
 
       body: ListView(
         children: [
+          MyNotification(Title: 'Student', Description: 'why advise hsfajfjas hfaskjfkasj fsa fsa fasnjf')
 
           
         ],
