@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 
 import '../../main.dart';
 
-class NewsDetails extends StatefulWidget {
+class FocusProgram_Details extends StatefulWidget {
   final String title;
   final String imageUrl;
 
-  NewsDetails({Key? key, required this.title, required this.imageUrl}) : super(key: key);
+  FocusProgram_Details({Key? key, required this.title, required this.imageUrl}) : super(key: key);
 
   @override
-  _NewsDetailsState createState() => _NewsDetailsState();
+  _FocusProgram_DetailsState createState() => _FocusProgram_DetailsState();
 }
 
-class _NewsDetailsState extends State<NewsDetails> {
+class _FocusProgram_DetailsState extends State<FocusProgram_Details> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +29,7 @@ class _NewsDetailsState extends State<NewsDetails> {
             ),
             // Spacer(),
             Text(
-              'News Details',
+              'Focus Program ',
               style: TextStyle(color: Colors.white),
             ),
             Spacer(

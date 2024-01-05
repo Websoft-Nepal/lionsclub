@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
-import 'package:lionsclub/Screens/Dashboard/Zonal_directory.dart';
+import 'package:lionsclub/Screens/Dashboard/district_advisor.dart';
 import 'package:lionsclub/Screens/Dashboard/dIstrict_directory.dart';
 import 'package:lionsclub/Screens/Home/dashboard.dart';
 import 'package:lionsclub/Screens/Home/dashboard_main.dart';
@@ -71,7 +71,25 @@ class _Home1State extends State<Home1> {
             ListTile(
               title: const Row(
                 children: [
-                  Icon(Icons.store_mall_directory,color: sColor,),
+                  Icon(Icons.store,color: sColor,),
+                  SizedBox(width: 10),
+                  Text(
+                    'Region Directory',
+                    style: TextStyle(color: Color(0xFF141414)),
+                  ),
+                ],
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ZonalD()),
+                );
+              },
+            ),
+            ListTile(
+              title: const Row(
+                children: [
+                  Icon(Icons.location_on,color: sColor,),
                   SizedBox(width: 10),
                   Text(
                     'District Directory',

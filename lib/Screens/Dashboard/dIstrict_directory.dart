@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lionsclub/Screens/Dashboard/district_advisor.dart';
 
 import '../../main.dart';
 import '../../main.dart';
@@ -45,17 +46,22 @@ class _District_DirectoryState extends State<District_Directory> {
     );
   }
   Widget _buildGridItem(int index) {
-    return Container(
-      margin: EdgeInsets.all(15.0),
-      // decoration: BoxDecoration(
-      //   color: sColor,
-      //   borderRadius: BorderRadius.circular(12.0), // Adjust the radius as needed
-      // ),
-      child: Card(
-        color: sColor,
-        elevation: 5,
-        child: Center(
-          child: Text('District Advisor$index',style: TextStyle(color: Colors.white),),
+    return GestureDetector(
+      onTap: (){
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>ZonalD()));
+      },
+      child: Container(
+        margin: EdgeInsets.all(15.0),
+        // decoration: BoxDecoration(
+        //   color: sColor,
+        //   borderRadius: BorderRadius.circular(12.0), // Adjust the radius as needed
+        // ),
+        child: Card(
+          color: sColor,
+          elevation: 5,
+          child: Center(
+            child: Text('District Advisor$index',style: TextStyle(color: Colors.white),),
+          ),
         ),
       ),
     );

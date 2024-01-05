@@ -26,7 +26,7 @@ class _ZonalDState extends State<ZonalD> {
             ),
             // Spacer(),
             Text(
-              'Zonal Directory',
+              'District Advisor',
               style: TextStyle(color: Colors.white),
             ),
             Spacer(
@@ -55,7 +55,7 @@ class _ZonalDState extends State<ZonalD> {
         child: Padding(
           padding: EdgeInsets.all(16.0),
           child: Column(
-            // mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Expanded(
@@ -79,7 +79,8 @@ class _ZonalDState extends State<ZonalD> {
               ),
               // SizedBox(height: 3.0),
               Text(
-                'lions club international District 325 M, nepal',
+                'lions club international District    325 M, nepal',
+                textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 10.0),
               ),
             ],

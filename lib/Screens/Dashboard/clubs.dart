@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:lionsclub/Custom_Widget/Club_member_widget.dart';
 import 'package:lionsclub/Custom_Widget/club_widget.dart';
+import 'package:lionsclub/Screens/Dashboard/club_member.dart';
 import 'package:lionsclub/main.dart';
 
 class Club extends StatelessWidget {
@@ -63,21 +65,46 @@ class Club extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Text('Total Clubs :200'),
           ),
-         MyCustomClub(Name: 'Baglung City'),
-          MyCustomClub(Name: 'Pokhara City'),
-          MyCustomClub(Name: 'Tanahu City'),
-          MyCustomClub(Name: 'Kusma City'),
-          MyCustomClub(Name: 'Kusma City'),
-          MyCustomClub(Name: 'Baglung City'),
-          MyCustomClub(Name: 'Pokhara City'),
-          MyCustomClub(Name: 'Tanahu City'),
-          MyCustomClub(Name: 'Kusma City'),
-          MyCustomClub(Name: 'Kusma City'),
-          MyCustomClub(Name: 'Baglung City'),
-          MyCustomClub(Name: 'Pokhara City'),
-          MyCustomClub(Name: 'Tanahu City'),
-          MyCustomClub(Name: 'Kusma City'),
-          MyCustomClub(Name: 'Kusma City'),
+         GestureDetector(
+             onTap: (){
+               Navigator.push(context, MaterialPageRoute(builder: (context)=>ClubDetAILS()));
+             },
+             child: MyCustomClub(Name: 'Baglung City')),
+          GestureDetector(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>ClubDetAILS()));
+              },
+              child: MyCustomClub(Name: 'Kusma City')),
+          GestureDetector(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>ClubDetAILS()));
+              },
+              child: MyCustomClub(Name: 'Pokhara City')),
+          GestureDetector(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>ClubDetAILS()));
+              },
+              child: MyCustomClub(Name: 'Tanahu City')),
+          GestureDetector(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>ClubDetAILS()));
+              },
+              child: MyCustomClub(Name: 'Kathamandu City')),
+          GestureDetector(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>ClubDetAILS()));
+              },
+              child: MyCustomClub(Name: 'Baglung City')),
+          GestureDetector(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>ClubDetAILS()));
+              },
+              child: MyCustomClub(Name: 'Baglung City')),
+          GestureDetector(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>ClubDetAILS()));
+              },
+              child: MyCustomClub(Name: 'Baglung City')),
 
 
         ],
