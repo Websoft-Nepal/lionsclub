@@ -23,18 +23,15 @@ class _FocusListState extends State<FocusList> {
   final List<Map<String, String>> programs = [
     {
       'title': 'Child and Women Support Program',
-      'imageUrl':
-      'https://lionsclubsdistrict325jnepal.org.np/site/uploads/program/32e6463ba5ff88dc2bbaa026aeec1b62e1c83bdc.jpg',
+      'imageUrl':'https://lionsclubsdistrict325jnepal.org.np/site/uploads/program/32e6463ba5ff88dc2bbaa026aeec1b62e1c83bdc.jpg',
     },
     {
       'title': 'Clean Water and Sanitation',
-      'imageUrl':
-      'https://lionsclubsdistrict325jnepal.org.np/site/uploads/program/5ba2874d9fe9b5e8ffdeb6ac76fbc82c2f2c1509.jpg',
+      'imageUrl':'https://lionsclubsdistrict325jnepal.org.np/site/uploads/program/5ba2874d9fe9b5e8ffdeb6ac76fbc82c2f2c1509.jpg',
     },
     {
       'title': 'Child and Women Support Program',
-      'imageUrl':
-      'https://lionsclubsdistrict325jnepal.org.np/site/uploads/program/32e6463ba5ff88dc2bbaa026aeec1b62e1c83bdc.jpg',
+      'imageUrl':'https://lionsclubsdistrict325jnepal.org.np/site/uploads/program/32e6463ba5ff88dc2bbaa026aeec1b62e1c83bdc.jpg',
     }
     // Add more programs as needed
   ];

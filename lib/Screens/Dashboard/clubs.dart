@@ -35,7 +35,7 @@ class Club extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Card(
-              child: Container(
+              child: SizedBox(
                 width: 300,
                 child: TextField(
                   style: TextStyle(color: Colors.black),
