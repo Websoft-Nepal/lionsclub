@@ -10,12 +10,12 @@ class newsevents {
 
   newsevents(
       {this.id,
-        this.title,
-        this.slug,
-        this.detail,
-        this.photo,
-        this.createdAt,
-        this.updatedAt});
+      this.title,
+      this.slug,
+      this.detail,
+      this.photo,
+      this.createdAt,
+      this.updatedAt});
 
   newsevents.fromJson(Map<String, dynamic> json) {
     id = json['id'];

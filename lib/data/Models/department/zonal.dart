@@ -1,4 +1,3 @@
-
 // https://api.lionsclubsdistrict325jnepal.org.np/api/department/zone
 class zone_department {
   String? photo;
@@ -10,12 +9,11 @@ class zone_department {
 
   zone_department(
       {this.photo,
-        this.memberName,
-        this.designation,
-        this.departmentName,
-        this.lionYear,
-        this.clubs}
-      );
+      this.memberName,
+      this.designation,
+      this.departmentName,
+      this.lionYear,
+      this.clubs});
 
   zone_department.fromJson(Map<String, dynamic> json) {
     photo = json['photo'];

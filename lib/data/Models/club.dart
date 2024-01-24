@@ -1,5 +1,4 @@
 // https://api.lionsclubsdistrict325jnepal.org.np/api/club
-
 class club {
   int? id;
   String? name;
@@ -9,12 +8,14 @@ class club {
   String? lionsYear;
 
   club(
-      {this.id,
-        this.name,
-        this.logo,
-        this.charterDate,
-        this.memberCount,
-        this.lionsYear});
+      {
+      this.id,
+      this.name,
+      this.logo,
+      this.charterDate,
+      this.memberCount,
+      this.lionsYear
+      });
 
   club.fromJson(Map<String, dynamic> json) {
     id = json['id'];

@@ -3,8 +3,37 @@ import 'package:lionsclub/Custom_Widget/Club_member_widget.dart';
 import 'package:lionsclub/Custom_Widget/club_widget.dart';
 import 'package:lionsclub/Screens/Dashboard/club_member.dart';
 import 'package:lionsclub/main.dart';
+import 'package:lionsclub/data/Models/club.dart';
 
-class Club extends StatelessWidget {
+import '../../data/network/api_services.dart';
+
+class Club extends StatefulWidget {
+  @override
+  State<Club> createState() => _ClubState();
+}
+
+class _ClubState extends State<Club> {
+  List<club> clubs = [];
+
+  @override
+  void initState() {
+    super.initState();
+    // Example usage with a different URL for clubs
+    _fetchData('https://api.lionsclubsdistrict325jnepal.org.np/api/club');
+  }
+
+  Future<void> _fetchData(String apiUrl) async {
+    try {
+      List<club> data = await ApiService.fetchData(apiUrl, (data) => club.fromJson(data));
+      setState(() {
+        clubs = data;
+      });
+    } catch (e) {
+      // Handle error
+      print('Error: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +44,10 @@ class Club extends StatelessWidget {
         title: Row(
           children: [
             Container(
-                height: 50, width: 50, child: Image.asset('assets/logo.png')),
+              height: 50,
+              width: 50,
+              child: Image.asset('assets/logo.png'),
+            ),
             SizedBox(width: 5,),
             Text(
               'Clubs',
@@ -29,9 +61,7 @@ class Club extends StatelessWidget {
       ),
       body: ListView(
         children: [
-
           // -->Search
-
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Card(
@@ -57,56 +87,102 @@ class Club extends StatelessWidget {
               ),
             ),
           ),
-
-
-
           // 1 section
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text('Total Clubs :200'),
+            child: Text('Total Clubs: ${clubs.length}'),
           ),
-         GestureDetector(
-             onTap: (){
-               Navigator.push(context, MaterialPageRoute(builder: (context)=>ClubDetAILS()));
-             },
-             child: MyCustomClub(Name: 'Baglung City')),
-          GestureDetector(
-              onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>ClubDetAILS()));
-              },
-              child: MyCustomClub(Name: 'Kusma City')),
-          GestureDetector(
-              onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>ClubDetAILS()));
-              },
-              child: MyCustomClub(Name: 'Pokhara City')),
-          GestureDetector(
-              onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>ClubDetAILS()));
-              },
-              child: MyCustomClub(Name: 'Tanahu City')),
-          GestureDetector(
-              onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>ClubDetAILS()));
-              },
-              child: MyCustomClub(Name: 'Kathamandu City')),
-          GestureDetector(
-              onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>ClubDetAILS()));
-              },
-              child: MyCustomClub(Name: 'Baglung City')),
-          GestureDetector(
-              onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>ClubDetAILS()));
-              },
-              child: MyCustomClub(Name: 'Baglung City')),
-          GestureDetector(
-              onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>ClubDetAILS()));
-              },
-              child: MyCustomClub(Name: 'Baglung City')),
+          // List Builder for Clubs
+          ListView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: clubs.length,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () {
+                  // Handle club item tap
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => ClubDetAILS(club: clubs[index])),
+                  // );
+                },
+                child:Padding(
+                  padding: const EdgeInsets.only(right: 18.0,left: 18,top: 8),
+                  child: Card(
+                    elevation: 5,
+                    surfaceTintColor: Colors.white,
+                    color: Colors.white,
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.all(12.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(right: 8,left: 8,bottom: 5),
+                                child: Text(
+                                  clubs[index].name != null && clubs[index].name!.length > 20
+                                      ? clubs[index].name!.substring(0, 20)
+                                      : clubs[index].name ?? '',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w800,
+                                    color: Color(0xFF141414),
+                                  ),
+                                )
 
-
+                              ),
+                              Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Column(
+                                      children: [
+                                        Text(
+                                          'Charter Date ',
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              // fontWeight: FontWeight.w800,
+                                              color: Color(0xFF141414)),
+                                        ),
+                                        SizedBox(height: 5,),
+                                        Text(  clubs[index].charterDate ?? '',style: TextStyle(fontWeight: FontWeight.w100,color: Color(0xFF666666)),)
+                                      ],
+                                    ),
+                                    SizedBox(width: 10),
+                                    Column(
+                                      children: [
+                                        Text(
+                                          'Member',
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              // fontWeight: FontWeight.w800,
+                                              color: Color(0xFF141414)),
+                                        ),
+                                        SizedBox(height: 5,),
+                                        Text(  clubs[index].memberCount.toString()?? '',style: TextStyle(color: Color(0xFF666666)),)
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Spacer(flex: 4,),
+                        Container(height: 80, child: Image.asset('assets/logo.png')),
+                        Spacer()
+                      ],
+                    ),
+                  ),
+                )
+              );
+            },
+          ),
         ],
       ),
     );

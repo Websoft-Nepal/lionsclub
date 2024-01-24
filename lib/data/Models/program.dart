@@ -9,11 +9,11 @@ class program {
 
   program(
       {this.id,
-        this.title,
-        this.detail,
-        this.photo,
-        this.postDate,
-        this.lionsYear});
+      this.title,
+      this.detail,
+      this.photo,
+      this.postDate,
+      this.lionsYear});
 
   program.fromJson(Map<String, dynamic> json) {
     id = json['id'];

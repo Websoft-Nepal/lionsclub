@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 // import 'package:lionsclub/Home/slider.dart';?
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'Screens/Home/home.dart';
 const Color pColor = Color(0xFFFCCB08);
 const Color sColor = Color(0xFF11468F);
