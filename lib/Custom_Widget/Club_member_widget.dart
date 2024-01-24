@@ -57,7 +57,7 @@ class MyCustomClubMember extends StatelessWidget {
             Spacer(flex: 4,),
             CircleAvatar(
                  radius: 70,
-                backgroundImage: Image,),
+                backgroundImage:  NetworkImage(Image),),
             Spacer()
           ],
         ),

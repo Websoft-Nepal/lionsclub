@@ -7,6 +7,7 @@ import 'package:lionsclub/Screens/Home/dashboard_main.dart';
 import 'package:lionsclub/Screens/notification.dart';
 import '../Dashboard/clubs.dart';
 import '../../main.dart';
+import '../Dashboard/region_directory.dart';
 
 class Home1 extends StatefulWidget {
   const Home1({super.key});
@@ -82,7 +83,7 @@ class _Home1State extends State<Home1> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ZonalD()),
+                  MaterialPageRoute(builder: (context) => RegionDepartmentScreen()),
                 );
               },
             ),

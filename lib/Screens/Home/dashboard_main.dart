@@ -143,7 +143,7 @@ class _MainBoardState extends State<MainBoard> {
               SizedBox(height: 10,),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   MyCustomIconButton(
                     icon:Icons.location_on,
@@ -153,7 +153,14 @@ class _MainBoardState extends State<MainBoard> {
                       Navigator.push(context, MaterialPageRoute(builder: (context) =>  District_Directory()));
                     },
                   ),
-
+                  MyCustomIconButton(
+                    icon:Icons.done_all_rounded,
+                    color: pColor,
+                    iconName: ' Donor', // You can pass the icon name dynamically
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  District_Directory()));
+                    },
+                  ),
                 ],
               ),
             ],

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lionsclub/Custom_Widget/Club_member_widget.dart';
-import 'package:lionsclub/Custom_Widget/club_widget.dart';
 import 'package:lionsclub/Screens/Dashboard/club_member.dart';
 import 'package:lionsclub/main.dart';
 import 'package:lionsclub/data/Models/club.dart';
@@ -95,7 +94,7 @@ class _ClubState extends State<Club> {
           // List Builder for Clubs
           ListView.builder(
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: clubs.length,
             itemBuilder: (context, index) {
               return GestureDetector(
@@ -108,75 +107,83 @@ class _ClubState extends State<Club> {
                 },
                 child:Padding(
                   padding: const EdgeInsets.only(right: 18.0,left: 18,top: 8),
-                  child: Card(
-                    elevation: 5,
-                    surfaceTintColor: Colors.white,
-                    color: Colors.white,
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.all(12.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(right: 8,left: 8,bottom: 5),
-                                child: Text(
-                                  clubs[index].name != null && clubs[index].name!.length > 20
-                                      ? clubs[index].name!.substring(0, 20)
-                                      : clubs[index].name ?? '',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w800,
-                                    color: Color(0xFF141414),
+                  child: GestureDetector(
+                    onTap: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => ClubDetailsScreen(clubId: clubs[index].id.toString())),
+                      );
+                    },
+                    child: Card(
+                      elevation: 5,
+                      surfaceTintColor: Colors.white,
+                      color: Colors.white,
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(12.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(right: 8,left: 8,bottom: 5),
+                                  child: Text(
+                                    clubs[index].name != null && clubs[index].name!.length > 20
+                                        ? clubs[index].name!.substring(0, 20)
+                                        : clubs[index].name ?? '',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w800,
+                                      color: Color(0xFF141414),
+                                    ),
+                                  )
+
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Column(
+                                        children: [
+                                          Text(
+                                            'Charter Date ',
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                // fontWeight: FontWeight.w800,
+                                                color: Color(0xFF141414)),
+                                          ),
+                                          SizedBox(height: 5,),
+                                          Text(  clubs[index].charterDate ?? '',style: TextStyle(fontWeight: FontWeight.w100,color: Color(0xFF666666)),)
+                                        ],
+                                      ),
+                                      SizedBox(width: 10),
+                                      Column(
+                                        children: [
+                                          Text(
+                                            'Member',
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                // fontWeight: FontWeight.w800,
+                                                color: Color(0xFF141414)),
+                                          ),
+                                          SizedBox(height: 5,),
+                                          Text(  clubs[index].memberCount.toString()?? '',style: TextStyle(color: Color(0xFF666666)),)
+                                        ],
+                                      )
+                                    ],
                                   ),
                                 )
-
-                              ),
-                              Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Column(
-                                      children: [
-                                        Text(
-                                          'Charter Date ',
-                                          style: TextStyle(
-                                              fontSize: 16,
-                                              // fontWeight: FontWeight.w800,
-                                              color: Color(0xFF141414)),
-                                        ),
-                                        SizedBox(height: 5,),
-                                        Text(  clubs[index].charterDate ?? '',style: TextStyle(fontWeight: FontWeight.w100,color: Color(0xFF666666)),)
-                                      ],
-                                    ),
-                                    SizedBox(width: 10),
-                                    Column(
-                                      children: [
-                                        Text(
-                                          'Member',
-                                          style: TextStyle(
-                                              fontSize: 16,
-                                              // fontWeight: FontWeight.w800,
-                                              color: Color(0xFF141414)),
-                                        ),
-                                        SizedBox(height: 5,),
-                                        Text(  clubs[index].memberCount.toString()?? '',style: TextStyle(color: Color(0xFF666666)),)
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                        Spacer(flex: 4,),
-                        Container(height: 80, child: Image.asset('assets/logo.png')),
-                        Spacer()
-                      ],
+                          Spacer(flex: 4,),
+                          Container(height: 80, child: Image.asset('assets/logo.png')),
+                          Spacer()
+                        ],
+                      ),
                     ),
                   ),
                 )
