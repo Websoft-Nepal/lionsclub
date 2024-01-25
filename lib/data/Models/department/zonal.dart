@@ -8,7 +8,8 @@ class zone_department {
   List<Clubs>? clubs;
 
   zone_department(
-      {this.photo,
+      {
+        this.photo,
       this.memberName,
       this.designation,
       this.departmentName,

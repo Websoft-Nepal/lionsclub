@@ -4,51 +4,50 @@ import 'package:lionsclub/Custom_Widget/FocusProgramList.dart';
 import 'package:lionsclub/Screens/Dashboard/district_advisor.dart';
 import 'package:lionsclub/Screens/Dashboard/clubs.dart';
 import 'package:lionsclub/Screens/Dashboard/dIstrict_directory.dart';
+import 'package:lionsclub/Screens/Dashboard/region_directory.dart';
 import 'package:lionsclub/Screens/Home/News%20_crausel/Crausel.dart';
 import 'package:lionsclub/Screens/notification.dart';
 import 'package:lionsclub/main.dart';
-
+import 'package:provider/provider.dart';
 import '../../Custom_Widget/Focus_program_widget.dart';
 import '../../Custom_Widget/icon.dart';
+import '../../Utils/Components/appurl.dart';
+import '../../view_model/FocusProgram.dart';
+import '../../view_model/NewsEvents.dart';
 import '../message.dart';
 
 class MainBoard extends StatefulWidget {
    MainBoard({super.key});
-
   @override
   State<MainBoard> createState() => _MainBoardState();
 }
 
 class _MainBoardState extends State<MainBoard> {
+ @override
+  void initState() {
+    super.initState();
+
+  }
+
+
   final imageUrls = [
     "assets/c1.jpg",
     "https://www.gpo.gov.np/images/uploaded/imagepath/6e597028-8799-4e7f-b115-504eb18305f81f5e9d24-e40b-474e-9bb6-23e53679fbbe74603fbe-dd44-4c7a-9408-0fa1a9b8a027423394eb-53e0-44d3-9dbf-9522ad6067a8gpo.jpg"
     "https://oag.gov.np/uploads/OAG%2013.jpg"
   ];
-  final List<Map<String, String>> programs = [
-    {
-      'title': 'Child and Women Support Program',
-      'imageUrl': 'https://lionsclubsdistrict325jnepal.org.np/site/uploads/program/32e6463ba5ff88dc2bbaa026aeec1b62e1c83bdc.jpg',
-    },
-    {
-      'title': 'Clean Water and Sanitation',
-      'imageUrl': 'https://lionsclubsdistrict325jnepal.org.np/site/uploads/program/5ba2874d9fe9b5e8ffdeb6ac76fbc82c2f2c1509.jpg',
-    },
-    {
-      'title': 'Child and Women Support Program',
-      'imageUrl': 'https://lionsclubsdistrict325jnepal.org.np/site/uploads/program/32e6463ba5ff88dc2bbaa026aeec1b62e1c83bdc.jpg',
-    }
-    // Add more programs as needed
-  ];
 
 
   @override
   Widget build(BuildContext context) {
+
+
+
+    final programProvider = Provider.of<ProgramProvider>(context);
+    final programs = programProvider.programs;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: ListView(children: [
-
-
         // -->1st
         // ClipRRect(
         //     borderRadius: BorderRadius.circular(200),
@@ -154,8 +153,24 @@ class _MainBoardState extends State<MainBoard> {
                     },
                   ),
                   MyCustomIconButton(
+                    icon:Icons.store,
+                    color: zColor,
+                    iconName: ' Regional\nDirectory', // You can pass the icon name dynamically
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  RegionDepartmentScreen()));
+                    },
+                  ),
+                  MyCustomIconButton(
+                    icon:Icons.center_focus_strong,
+                    color: sColor,
+                    iconName: '   Focus\nProgram ', // You can pass the icon name dynamically
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  FocusList()));
+                    },
+                  ),
+                  MyCustomIconButton(
                     icon:Icons.done_all_rounded,
-                    color: pColor,
+                    color: Colors.greenAccent,
                     iconName: ' Donor', // You can pass the icon name dynamically
                     onPressed: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) =>  District_Directory()));
@@ -177,7 +192,6 @@ class _MainBoardState extends State<MainBoard> {
               const Spacer(),
 
               IconButton(onPressed: (){
-
                 Navigator.push(context, MaterialPageRoute(builder: (context)=>FocusList()));
               }, icon: Icon(Icons.arrow_forward,color: zColor,))
               // TextButton(onPressed: () {  },
@@ -185,16 +199,16 @@ class _MainBoardState extends State<MainBoard> {
             ],
           ),
         ),
-
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          child:Row(
-            children: programs.map((program) {
-              return ProgramCard(
-                imageUrl: program['imageUrl']!,
-                title: program['title']!,
-              );
-            }).toList(),
+          child: Row(
+            children: List.generate(
+              programs.length,
+                  (index) => ProgramCard(
+                title: programs[index].title ?? 'No Title',
+                imageUrl: programs[index].photo ?? '',
+              ),
+            ),
           ),
         ),
 

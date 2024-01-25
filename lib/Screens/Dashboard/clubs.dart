@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:lionsclub/Custom_Widget/Club_member_widget.dart';
 import 'package:lionsclub/Screens/Dashboard/club_member.dart';
+import 'package:lionsclub/Utils/Components/appurl.dart';
 import 'package:lionsclub/main.dart';
 import 'package:lionsclub/data/Models/club.dart';
-
+import 'package:shimmer/shimmer.dart';
 import '../../data/network/api_services.dart';
 
 class Club extends StatefulWidget {
@@ -13,12 +14,12 @@ class Club extends StatefulWidget {
 
 class _ClubState extends State<Club> {
   List<club> clubs = [];
-
+bool isLoading = true;
   @override
   void initState() {
     super.initState();
     // Example usage with a different URL for clubs
-    _fetchData('https://api.lionsclubsdistrict325jnepal.org.np/api/club');
+    _fetchData(AppUrl.clubEndPoint);
   }
 
   Future<void> _fetchData(String apiUrl) async {
@@ -30,6 +31,9 @@ class _ClubState extends State<Club> {
     } catch (e) {
       // Handle error
       print('Error: $e');
+      setState(() {
+        isLoading = false; // Set loading state to false when there's an error
+      });
     }
   }
 
@@ -58,7 +62,7 @@ class _ClubState extends State<Club> {
           ],
         ),
       ),
-      body: ListView(
+      body: isLoading?_buildLoadingSkeleton():ListView(
         children: [
           // -->Search
           Padding(
@@ -194,4 +198,62 @@ class _ClubState extends State<Club> {
       ),
     );
   }
+  Widget _buildLoadingSkeleton() {
+    return ListView.builder(
+      itemCount: 5, // Adjust the number of skeleton items as needed
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: const EdgeInsets.only(right: 18.0, left: 18, top: 8),
+          child: Shimmer.fromColors(
+            baseColor: Colors.grey[300]!,
+            highlightColor: Colors.grey[100]!,
+            child: Card(
+              elevation: 5,
+              surfaceTintColor: Colors.white,
+              color: Colors.white,
+              child: Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(12.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: 150,
+                          height: 20,
+                          color: Colors.white,
+                        ),
+                        SizedBox(height: 10),
+                        Container(
+                          width: 100,
+                          height: 16,
+                          color: Colors.white,
+                        ),
+                        SizedBox(height: 5),
+                        Container(
+                          width: 100,
+                          height: 16,
+                          color: Colors.white,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Spacer(flex: 4),
+                  Container(
+                    height: 80,
+                    width: 80,
+                    color: Colors.white,
+                  ),
+                  Spacer()
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:lionsclub/Custom_Widget/Club_member_widget.dart';
-import 'package:lionsclub/data/Models/region_department.dart'; // Import your model classes
+import 'package:shimmer/shimmer.dart';
 import '../../data/Models/department/region.dart';
 import '../../data/network/api_services.dart';
+import '../../Custom_Widget/Club_member_widget.dart';
 
 class RegionDepartmentScreen extends StatefulWidget {
   @override
@@ -11,6 +11,7 @@ class RegionDepartmentScreen extends StatefulWidget {
 
 class _RegionDepartmentScreenState extends State<RegionDepartmentScreen> {
   List<region_department> regionDepartments = [];
+  bool isLoading = true; // New variable to track loading state
 
   @override
   void initState() {
@@ -23,10 +24,14 @@ class _RegionDepartmentScreenState extends State<RegionDepartmentScreen> {
       List<region_department> data = await ApiService.fetchData(apiUrl, (data) => region_department.fromJson(data));
       setState(() {
         regionDepartments = data;
+        isLoading = false; // Set loading state to false when data is fetched
       });
     } catch (e) {
       // Handle error
       print('Error: $e');
+      setState(() {
+        isLoading = false; // Set loading state to false when there's an error
+      });
     }
   }
 
@@ -39,7 +44,10 @@ class _RegionDepartmentScreenState extends State<RegionDepartmentScreen> {
         title: Row(
           children: [
             Container(
-                height: 50, width: 50, child: Image.asset('assets/logo.png')),
+              height: 50,
+              width: 50,
+              child: Image.asset('assets/logo.png'),
+            ),
             Text(
               'Regional Directory',
               style: TextStyle(color: Colors.white),
@@ -50,14 +58,42 @@ class _RegionDepartmentScreenState extends State<RegionDepartmentScreen> {
           ],
         ),
       ),
-      body: ListView.builder(
+      body: isLoading
+          ? _buildLoadingSkeleton()
+          : ListView.builder(
         itemCount: regionDepartments.length,
         itemBuilder: (context, index) {
-          return
-            MyCustomClubMember(Name: regionDepartments[index].memberName != null &&
+          return MyCustomClubMember(
+            Name: regionDepartments[index].memberName != null &&
                 regionDepartments[index].memberName!.length > 20
                 ? regionDepartments[index].memberName!.substring(0, 20)
-                : regionDepartments[index].memberName ?? 'Member Name', Post: regionDepartments[index].designation ?? 'Designation', Image:regionDepartments[index].photo ??'');
+                : regionDepartments[index].memberName ?? 'Member Name',
+            Post: regionDepartments[index].designation ?? 'Designation',
+            Image: regionDepartments[index].photo ?? '',
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildLoadingSkeleton() {
+    return Shimmer.fromColors(
+      baseColor: Colors.grey[300]!,
+      highlightColor: Colors.grey[100]!,
+      child: ListView.builder(
+        itemCount: 10, // Adjust the number of skeleton items as needed
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: Colors.white,
+              ),
+              height: 100,
+              width: double.infinity,
+            ),
+          );
         },
       ),
     );

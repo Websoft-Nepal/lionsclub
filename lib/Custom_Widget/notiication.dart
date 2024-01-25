@@ -4,12 +4,14 @@ import 'package:lionsclub/main.dart';
 class MyNotification extends StatelessWidget {
   final String Title;
   final String ImageURl;
+  final String Date;
   final VoidCallback onTap;
 
   const MyNotification({super.key,
     required this.Title,
     required this.ImageURl,
-    required this.onTap
+    required this.onTap,
+    required this.Date
   });
 
   @override
@@ -51,7 +53,7 @@ class MyNotification extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            '01 Feb, 2023',
+                            Date,
                             style: TextStyle(color: ttColor),
                           )
                         ],

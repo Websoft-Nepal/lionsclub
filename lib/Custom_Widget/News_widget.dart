@@ -5,8 +5,9 @@ import '../../main.dart';
 class NewsDetails extends StatefulWidget {
   final String title;
   final String imageUrl;
+  final String details;
 
-  NewsDetails({Key? key, required this.title, required this.imageUrl}) : super(key: key);
+  NewsDetails({Key? key, required this.title, required this.imageUrl, required this.details}) : super(key: key);
 
   @override
   _NewsDetailsState createState() => _NewsDetailsState();
@@ -55,13 +56,7 @@ class _NewsDetailsState extends State<NewsDetails> {
                 ),
                 Padding(
                   padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    'lorem Whenever Lions club members get together, problems get smaller And communities get better. Because we help where help isneeded in\n'
-                        ' our own communities and around the world with unmatched integrity and energy lorem Whenever Lions club members get together, problems get smaller'
-                        ' And communities get better. Because we help where help isneeded in our own communities and around the world with unmatched integrity and energy'
-                        'lorem Whenever Lions club members get together, problems get smaller And communities get better. Because we help where help isneeded in\n'
-                        ' our own communities and around the world with unmatched integrity and energy lorem Whenever Lions club members get together, problems get smaller'
-                        ' And communities get better. Because we help where help isneeded in our own communities and around the world with unmatched integrity and energ',
+                  child: Text(widget.details,
                     style: TextStyle(color: tColor),
                   ),
                 ),
