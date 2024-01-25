@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:lionsclub/Custom_Widget/News_widget.dart';
 import 'package:lionsclub/Screens/notification.dart';
 import 'package:provider/provider.dart';
+import '../../../Utils/Components/appurl.dart';
+import '../../../data/Models/news_events.dart';
+import '../../../data/network/api_services.dart';
 import '../../../main.dart';
 import '../../../view_model/NewsEvents.dart';
+import 'package:shimmer/shimmer.dart'; // Import the shimmer package
+
 
 class Crausel_news extends StatefulWidget {
   const Crausel_news({Key? key}) : super(key: key);
@@ -13,12 +19,37 @@ class Crausel_news extends StatefulWidget {
 }
 
 class _Crausel_newsState extends State<Crausel_news> {
+  List<newsevents> newsevent = [];
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchData(AppUrl.newsEndPoint);
+  }
+
+  Future<void> _fetchData(String apiUrl) async {
+    try {
+      List<newsevents> data = await ApiService.fetchData(apiUrl, (data) => newsevents.fromJson(data));
+      Provider.of<NewsEventsProvider>(context, listen: false).setNewsEvents(data);
+      setState(() {
+        newsevent = data;
+        isLoading = false; // Set isLoading to false after data is fetched
+      });
+    } catch (e) {
+      // Handle error
+      print('Error: $e');
+      setState(() {
+        isLoading = false; // Set isLoading to false in case of an error
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final newsEventsProvider = Provider.of<NewsEventsProvider>(context);
-    final newsevents = newsEventsProvider.newsEvents;
-
-    return CarouselSlider.builder(
+    return isLoading
+        ? _buildLoadingIndicator() // Show loading indicator while data is being fetched
+        : CarouselSlider.builder(
       options: CarouselOptions(
         height: 300.0,
         viewportFraction: 0.8,
@@ -27,26 +58,72 @@ class _Crausel_newsState extends State<Crausel_news> {
         autoPlayCurve: Curves.fastOutSlowIn,
         scrollDirection: Axis.horizontal,
       ),
-      itemCount: newsevents.length,
+      itemCount: newsevent.length,
       itemBuilder: (BuildContext context, int index, int realIndex) {
-        return     Row(
-          children: List.generate(
-            newsevents.length,
-                (index) => buildCarouselItem(
-              title: newsevents[index].title ?? 'No Title',
-              imageUrl: newsevents[index].photo ?? '',
-                  date: newsevents[index].updatedAt ?? '',
-            ),
-          ),
-        );},
+        final event = newsevent[index];
+        return GestureDetector(
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => NewsDetails(title: event.title ?? 'No Title', imageUrl: event.photo??'', details: event.detail ?? 'No Details')));
+          },
+          child: buildCarouselItem(event.photo ?? 'No Image', event.title ?? 'No Title', event.updatedAt),
+        );
+      },
     );
   }
 
-  Widget buildCarouselItem({
-    required String imageUrl,
-    required String title,
-    required String date,
-  }) {
+  Widget _buildLoadingIndicator() {
+    return Shimmer.fromColors(
+      baseColor: Colors.grey[300]!,
+      highlightColor: Colors.grey[100]!,
+      child: CarouselSlider.builder(
+        options: CarouselOptions(
+          height: 300.0,
+          viewportFraction: 0.8,
+          autoPlay: true,
+          autoPlayInterval: Duration(seconds: 7),
+          autoPlayCurve: Curves.fastOutSlowIn,
+          scrollDirection: Axis.horizontal,
+        ),
+        itemCount: 5, // Number of skeleton items
+        itemBuilder: (BuildContext context, int index, int realIndex) {
+          return buildSkeletonItem();
+        },
+      ),
+    );
+  }
+
+  Widget buildSkeletonItem() {
+    return Container(
+      width: 300,
+      child: Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Container(
+              width: 250,
+              height: 150,
+              color: Colors.grey, // Skeleton color
+            ),
+            SizedBox(height: 10),
+            Container(
+              height: 10,
+              width: 150,
+              color: Colors.grey, // Skeleton color
+            ),
+            SizedBox(height: 5),
+            Container(
+              height: 10,
+              width: 100,
+              color: Colors.grey, // Skeleton color
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildCarouselItem(String imageUrl, String title, Date) {
     return Container(
       width: 300,
       child: Padding(
@@ -81,7 +158,7 @@ class _Crausel_newsState extends State<Crausel_news> {
               padding: const EdgeInsets.only(top: 8.0),
               child: Row(
                 children: [
-                  Text(date, style: TextStyle(color: ttColor)),
+                  Text(Date, style: TextStyle(color: ttColor)),
                   Spacer(),
                   Text('more...', style: TextStyle(color: ttColor)),
                 ],

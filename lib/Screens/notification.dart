@@ -16,28 +16,10 @@ class Notice extends StatefulWidget {
 }
 
 class _NoticeState extends State<Notice> {
-  List<newsevents> newsEvents = [];
 
-  @override
-  void initState() {
-    super.initState();
-    _fetchData(AppUrl.newsEndPoint);
-  }
-
-  Future<void> _fetchData(String apiUrl) async {
-    try {
-      List<newsevents> data = await ApiService.fetchData(apiUrl, (data) => newsevents.fromJson(data));
-      Provider.of<NewsEventsProvider>(context, listen: false).setNewsEvents(newsEvents);
-      setState(() {
-        newsEvents = data;
-      });
-    } catch (e) {
-      // Handle error
-      print('Error: $e');
-    }
-  }
   @override
   Widget build(BuildContext context) {
+    final newsEvents = Provider.of<NewsEventsProvider>(context).newsEvents;
     return Scaffold(
       backgroundColor: Color(0xFFEEEEEE),
       appBar: AppBar(

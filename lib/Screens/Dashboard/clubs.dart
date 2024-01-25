@@ -5,6 +5,7 @@ import 'package:lionsclub/Utils/Components/appurl.dart';
 import 'package:lionsclub/main.dart';
 import 'package:lionsclub/data/Models/club.dart';
 import 'package:shimmer/shimmer.dart';
+import '../../Custom_Widget/club_details.dart';
 import '../../data/network/api_services.dart';
 
 class Club extends StatefulWidget {
@@ -18,7 +19,6 @@ bool isLoading = true;
   @override
   void initState() {
     super.initState();
-    // Example usage with a different URL for clubs
     _fetchData(AppUrl.clubEndPoint);
   }
 
@@ -62,7 +62,7 @@ bool isLoading = true;
           ],
         ),
       ),
-      body: isLoading?_buildLoadingSkeleton():ListView(
+      body: ListView(
         children: [
           // -->Search
           Padding(
@@ -103,7 +103,6 @@ bool isLoading = true;
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
-                  // Handle club item tap
                   // Navigator.push(
                   //   context,
                   //   MaterialPageRoute(builder: (context) => ClubDetAILS(club: clubs[index])),
@@ -198,62 +197,90 @@ bool isLoading = true;
       ),
     );
   }
-  Widget _buildLoadingSkeleton() {
-    return ListView.builder(
-      itemCount: 5, // Adjust the number of skeleton items as needed
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.only(right: 18.0, left: 18, top: 8),
-          child: Shimmer.fromColors(
-            baseColor: Colors.grey[300]!,
-            highlightColor: Colors.grey[100]!,
-            child: Card(
-              elevation: 5,
-              surfaceTintColor: Colors.white,
-              color: Colors.white,
-              child: Row(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(12.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: 150,
-                          height: 20,
-                          color: Colors.white,
-                        ),
-                        SizedBox(height: 10),
-                        Container(
-                          width: 100,
-                          height: 16,
-                          color: Colors.white,
-                        ),
-                        SizedBox(height: 5),
-                        Container(
-                          width: 100,
-                          height: 16,
-                          color: Colors.white,
-                        ),
-                      ],
+
+    Widget _buildskeleton() {
+      return Shimmer.fromColors(
+        baseColor: Colors.grey[300]!,
+        highlightColor: Colors.grey[100]!,
+        child: ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: 6, // Adjust the number of skeleton items as needed
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.only(right: 18.0, left: 18, top: 8),
+              child: Card(
+                elevation: 5,
+                color: Colors.white,
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(12.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: 200, // Adjust the width as needed
+                            height: 20, // Adjust the height as needed
+                            color: Colors.grey[300]!,
+                          ),
+                          SizedBox(height: 8),
+                          Container(
+                            width: 150, // Adjust the width as needed
+                            height: 16, // Adjust the height as needed
+                            color: Colors.grey[300]!,
+                          ),
+                          SizedBox(height: 8),
+                          Row(
+                            children: [
+                              Column(
+                                children: [
+                                  Container(
+                                    width: 80, // Adjust the width as needed
+                                    height: 16, // Adjust the height as needed
+                                    color: Colors.grey[300]!,
+                                  ),
+                                  SizedBox(height: 5),
+                                  Container(
+                                    width: 80,
+                                    height: 16,
+                                    color: Colors.grey[300]!,
+                                  ),
+                                ],
+                              ),
+                              SizedBox(width: 10),
+                              Column(
+                                children: [
+                                  Container(
+                                    width: 80,
+                                    height: 16,
+                                    color: Colors.grey[300]!,
+                                  ),
+                                  SizedBox(height: 5),
+                                  Container(
+                                    width: 80,
+                                    height: 16,
+                                    color: Colors.grey[300]!,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  Spacer(flex: 4),
-                  Container(
-                    height: 80,
-                    width: 80,
-                    color: Colors.white,
-                  ),
-                  Spacer()
-                ],
+                    Spacer(flex: 4),
+                    Container(height: 80, width: 80, color: Colors.grey[300]!),
+                    Spacer(),
+                  ],
+                ),
               ),
-            ),
-          ),
-        );
-      },
-    );
+            );
+          },
+        ),
+      );
+    }
   }
 
 
-}

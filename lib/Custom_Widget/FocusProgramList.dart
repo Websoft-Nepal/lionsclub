@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:lionsclub/Custom_Widget/FocusProgram_widgetforlist.dart';
-import 'package:lionsclub/Custom_Widget/Focus_Details.dart';
-import 'package:lionsclub/Custom_Widget/notiication.dart';
 import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
 import '../../main.dart';
-import '../Custom_Widget/News_widget.dart';
+import '../Custom_Widget/FocusProgram_widgetforlist.dart';
+import '../Custom_Widget/Focus_Details.dart';
+import '../Custom_Widget/notiication.dart';
 import '../Utils/Components/appurl.dart';
 import '../data/Models/program.dart';
 import '../data/network/api_services.dart';
@@ -18,52 +18,35 @@ class FocusList extends StatefulWidget {
 }
 
 class _FocusListState extends State<FocusList> {
-  List<program> programs = [];
+  bool isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    // Example usage with a different URL for programs
-    _fetchProgramData(AppUrl.programEndPoint);
+    _fetchData(AppUrl.programEndPoint);
   }
 
-  Future<void> _fetchProgramData(String apiUrl) async {
+  Future<void> _fetchData(String apiUrl) async {
     try {
-      List<program> programData = await ApiService.fetchData(apiUrl, (data) => program.fromJson(data));
-      Provider.of<ProgramProvider>(context, listen: false).setPrograms(programData);
+      List<program> data = await ApiService.fetchData(apiUrl, (data) => program.fromJson(data));
+      Provider.of<ProgramProvider>(context, listen: false).setPrograms(data);
       setState(() {
-        programs = programData;
+        isLoading = false;
       });
     } catch (e) {
       // Handle error
-      print('Error fetching program data: $e');
+      print('Error: $e');
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
-  // final imageUrls = [
-  //   "assets/c1.jpg",
-  //   "https://www.gpo.gov.np/images/uploaded/imagepath/6e597028-8799-4e7f-b115-504eb18305f81f5e9d24-e40b-474e-9bb6-23e53679fbbe74603fbe-dd44-4c7a-9408-0fa1a9b8a027423394eb-53e0-44d3-9dbf-9522ad6067a8gpo.jpg",
-  //   "https://oag.gov.np/uploads/OAG%2013.jpg"
-  // ];
-  //
-  // final List<Map<String, String>> programs = [
-  //   {
-  //     'title': 'Child and Women Support Program',
-  //     'imageUrl':'https://lionsclubsdistrict325jnepal.org.np/site/uploads/program/32e6463ba5ff88dc2bbaa026aeec1b62e1c83bdc.jpg',
-  //   },
-  //   {
-  //     'title': 'Clean Water and Sanitation',
-  //     'imageUrl':'https://lionsclubsdistrict325jnepal.org.np/site/uploads/program/5ba2874d9fe9b5e8ffdeb6ac76fbc82c2f2c1509.jpg',
-  //   },
-  //   {
-  //     'title': 'Child and Women Support Program',
-  //     'imageUrl':'https://lionsclubsdistrict325jnepal.org.np/site/uploads/program/32e6463ba5ff88dc2bbaa026aeec1b62e1c83bdc.jpg',
-  //   }
-  //   // Add more programs as needed
-  // ];
-
   @override
   Widget build(BuildContext context) {
+    final programProvider = Provider.of<ProgramProvider>(context);
+    final programs = programProvider.programs;
+
     return Scaffold(
       backgroundColor: Color(0xFFEEEEEE),
       appBar: AppBar(
@@ -87,7 +70,9 @@ class _FocusListState extends State<FocusList> {
           ],
         ),
       ),
-      body: Padding(
+      body: isLoading
+          ? _buildLoadingIndicator()
+          : Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView.builder(
           itemCount: programs.length,
@@ -109,7 +94,26 @@ class _FocusListState extends State<FocusList> {
             );
           },
         ),
+      ),
+    );
+  }
 
+  Widget _buildLoadingIndicator() {
+    return Shimmer.fromColors(
+      baseColor: Colors.grey[300]!,
+      highlightColor: Colors.grey[100]!,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ListView.builder(
+          itemCount: 5, // Number of skeleton items
+          itemBuilder: (context, index) {
+            return FocusPrograms(
+              Title: 'Loading',
+              ImageURl: 'Loading',
+              onTap: () {},
+            );
+          },
+        ),
       ),
     );
   }

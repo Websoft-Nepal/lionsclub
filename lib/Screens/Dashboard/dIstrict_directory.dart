@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:lionsclub/Screens/Dashboard/district_advisor.dart';
 import 'package:lionsclub/data/Models/department/department.dart';
 import '../../data/network/api_services.dart';
@@ -14,6 +15,8 @@ class District_Directory extends StatefulWidget {
 class _District_DirectoryState extends State<District_Directory> {
   List<department> directories = [];
 
+  bool isLoading = true;
+
   @override
   void initState() {
     super.initState();
@@ -26,9 +29,13 @@ class _District_DirectoryState extends State<District_Directory> {
       await ApiService.fetchData(apiUrl, (data) => department.fromJson(data));
       setState(() {
         directories = data;
+        isLoading = false;
       });
     } catch (e) {
       print('Error: $e');
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
@@ -53,7 +60,9 @@ class _District_DirectoryState extends State<District_Directory> {
           ],
         ),
       ),
-      body: GridView.builder(
+      body: isLoading
+          ? _buildSkeletonLoading()
+          : GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2, // Number of columns
           childAspectRatio: 1.9, // Width to height ratio of each item
@@ -61,6 +70,35 @@ class _District_DirectoryState extends State<District_Directory> {
         itemCount: directories.length,
         itemBuilder: (BuildContext context, int index) {
           return _buildGridItem(index);
+        },
+      ),
+    );
+  }
+
+  Widget _buildSkeletonLoading() {
+    return Shimmer.fromColors(
+      baseColor: Colors.grey[300]!,
+      highlightColor: Colors.grey[100]!,
+      child: GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 1.9,
+        ),
+        itemCount: 6, // Adjust the number of skeleton items as needed
+        itemBuilder: (BuildContext context, int index) {
+          return Container(
+            margin: EdgeInsets.all(15.0),
+            child: Card(
+              color: sColor,
+              elevation: 5,
+              child: Center(
+                child: Text(
+                  'Loading',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+          );
         },
       ),
     );

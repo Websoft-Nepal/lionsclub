@@ -12,8 +12,9 @@ import 'package:provider/provider.dart';
 import '../../Custom_Widget/Focus_program_widget.dart';
 import '../../Custom_Widget/icon.dart';
 import '../../Utils/Components/appurl.dart';
+import '../../data/Models/program.dart';
+import '../../data/network/api_services.dart';
 import '../../view_model/FocusProgram.dart';
-import '../../view_model/NewsEvents.dart';
 import '../message.dart';
 
 class MainBoard extends StatefulWidget {
@@ -23,12 +24,25 @@ class MainBoard extends StatefulWidget {
 }
 
 class _MainBoardState extends State<MainBoard> {
- @override
+  List<program> programs = [];
   void initState() {
     super.initState();
-
+    // Example usage with a different URL for programs
+    _fetchProgramData(AppUrl.programEndPoint);
   }
 
+  Future<void> _fetchProgramData(String apiUrl) async {
+    try {
+      List<program> programData = await ApiService.fetchData(apiUrl, (data) => program.fromJson(data));
+      Provider.of<ProgramProvider>(context, listen: false).setPrograms(programData);
+      setState(() {
+        programs = programData;
+      });
+    } catch (e) {
+      // Handle error
+      print('Error fetching program data: $e');
+    }
+  }
 
   final imageUrls = [
     "assets/c1.jpg",
@@ -42,8 +56,7 @@ class _MainBoardState extends State<MainBoard> {
 
 
 
-    final programProvider = Provider.of<ProgramProvider>(context);
-    final programs = programProvider.programs;
+
 
     return Scaffold(
       backgroundColor: Colors.white,
