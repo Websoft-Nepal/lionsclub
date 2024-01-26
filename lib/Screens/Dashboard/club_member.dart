@@ -14,7 +14,7 @@ class ClubDetailsScreen extends StatefulWidget {
 }
 
 class _ClubDetailsScreenState extends State<ClubDetailsScreen> {
-  List<clubMember> ClubM = [];
+  List<ClubMember> ClubM = [];
 
   @override
   void initState() {
@@ -25,7 +25,7 @@ class _ClubDetailsScreenState extends State<ClubDetailsScreen> {
 
   Future<void> _fetchData(String apiUrl) async {
     try {
-      List<clubMember> data = await ApiService.fetchData(apiUrl, (data) => clubMember.fromJson(data));
+      List<ClubMember> data = await ApiService.fetchData(apiUrl, (data) => ClubMember.fromJson(data));
       setState(() {
         ClubM = data;
       });

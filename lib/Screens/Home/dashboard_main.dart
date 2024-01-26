@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:lionsclub/Custom_Widget/FocusProgramList.dart';
+import 'package:lionsclub/Custom_Widget/zone_directory.dart';
 import 'package:lionsclub/Screens/Dashboard/district_advisor.dart';
 import 'package:lionsclub/Screens/Dashboard/clubs.dart';
 import 'package:lionsclub/Screens/Dashboard/dIstrict_directory.dart';
@@ -139,7 +140,7 @@ class _MainBoardState extends State<MainBoard> {
                     color: pColor,
                     iconName: ' Zonal\nDirectory', // You can pass the icon name dynamically
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  ZonalD()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  Zone_Directory()));
                     },
                   ),
                   MyCustomIconButton(

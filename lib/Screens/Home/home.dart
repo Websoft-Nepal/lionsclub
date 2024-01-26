@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:lionsclub/Custom_Widget/zone_directory.dart';
 import 'package:lionsclub/Screens/Dashboard/district_advisor.dart';
 import 'package:lionsclub/Screens/Dashboard/dIstrict_directory.dart';
 import 'package:lionsclub/Screens/Home/dashboard.dart';
@@ -137,7 +138,7 @@ class _Home1State extends State<Home1> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ZonalD()),
+                  MaterialPageRoute(builder: (context) => Zone_Directory()),
                 );
               },
             ),

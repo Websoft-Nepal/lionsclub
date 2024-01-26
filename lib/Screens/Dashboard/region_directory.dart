@@ -39,25 +39,25 @@ class _RegionDepartmentScreenState extends State<RegionDepartmentScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.white),
-        backgroundColor: Color(0xFF11468F),
-        title: Row(
-          children: [
-            Container(
-              height: 50,
-              width: 50,
-              child: Image.asset('assets/logo.png'),
-            ),
-            Text(
-              'Regional Directory',
-              style: TextStyle(color: Colors.white),
-            ),
-            Spacer(
-              flex: 2,
-            )
-          ],
-        ),
+      iconTheme: IconThemeData(color: Colors.white),
+      backgroundColor: Color(0xFF11468F),
+      title: Row(
+        children: [
+          Container(
+            height: 50,
+            width: 50,
+            child: Image.asset('assets/logo.png'),
+          ),
+          Text(
+            'Regional Directory',
+            style: TextStyle(color: Colors.white),
+          ),
+          Spacer(
+            flex: 2,
+          )
+        ],
       ),
+    ),
       body: isLoading
           ? _buildLoadingSkeleton()
           : ListView.builder(

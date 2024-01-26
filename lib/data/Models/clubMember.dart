@@ -1,13 +1,13 @@
 // https://api.lionsclubsdistrict325jnepal.org.np/api/club/100/member
 
-class clubMember {
+class ClubMember {
   String? name;
-  Null? photo;
+  String? photo;
   String? post;
   String? memberMembershipNo;
-  clubMember({this.name, this.photo, this.post, this.memberMembershipNo});
+  ClubMember({this.name, this.photo, this.post, this.memberMembershipNo});
 
-  clubMember.fromJson(Map<String, dynamic> json) {
+  ClubMember.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     photo = json['photo'];
     post = json['post'];

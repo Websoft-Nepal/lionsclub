@@ -8,5 +8,4 @@ class AppUrl {
   static var donorEndPoint = baseUrl +"donor";
   static var newsEndPoint = baseUrl +"news-events";
   static var programEndPoint = baseUrl +"program";
-
 }
