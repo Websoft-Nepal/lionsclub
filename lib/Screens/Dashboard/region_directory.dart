@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lionsclub/Custom_Widget/skeleton_member.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../data/Models/department/region.dart';
 import '../../data/network/api_services.dart';
@@ -59,7 +60,7 @@ class _RegionDepartmentScreenState extends State<RegionDepartmentScreen> {
       ),
     ),
       body: isLoading
-          ? _buildLoadingSkeleton()
+          ? SkeletonMember()
           : ListView.builder(
         itemCount: regionDepartments.length,
         itemBuilder: (context, index) {
@@ -76,26 +77,4 @@ class _RegionDepartmentScreenState extends State<RegionDepartmentScreen> {
     );
   }
 
-  Widget _buildLoadingSkeleton() {
-    return Shimmer.fromColors(
-      baseColor: Colors.grey[300]!,
-      highlightColor: Colors.grey[100]!,
-      child: ListView.builder(
-        itemCount: 10, // Adjust the number of skeleton items as needed
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: Colors.white,
-              ),
-              height: 100,
-              width: double.infinity,
-            ),
-          );
-        },
-      ),
-    );
-  }
 }

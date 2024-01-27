@@ -1,12 +1,12 @@
-class DepartmentDetails {
+class DepartmentDetail {
   int? memberDesignationEnrollId;
   MemberDetails? memberDetails;
   List<Officer>? officer;
 
-  DepartmentDetails(
+  DepartmentDetail(
       {this.memberDesignationEnrollId, this.memberDetails, this.officer});
 
-  DepartmentDetails.fromJson(Map<String, dynamic> json) {
+  DepartmentDetail.fromJson(Map<String, dynamic> json) {
     memberDesignationEnrollId = json['member_designation_enroll_id'];
     memberDetails = json['member_details'] != null
         ? new MemberDetails.fromJson(json['member_details'])

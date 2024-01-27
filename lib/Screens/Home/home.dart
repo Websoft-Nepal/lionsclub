@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
-import 'package:lionsclub/Custom_Widget/zone_directory.dart';
-import 'package:lionsclub/Screens/Dashboard/district_advisor.dart';
-import 'package:lionsclub/Screens/Dashboard/dIstrict_directory.dart';
-import 'package:lionsclub/Screens/Home/dashboard.dart';
-import 'package:lionsclub/Screens/Home/dashboard_main.dart';
-import 'package:lionsclub/Screens/notification.dart';
-import '../Dashboard/clubs.dart';
+import 'package:lionsclub/Screens/Dashboard/zone_directory.dart';
+import 'package:lionsclub/Screens/Dashboard/District/department_details.dart';
+import 'package:lionsclub/Screens/Dashboard/District/department.dart';
+import 'package:lionsclub/Screens/Second_Dashboard/dashboard.dart';
+import 'package:lionsclub/Screens/Dashboard/dashboard_main.dart';
+import 'package:lionsclub/Screens/Dashboard/notification.dart';
+import '../Dashboard/club/clubs.dart';
 import '../../main.dart';
 import '../Dashboard/region_directory.dart';
 
@@ -23,7 +23,6 @@ class _Home1State extends State<Home1> {
     return Scaffold(
       drawer: Drawer(
         child: ListView(
-          // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
           children: [
             DrawerHeader(
@@ -33,8 +32,9 @@ class _Home1State extends State<Home1> {
               child: Column(
                 children: [
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Spacer(),
+
                       SizedBox(
                           height: 100,
                           width: 100,
@@ -43,13 +43,13 @@ class _Home1State extends State<Home1> {
                           height: 100,
                           width: 100,
                           child: Image.asset('assets/logo.png')),
-                      Spacer(),
+
                     ],
                   ),
                   Text(
                     'LION CLUB',
                     style: TextStyle(
-                        fontSize: 30,
+                        fontSize: 20,
                         color: Colors.white,
                         fontWeight: FontWeight.w700),
                   )

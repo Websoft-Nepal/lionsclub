@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lionsclub/data/Models/department/zonal.dart';
-
-import '../Utils/Components/appurl.dart';
-import '../data/network/api_services.dart';
-import '../main.dart';
-import '../main.dart';
-import '../main.dart';
-import '../main.dart';
+import 'package:lionsclub/main.dart';
+import '../../Utils/Components/appurl.dart';
+import '../../data/network/api_services.dart';
+import 'package:shimmer/shimmer.dart';
 
 class Zone_Directory extends StatefulWidget {
   const Zone_Directory({Key? key}) : super(key: key);
@@ -62,11 +59,13 @@ class _Zone_DirectoryState extends State<Zone_Directory> {
             ),
             Spacer(
               flex: 2,
-            )
+            ),
           ],
         ),
       ),
-      body: ListView.builder(
+      body: isZonesLoading
+          ? _buildShimmerLoadingSkeleton()
+          : ListView.builder(
         itemCount: zones.length,
         itemBuilder: (context, index) {
           Zone zone = zones[index];
@@ -94,36 +93,36 @@ class _Zone_DirectoryState extends State<Zone_Directory> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(top:8.0),
+                            padding: EdgeInsets.only(top: 8.0),
                             child: Text(
                               zone.designation ?? 'No Post',
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w800,
-                                color: Color(0xFF141414),
+                                color: tColor,
                               ),
                             ),
                           ),
                         ],
                       ),
                       CircleAvatar(
-                        radius: 70,
+                        radius: 60,
                         backgroundImage: NetworkImage(zone.photo ?? ''),
                       ),
                     ],
                   ),
                   // Display club names below the CircleAvatar
                   Padding(
-                    padding: const EdgeInsets.only(bottom:8.0,left:8.0),
+                    padding: const EdgeInsets.only(bottom: 8.0, left: 8.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Club Names:',
+                          'Club Names :',
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            color: sColor,
+                            color: tColor,
                           ),
                         ),
                         // Display club names using a ListView.builder
@@ -134,11 +133,113 @@ class _Zone_DirectoryState extends State<Zone_Directory> {
                             return Row(
                               children: [
                                 Text('•'),
-                                Text(zone.clubs?[clubIndex].name ?? 'No Club Name',
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  zone.clubs?[clubIndex].name ?? 'No Club Name',
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: tColor,
                                   ),
+                                ),
+                              ],
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildShimmerLoadingSkeleton() {
+    return Shimmer.fromColors(
+      baseColor: Colors.grey[300]!,
+      highlightColor: Colors.grey[100]!,
+      child: ListView.builder(
+        itemCount: 5, // Placeholder for 5 items
+        itemBuilder: (context, index) {
+          return Card(
+            elevation: 5,
+            surfaceTintColor: Colors.grey[300],
+            color: Colors.grey[300],
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        width: 80,
+                        height: 80,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: 150,
+                            height: 16,
+                            color: Colors.white,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 8.0),
+                            child: Container(
+                              width: 100,
+                              height: 16,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        width: 120,
+                        height: 120,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                  // Display club names below the CircleAvatar
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0, left: 8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: 150,
+                          height: 16,
+                          color: Colors.white,
+                        ),
+                        // Display club names using a ListView.builder
+                        ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: 3, // Placeholder for 3 club names
+                          itemBuilder: (context, clubIndex) {
+                            return Row(
+                              children: [
+                                Text('•'),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Container(
+                                  width: 100,
+                                  height: 14,
+                                  color: Colors.white,
                                 ),
                               ],
                             );

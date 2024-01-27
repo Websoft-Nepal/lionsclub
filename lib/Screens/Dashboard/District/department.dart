@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:lionsclub/Screens/Dashboard/district_advisor.dart';
+import 'package:lionsclub/Screens/Dashboard/District/department_details.dart';
 import 'package:lionsclub/data/Models/department/department.dart';
-import '../../data/network/api_services.dart';
-import '../../main.dart';
+import '../../../data/network/api_services.dart';
+import '../../../main.dart';
 
 class District_Directory extends StatefulWidget {
   const District_Directory({super.key});
@@ -84,7 +84,7 @@ class _District_DirectoryState extends State<District_Directory> {
           crossAxisCount: 2,
           childAspectRatio: 1.9,
         ),
-        itemCount: 6, // Adjust the number of skeleton items as needed
+        itemCount: 24, // Adjust the number of skeleton items as needed
         itemBuilder: (BuildContext context, int index) {
           return Container(
             margin: EdgeInsets.all(15.0),
@@ -109,7 +109,7 @@ class _District_DirectoryState extends State<District_Directory> {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ZonalD()),
+          MaterialPageRoute(builder: (context) => DepartmentDetails(dId: directories[index].id,name: directories[index].title ?? 'Title $index',)),
         );
       },
       child: Container(

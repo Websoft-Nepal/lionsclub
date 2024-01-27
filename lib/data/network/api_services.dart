@@ -1,12 +1,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-
 class ApiService {
-  static Future<List<T>> fetchData<T>(String apiUrl, T Function(Map<String, dynamic>) fromJson) async {
+  static Future<List<T>> fetchData<T>(String apiUrl,T Function(Map<String,dynamic>) fromJson) async{
+    print('Loading api .....');
     final response = await http.get(Uri.parse(apiUrl));
-
     if (response.statusCode == 200) {
-      // If server returns an OK response, parse the JSON
+      print('Api Fetch completed');
       List<dynamic> jsonData = json.decode(response.body);
       return jsonData.map<T>((data) => fromJson(data)).toList();
     } else {

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:lionsclub/Custom_Widget/FocusProgramList.dart';
-import 'package:lionsclub/Custom_Widget/zone_directory.dart';
-import 'package:lionsclub/Screens/Dashboard/district_advisor.dart';
-import 'package:lionsclub/Screens/Dashboard/clubs.dart';
-import 'package:lionsclub/Screens/Dashboard/dIstrict_directory.dart';
+import 'package:lionsclub/Screens/Dashboard/FocusProgramList.dart';
+import 'package:lionsclub/Screens/Dashboard/zone_directory.dart';
+import 'package:lionsclub/Screens/Dashboard/District/department_details.dart';
+import 'package:lionsclub/Screens/Dashboard/club/clubs.dart';
+import 'package:lionsclub/Screens/Dashboard/District/department.dart';
 import 'package:lionsclub/Screens/Dashboard/region_directory.dart';
 import 'package:lionsclub/Screens/Home/News%20_crausel/Crausel.dart';
-import 'package:lionsclub/Screens/notification.dart';
+import 'package:lionsclub/Screens/Dashboard/notification.dart';
 import 'package:lionsclub/main.dart';
 import 'package:provider/provider.dart';
 import '../../Custom_Widget/Focus_program_widget.dart';
@@ -16,7 +16,7 @@ import '../../Utils/Components/appurl.dart';
 import '../../data/Models/program.dart';
 import '../../data/network/api_services.dart';
 import '../../view_model/FocusProgram.dart';
-import '../message.dart';
+import 'message.dart';
 
 class MainBoard extends StatefulWidget {
    MainBoard({super.key});
@@ -138,7 +138,7 @@ class _MainBoardState extends State<MainBoard> {
                   MyCustomIconButton(
                     icon:Icons.map,
                     color: pColor,
-                    iconName: ' Zonal\nDirectory', // You can pass the icon name dynamically
+                    iconName: '   Zonal\nDirectory', // You can pass the icon name dynamically
                     onPressed: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) =>  Zone_Directory()));
                     },
@@ -220,7 +220,7 @@ class _MainBoardState extends State<MainBoard> {
               programs.length,
                   (index) => ProgramCard(
                 title: programs[index].title ?? 'No Title',
-                imageUrl: programs[index].photo ?? '',
+                imageUrl: programs[index].photo ?? '', description: programs[index].detail?? '', date: programs[index].postDate?? '',
               ),
             ),
           ),

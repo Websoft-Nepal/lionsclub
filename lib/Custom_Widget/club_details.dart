@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lionsclub/Custom_Widget/Club_member_widget.dart';
+import 'package:lionsclub/Custom_Widget/skeleton_member.dart';
 import 'package:lionsclub/main.dart';
 import 'package:shimmer/shimmer.dart';
 import '../Utils/Components/appurl.dart';
@@ -68,54 +69,40 @@ class _ClubDetAILSState extends State<ClubDetAILS> {
         ),
       ),
       body: isMembersLoading
-          ? _buildSkeleton()
+          ? SkeletonMember()
           : (clubMembers != null && clubMembers!.isNotEmpty)
           ? _buildClubList()
           : _buildNoDataWidget(),
     );
   }
 
-  Widget _buildSkeleton() {
-    return Shimmer.fromColors(
-      baseColor: Colors.grey[300]!,
-      highlightColor: Colors.grey[100]!,
-      child: ListTile(
-        title: Container(
-          width: 150,
-          height: 16,
-          color: Colors.grey[300]!,
-        ),
-        subtitle: Container(
-          width: 100,
-          height: 12,
-          color: Colors.grey[300]!,
-        ),
-        leading: CircleAvatar(
-          radius: 25,
-          backgroundColor: Colors.grey[300]!,
-        ),
-      ),
-    );
-  }
 
   Widget _buildNoDataWidget() {
     return Center(
       child: Text('No data available'),
     );
   }
-
   Widget _buildClubList() {
     return ListView.builder(
       shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
       itemCount: clubMembers!.length,
       itemBuilder: (context, index) {
+        // Extract name and post, trim to a maximum of 20 characters
+        String name = (clubMembers![index]?.name ?? 'No Name').length > 20
+            ? (clubMembers![index]?.name ?? 'No Name').substring(0, 18) + '..'
+            : (clubMembers![index]?.name ?? 'No Name');
+
+        String post = (clubMembers![index]?.post ?? 'No Post').length > 20
+            ? (clubMembers![index]?.post ?? 'No Post').substring(0, 18) + '..'
+            : (clubMembers![index]?.post ?? 'No Post');
+
         return MyCustomClubMember(
-          Name: clubMembers![index]?.name ?? 'No Name',
-          Post: clubMembers![index]?.post ?? 'No Post',
+          Name: name,
+          Post: post,
           Image: clubMembers![index]?.photo ?? '',
         );
       },
     );
   }
+
 }

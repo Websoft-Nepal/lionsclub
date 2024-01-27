@@ -5,20 +5,30 @@ import 'package:lionsclub/main.dart';
 class ProgramCard extends StatelessWidget {
   final String imageUrl;
   final String title;
-
+  final String description;
+  final String date;
   const ProgramCard({
     Key? key,
     required this.imageUrl,
     required this.title,
+    required this.description,
+    required this.date,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-       Navigator.push(context, MaterialPageRoute(builder: (context)=>FocusProgram_Details(title: title, imageUrl: imageUrl)));
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => FocusProgram_Details(
+                    title: title,
+                    imageUrl: imageUrl,
+                    description: description,
+                    date: date)));
       },
-      onLongPress: (){},
+      onLongPress: () {},
       child: Container(
         width: 300,
         child: Card(
@@ -66,17 +76,29 @@ class ProgramCard extends StatelessWidget {
                     children: [
                       Text('Focused Program'),
                       Spacer(),
-                      Container(
-                        decoration: BoxDecoration(
-                          color: zColor,
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        height: 20,
-                        width: 40,
-                        child: Center(
+                      SizedBox(
+                        height: 25,
+                        width: 50,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => FocusProgram_Details(
+                                        title: title,
+                                        imageUrl: imageUrl,
+                                        description: description,
+                                        date: date)));
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: zColor,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 5), // Adjust padding
+                          ),
                           child: Text(
-                            'more',
-                            style: TextStyle(color: Colors.white),
+                            'more..',
+                            style: TextStyle(
+                                fontSize: 10, color: bColor), // Adjust fontSize
                           ),
                         ),
                       ),

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:lionsclub/Custom_Widget/skeleton_member.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
-import '../../main.dart';
-import '../Custom_Widget/FocusProgram_widgetforlist.dart';
-import '../Custom_Widget/Focus_Details.dart';
-import '../Custom_Widget/notiication.dart';
-import '../Utils/Components/appurl.dart';
-import '../data/Models/program.dart';
-import '../data/network/api_services.dart';
-import '../view_model/FocusProgram.dart';
+import '../../../main.dart';
+import '../../Custom_Widget/FocusProgram_widgetforlist.dart';
+import '../../Custom_Widget/Focus_Details.dart';
+import '../../Custom_Widget/notiication.dart';
+import '../../Utils/Components/appurl.dart';
+import '../../data/Models/program.dart';
+import '../../data/network/api_services.dart';
+import '../../view_model/FocusProgram.dart';
 
 class FocusList extends StatefulWidget {
   const FocusList({Key? key});
@@ -71,7 +72,7 @@ class _FocusListState extends State<FocusList> {
         ),
       ),
       body: isLoading
-          ? _buildLoadingIndicator()
+          ? SkeletonMember()
           : Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView.builder(
@@ -87,6 +88,7 @@ class _FocusListState extends State<FocusList> {
                     builder: (context) => FocusProgram_Details(
                       title: programs[index].title!,
                       imageUrl: programs[index].photo!,
+                      description: programs[index].detail!, date: programs[index].postDate!,
                     ),
                   ),
                 );
@@ -98,23 +100,4 @@ class _FocusListState extends State<FocusList> {
     );
   }
 
-  Widget _buildLoadingIndicator() {
-    return Shimmer.fromColors(
-      baseColor: Colors.grey[300]!,
-      highlightColor: Colors.grey[100]!,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ListView.builder(
-          itemCount: 5, // Number of skeleton items
-          itemBuilder: (context, index) {
-            return FocusPrograms(
-              Title: 'Loading',
-              ImageURl: 'Loading',
-              onTap: () {},
-            );
-          },
-        ),
-      ),
-    );
-  }
 }

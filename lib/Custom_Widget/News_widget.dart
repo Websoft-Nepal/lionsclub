@@ -6,13 +6,20 @@ class NewsDetails extends StatefulWidget {
   final String title;
   final String imageUrl;
   final String details;
+  final String date;
 
-  NewsDetails({Key? key, required this.title, required this.imageUrl, required this.details}) : super(key: key);
+  NewsDetails({
+    Key? key,
+    required this.title,
+    required this.imageUrl,
+    required this.details,
+    required this.date
+
+  }) : super(key: key);
 
   @override
   _NewsDetailsState createState() => _NewsDetailsState();
 }
-
 class _NewsDetailsState extends State<NewsDetails> {
   @override
   Widget build(BuildContext context) {
@@ -47,9 +54,18 @@ class _NewsDetailsState extends State<NewsDetails> {
             SizedBox(height: 20,),
             Column(
               children: [
-                Text(widget.title,
-                  style: TextStyle(
-                      fontSize: 20, color: tColor),
+                ListTile(
+                  title:Text(widget.title,
+                    textAlign: TextAlign.justify,
+                    style: TextStyle(
+                        fontSize: 20, color: sColor),
+                  ),
+                  subtitle: Text(widget.date.substring(0,10),
+                    textAlign: TextAlign.end,
+                    style: TextStyle(
+                        fontSize: 12, color: sColor),
+                  ),
+
                 ),
                 SizedBox(
                   height: 8,
@@ -57,11 +73,10 @@ class _NewsDetailsState extends State<NewsDetails> {
                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text(widget.details,
+                    textAlign: TextAlign.justify,
                     style: TextStyle(color: tColor),
                   ),
                 ),
-
-
               ],
             )
           ],

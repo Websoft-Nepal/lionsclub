@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:lionsclub/Custom_Widget/notiication.dart';
 import 'package:lionsclub/view_model/NewsEvents.dart';
 
-import '../../main.dart';
-import '../Custom_Widget/News_widget.dart';
-import '../Utils/Components/appurl.dart';
-import '../data/Models/news_events.dart';
-import '../data/network/api_services.dart';
+import '../../../main.dart';
+import '../../Custom_Widget/News_widget.dart';
+import '../../Utils/Components/appurl.dart';
+import '../../data/Models/news_events.dart';
+import '../../data/network/api_services.dart';
 import 'package:provider/provider.dart';
 class Notice extends StatefulWidget {
   const Notice({super.key});
@@ -52,12 +52,15 @@ class _NoticeState extends State<Notice> {
                 context,
                 MaterialPageRoute(
                   builder: (context) => NewsDetails(
-                    title: newsEvents[index].title ?? '',
-                    imageUrl: newsEvents[index].photo ?? '', details: newsEvents[index].detail??'',
+                    title: newsEvents[index].title ?? 'No Title',
+                    imageUrl: newsEvents[index].photo ?? '',
+                    details: newsEvents[index].detail ?? 'No Details',
+                    date: newsEvents[index].updatedAt ?? 'No Details',
+                  // Assuming updatedAt is the date property
                   ),
                 ),
               );
-            }, Date:newsEvents[index].updatedAt??  '',
+            }, Date:newsEvents[index].updatedAt?.substring(0,10)??  '',
           );
         },
       ),

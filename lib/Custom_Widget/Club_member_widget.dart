@@ -27,7 +27,7 @@ class MyCustomClubMember extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(right: 8, left: 8, bottom: 5),
+                    padding: EdgeInsets.only( left: 8, bottom: 5),
                     child: Text(
                       Name,
                       style: TextStyle(
@@ -51,7 +51,8 @@ class MyCustomClubMember extends StatelessWidget {
             ),
             CircleAvatar(
               radius: 70,
-              backgroundImage: NetworkImage(Image),
+              backgroundImage: AssetImage('assets/logo.png'),
+              foregroundImage: NetworkImage(Image),
             ),
           ],
         ),

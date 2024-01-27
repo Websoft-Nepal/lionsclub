@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lionsclub/Screens/Home/dashboard.dart';
-import 'package:lionsclub/Screens/Home/dashboard_main.dart';
+import 'package:lionsclub/Screens/Second_Dashboard/dashboard.dart';
+import 'package:lionsclub/Screens/Dashboard/dashboard_main.dart';
 import 'package:lionsclub/Utils/Route/route_name.dart';
 
 class Routes {

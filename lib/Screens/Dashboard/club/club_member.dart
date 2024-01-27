@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lionsclub/Custom_Widget/Club_member_widget.dart';
 import 'package:lionsclub/main.dart';
 import 'package:lionsclub/data/Models/clubMember.dart';
-import '../../data/network/api_services.dart';
+import '../../../data/network/api_services.dart';
 
 class ClubDetailsScreen extends StatefulWidget {
   final String clubId;
@@ -60,16 +60,16 @@ class _ClubDetailsScreenState extends State<ClubDetailsScreen> {
           ],
         ),
       ),
-      body: ListView(
-        children: ClubM.map((club) {
-          // Use club data to display club members
+      body: ListView.builder(
+          itemCount: ClubM.length,
+          itemBuilder: (context, index) {
           return MyCustomClubMember(
-            Name: club.name ?? '',
-            Post: club.post ?? '',
-            Image: Image.network(club.photo ?? '').image,
+            Name: ClubM[index].name!.substring(0, 20)?? 'Member Name',
+
+            Post: ClubM[index].post ?? '',
+            Image: Image.network(ClubM[index].photo ?? '').image,
           );
-        }).toList(),
-      ),
+        }),
     );
   }
 }

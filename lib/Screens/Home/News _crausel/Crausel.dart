@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:lionsclub/Custom_Widget/News_widget.dart';
-import 'package:lionsclub/Screens/notification.dart';
+import 'package:lionsclub/Screens/Dashboard/notification.dart';
 import 'package:provider/provider.dart';
 import '../../../Utils/Components/appurl.dart';
 import '../../../data/Models/news_events.dart';
@@ -63,9 +63,9 @@ class _Crausel_newsState extends State<Crausel_news> {
         final event = newsevent[index];
         return GestureDetector(
           onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => NewsDetails(title: event.title ?? 'No Title', imageUrl: event.photo??'', details: event.detail ?? 'No Details')));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => NewsDetails(title: event.title ?? 'No Title', imageUrl: event.photo??'', details: event.detail ?? 'No Details', date: event.updatedAt ?? 'No Details',)));
           },
-          child: buildCarouselItem(event.photo ?? 'No Image', event.title ?? 'No Title', event.updatedAt),
+          child: buildCarouselItem(event.photo ?? 'No Image', event.title ?? 'No Title', event.updatedAt?.substring(0,10)),
         );
       },
     );
