@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../main.dart';
+import '../../../../main.dart';
 
 class FocusProgram_Details extends StatefulWidget {
   final String title;
@@ -54,7 +53,7 @@ class _FocusProgram_DetailsState extends State<FocusProgram_Details> {
                         fontSize: 20, color: sColor),
                   ),
                   subtitle: Text(widget.date,
-                    textAlign: TextAlign.justify,
+                    textAlign: TextAlign.end,
                     style: TextStyle(
                         fontSize: 10, color: tColor),
                   ),

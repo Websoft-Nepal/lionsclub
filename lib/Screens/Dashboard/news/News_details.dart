@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../main.dart';
+import '../../../../main.dart';
 
 class NewsDetails extends StatefulWidget {
   final String title;
@@ -63,7 +63,7 @@ class _NewsDetailsState extends State<NewsDetails> {
                   subtitle: Text(widget.date.substring(0,10),
                     textAlign: TextAlign.end,
                     style: TextStyle(
-                        fontSize: 12, color: sColor),
+                        fontSize: 12, color: ttColor),
                   ),
 
                 ),

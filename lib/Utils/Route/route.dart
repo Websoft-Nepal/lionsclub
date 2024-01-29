@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lionsclub/Screens/Dashboard/news/news.dart';
 import 'package:lionsclub/Screens/Second_Dashboard/dashboard.dart';
 import 'package:lionsclub/Screens/Dashboard/dashboard_main.dart';
 import 'package:lionsclub/Utils/Route/route_name.dart';
@@ -15,10 +16,12 @@ class Routes {
         return MaterialPageRoute(
             builder: (BuildContext context) => Dashboard());
 
+      case RoutesName.news:
+        return MaterialPageRoute(
+            builder: (BuildContext context) =>  News());
 
-      // case RoutesName.home:
-      //   return MaterialPageRoute(
-      //       builder: (BuildContext context) => const HomeScreen());
+
+
 
       default:
         return MaterialPageRoute(builder: (_) {

@@ -50,7 +50,7 @@ class MyCustomClubMember extends StatelessWidget {
               ),
             ),
             CircleAvatar(
-              radius: 70,
+              radius: 50,
               backgroundImage: AssetImage('assets/logo.png'),
               foregroundImage: NetworkImage(Image),
             ),

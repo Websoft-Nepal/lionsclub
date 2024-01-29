@@ -5,7 +5,7 @@ import 'package:lionsclub/Screens/Dashboard/District/department_details.dart';
 import 'package:lionsclub/Screens/Dashboard/District/department.dart';
 import 'package:lionsclub/Screens/Second_Dashboard/dashboard.dart';
 import 'package:lionsclub/Screens/Dashboard/dashboard_main.dart';
-import 'package:lionsclub/Screens/Dashboard/notification.dart';
+import 'package:lionsclub/Screens/Dashboard/news/news.dart';
 import '../Dashboard/club/clubs.dart';
 import '../../main.dart';
 import '../Dashboard/region_directory.dart';
@@ -151,9 +151,9 @@ class _Home1State extends State<Home1> {
           children: [
             Spacer(),
             Container(
-                height: 50, width: 50, child: Image.asset('assets/logo.png')),
+                height: 60, width: 60, child: Image.asset('assets/logo.png')),
             Container(
-                height: 50, width: 50, child: Image.asset('assets/logo.png')),
+                height: 60, width: 60, child: Image.asset('assets/logo.png')),
             Spacer(),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -161,7 +161,7 @@ class _Home1State extends State<Home1> {
                 onTap: (){
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Notice()),
+                    MaterialPageRoute(builder: (context) => News()),
                   );
                 },
                 child:Stack(

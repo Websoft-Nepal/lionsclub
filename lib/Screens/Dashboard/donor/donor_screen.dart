@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:lionsclub/Screens/Dashboard/District/donor_details_screen.dart';
+import 'package:lionsclub/Custom_Widget/skeleton_member.dart';
+import 'package:lionsclub/Screens/Dashboard/donor/donor_details_screen.dart';
 
-import '../../data/network/api_services.dart';
-import '../../main.dart';
+import '../../../data/network/api_services.dart';
+import '../../../main.dart';
 import 'package:lionsclub/data/Models/donor.dart';
 
 class Donor_Screen extends StatefulWidget {
@@ -64,12 +65,13 @@ class _Donor_ScreenState extends State<Donor_Screen> {
           ],
         ),
       ),
-      body: ListView.builder(
+      body: isDonorLoading?const SkeletonMember():ListView.builder(
         itemCount: donors.length,
         itemBuilder: (BuildContext context, int index) {
           return ListTile(
-            leading: Text(donors[index].id.toString() ?? '',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18)),
-            title: Text(donors[index].title ?? 'No Title',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),), // Provide a default value if title is null
+            // tileColor: ,
+            leading: Text(donors[index].id.toString() ?? '',style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 18)),
+            title: Text(donors[index].title ?? 'No Title',style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 18),), // Provide a default value if title is null
             onTap: () {
               Navigator.push(
                 context,

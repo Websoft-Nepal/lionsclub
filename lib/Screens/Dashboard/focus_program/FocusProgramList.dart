@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:lionsclub/Custom_Widget/skeleton_member.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
-import '../../../main.dart';
-import '../../Custom_Widget/FocusProgram_widgetforlist.dart';
-import '../../Custom_Widget/Focus_Details.dart';
-import '../../Custom_Widget/notiication.dart';
-import '../../Utils/Components/appurl.dart';
-import '../../data/Models/program.dart';
-import '../../data/network/api_services.dart';
-import '../../view_model/FocusProgram.dart';
+import '../../../../main.dart';
+import 'FocusProgram_widgetforlist.dart';
+import 'FocusProgram_Details.dart';
+import '../news/news_widget.dart';
+import '../../../Utils/Components/appurl.dart';
+import '../../../data/Models/program.dart';
+import '../../../data/network/api_services.dart';
+import '../../../view_model/FocusProgram.dart';
 
 class FocusList extends StatefulWidget {
   const FocusList({Key? key});

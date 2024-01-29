@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lionsclub/Custom_Widget/Focus_Details.dart';
+import 'package:lionsclub/Screens/Dashboard/focus_program/FocusProgram_Details.dart';
 import 'package:lionsclub/main.dart';
 
 class ProgramCard extends StatelessWidget {

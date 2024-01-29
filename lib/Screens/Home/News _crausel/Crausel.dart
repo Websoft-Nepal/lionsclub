@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:lionsclub/Custom_Widget/News_widget.dart';
-import 'package:lionsclub/Screens/Dashboard/notification.dart';
+import 'package:lionsclub/Screens/Dashboard/news/News_details.dart';
+import 'package:lionsclub/Screens/Dashboard/news/news.dart';
 import 'package:provider/provider.dart';
 import '../../../Utils/Components/appurl.dart';
 import '../../../data/Models/news_events.dart';

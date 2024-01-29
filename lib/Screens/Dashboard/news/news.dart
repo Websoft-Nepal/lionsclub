@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:lionsclub/Custom_Widget/notiication.dart';
+import 'package:lionsclub/Screens/Dashboard/news/news_widget.dart';
 import 'package:lionsclub/view_model/NewsEvents.dart';
 
-import '../../../main.dart';
-import '../../Custom_Widget/News_widget.dart';
-import '../../Utils/Components/appurl.dart';
-import '../../data/Models/news_events.dart';
-import '../../data/network/api_services.dart';
+import '../../../../main.dart';
+import 'News_details.dart';
+import '../../../Utils/Components/appurl.dart';
+import '../../../data/Models/news_events.dart';
+import '../../../data/network/api_services.dart';
 import 'package:provider/provider.dart';
-class Notice extends StatefulWidget {
-  const Notice({super.key});
+class News extends StatefulWidget {
+  const News({super.key});
 
   @override
-  State<Notice> createState() => _NoticeState();
+  State<News> createState() => _NewsState();
 }
 
-class _NoticeState extends State<Notice> {
+class _NewsState extends State<News> {
 
   @override
   Widget build(BuildContext context) {

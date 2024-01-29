@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:lionsclub/Custom_Widget/Club_member_widget.dart';
+import 'package:lionsclub/Screens/Dashboard/club/Club_member_widget.dart';
 import 'package:lionsclub/Custom_Widget/skeleton_member.dart';
 import 'package:lionsclub/main.dart';
 import 'package:shimmer/shimmer.dart';
-import '../Utils/Components/appurl.dart';
-import '../data/Models/clubMember.dart';
-import '../data/network/api_services.dart';
+import '../../../Utils/Components/appurl.dart';
+import '../../../data/Models/clubMember.dart';
+import '../../../data/network/api_services.dart';
 
 class ClubDetAILS extends StatefulWidget {
   final clubId;

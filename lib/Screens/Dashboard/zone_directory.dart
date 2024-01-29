@@ -19,7 +19,7 @@ class _Zone_DirectoryState extends State<Zone_Directory> {
   @override
   void initState() {
     super.initState();
-    _fetchZoneData("https://api.lionsclubsdistrict325jnepal.org.np/api/zone"); // Use the zone API endpoint
+    _fetchZoneData(AppUrl.zoneDepartmentEndPoint); // Use the zone API endpoint
   }
 
   Future<void> _fetchZoneData(String apiUrl) async {
@@ -86,13 +86,17 @@ class _Zone_DirectoryState extends State<Zone_Directory> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            zone.memberName ?? 'No Name',
+                            zone.memberName != null && zone.memberName!.length > 20
+                                ? '${zone.memberName!.substring(0, 20)}...'
+                                : zone.memberName ?? 'No Name',
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w800,
                               color: sColor,
                             ),
                           ),
+
+
                           Padding(
                             padding: EdgeInsets.only(top: 8.0),
                             child: Text(
@@ -108,7 +112,8 @@ class _Zone_DirectoryState extends State<Zone_Directory> {
                       ),
                       CircleAvatar(
                         radius: 60,
-                        backgroundImage: NetworkImage(zone.photo ?? ''),
+                        backgroundImage:AssetImage('assets/logo.png') ,
+                        foregroundImage: NetworkImage(zone.photo ?? ''),
                       ),
                     ],
                   ),

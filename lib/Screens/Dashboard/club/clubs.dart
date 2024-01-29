@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lionsclub/Custom_Widget/club_details.dart';
+import 'package:lionsclub/Screens/Dashboard/club/club_details.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../Utils/Components/appurl.dart';
@@ -80,6 +80,8 @@ class _ClubState extends State<Club> {
       body: isLoading
           ? _buildSkeleton()
           : Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Search bar
           Padding(
@@ -111,8 +113,8 @@ class _ClubState extends State<Club> {
           ),
           // Total Clubs
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text('Total Clubs: ${filteredClubs.length}'),
+            padding: const EdgeInsets.only(left: 18.0),
+            child: Text('Total Clubs: ${filteredClubs.length}',textAlign: TextAlign.start,),
           ),
           // List Builder for Clubs
           Expanded(

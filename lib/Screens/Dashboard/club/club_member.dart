@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lionsclub/Custom_Widget/Club_member_widget.dart';
+import 'package:lionsclub/Screens/Dashboard/club/Club_member_widget.dart';
 import 'package:lionsclub/main.dart';
 import 'package:lionsclub/data/Models/clubMember.dart';
 import '../../../data/network/api_services.dart';

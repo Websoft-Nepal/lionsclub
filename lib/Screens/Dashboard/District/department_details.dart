@@ -100,14 +100,14 @@ class _DepartmentDetailsState extends State<DepartmentDetails> {
               detail?.memberDetails?.name ?? 'No Name',
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 16.0,
+                fontSize: 14.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
             Text(
               detail?.officer?[0].title ?? 'No Post',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w700, color: sColor),
+              style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w700, color: sColor),
             ),
           ],
         ),

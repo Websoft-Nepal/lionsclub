@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lionsclub/Custom_Widget/skeleton_member.dart';
 
 import '../../../data/Models/donor_details.dart';
 import '../../../data/network/api_services.dart';
@@ -62,11 +63,11 @@ class _DonorDetailsState extends State<DonorDetails> {
           ],
         ),
       ),
-      body: GridView.builder(
+      body:isDonorDetailsLoading?SkeletonMember(): GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          crossAxisSpacing: 16.0,
-          mainAxisSpacing: 16.0,
+          crossAxisSpacing: 20.0,
+          mainAxisSpacing: 20.0,
         ),
         itemCount: donorDetails?.length ?? 0,
         itemBuilder: (BuildContext context, int index) {
@@ -88,28 +89,29 @@ class _DonorDetailsState extends State<DonorDetails> {
           children: [
             Expanded(
               child: CircleAvatar(
-                radius: 49.0,
+                radius: 50.0,
                 foregroundImage: NetworkImage(detail?.photo?? ''),
                 backgroundImage: AssetImage('assets/logo.png'),
               ),
             ),
+
             Text(
               detail?.memberName ?? 'No Name',
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 16.0,
+                fontSize: 14.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
             Text(
               'Donated at: ${detail?.donatedAt!.substring(0, 11) ?? 'No Date'}',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w700, color: ttColor),
+              style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w700, color: ttColor),
             ),
 
-            Text('Club : ${detail?.club?? 'No Post'}',
+            Text('Club : ${detail?.club?.toLowerCase()?? 'No Post'}',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w700, color: sColor),
+              style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w700, color: sColor),
             ),
           ],
         ),

@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:lionsclub/Screens/Dashboard/FocusProgramList.dart';
-import 'package:lionsclub/Screens/Dashboard/donor_screen.dart';
+import 'package:lionsclub/Screens/Dashboard/focus_program/FocusProgramList.dart';
+import 'package:lionsclub/Screens/Dashboard/donor/donor_screen.dart';
 import 'package:lionsclub/Screens/Dashboard/zone_directory.dart';
 import 'package:lionsclub/Screens/Dashboard/District/department_details.dart';
 import 'package:lionsclub/Screens/Dashboard/club/clubs.dart';
 import 'package:lionsclub/Screens/Dashboard/District/department.dart';
 import 'package:lionsclub/Screens/Dashboard/region_directory.dart';
 import 'package:lionsclub/Screens/Home/News%20_crausel/Crausel.dart';
-import 'package:lionsclub/Screens/Dashboard/notification.dart';
+import 'package:lionsclub/Screens/Dashboard/news/news.dart';
 import 'package:lionsclub/main.dart';
 import 'package:provider/provider.dart';
-import '../../Custom_Widget/Focus_program_widget.dart';
+import '../../Utils/Route/route_name.dart';
+import 'focus_program/Focus_program_widget.dart';
 import '../../Custom_Widget/icon.dart';
 import '../../Utils/Components/appurl.dart';
 import '../../data/Models/program.dart';
@@ -147,9 +148,9 @@ class _MainBoardState extends State<MainBoard> {
                   MyCustomIconButton(
                     icon:Icons.newspaper,
                     color: ttColor,
-                    iconName: 'News', // You can pass the icon name dynamically
+                    iconName: 'News',
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  Notice()));
+                      Navigator.pushNamed(context, RoutesName.news);
                     },
                   ),
                 ],
@@ -236,7 +237,7 @@ class _MainBoardState extends State<MainBoard> {
               const Text('Latest News ',style: TextStyle(fontSize: 18,fontWeight:FontWeight.bold),),
               const Spacer(),
               IconButton(onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>Notice()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>News()));
               }, icon:Icon(Icons.arrow_forward,color: zColor,))
             ],
           ),

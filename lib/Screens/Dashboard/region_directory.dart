@@ -3,7 +3,7 @@ import 'package:lionsclub/Custom_Widget/skeleton_member.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../data/Models/department/region.dart';
 import '../../data/network/api_services.dart';
-import '../../Custom_Widget/Club_member_widget.dart';
+import 'club/Club_member_widget.dart';
 
 class RegionDepartmentScreen extends StatefulWidget {
   @override
