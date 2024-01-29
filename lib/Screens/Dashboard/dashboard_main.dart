@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:lionsclub/Screens/Dashboard/FocusProgramList.dart';
+import 'package:lionsclub/Screens/Dashboard/donor_screen.dart';
 import 'package:lionsclub/Screens/Dashboard/zone_directory.dart';
 import 'package:lionsclub/Screens/Dashboard/District/department_details.dart';
 import 'package:lionsclub/Screens/Dashboard/club/clubs.dart';
@@ -187,7 +188,7 @@ class _MainBoardState extends State<MainBoard> {
                     color: Colors.greenAccent,
                     iconName: ' Donor', // You can pass the icon name dynamically
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  District_Directory()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  Donor_Screen()));
                     },
                   ),
                 ],

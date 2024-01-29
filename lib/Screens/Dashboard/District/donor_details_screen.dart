@@ -1,58 +1,56 @@
 import 'package:flutter/material.dart';
-import '../../../data/Models/department/department_details.dart';
+
+import '../../../data/Models/donor_details.dart';
 import '../../../data/network/api_services.dart';
 import '../../../main.dart';
-
-class DepartmentDetails extends StatefulWidget {
-  final dId, name;
-
-  const DepartmentDetails({Key? key, required this.dId, this.name}) : super(key: key);
+class DonorDetails extends StatefulWidget {
+  final dId,name;
+  const DonorDetails({super.key,required this.dId,required this.name});
 
   @override
-  _DepartmentDetailsState createState() => _DepartmentDetailsState();
+  State<DonorDetails> createState() => _DonorDetailsState();
 }
 
-class _DepartmentDetailsState extends State<DepartmentDetails> {
-  List<DepartmentDetail>? departmentDetails;
-  bool isDepartmentDetailsLoading = true;
+class _DonorDetailsState extends State<DonorDetails> {
+  List<DonorDetail>? donorDetails;
+  bool isDonorDetailsLoading = true;
+  bool isDonor = true;
 
   @override
   void initState() {
     super.initState();
-    _fetchDepartmentDetails();
+    _fetchDonorDetails();
   }
 
-  Future<void> _fetchDepartmentDetails() async {
+  Future<void> _fetchDonorDetails() async {
     try {
-      List<DepartmentDetail>? details = await ApiService.fetchData(
-        "https://api.lionsclubsdistrict325jnepal.org.np/api/department_details/${widget.dId}",
-            (data) => DepartmentDetail.fromJson(data),
+      List<DonorDetail>? details = await ApiService.fetchData(
+        "https://api.lionsclubsdistrict325jnepal.org.np/api/donor/${widget.dId}", // Replace with the actual donor ID
+            (data) => DonorDetail.fromJson(data),
       );
       setState(() {
-        departmentDetails = details;
-        isDepartmentDetailsLoading = false;
+        donorDetails = details;
+        isDonorDetailsLoading = false;
       });
     } catch (e) {
       print('Error: $e');
       setState(() {
-        isDepartmentDetailsLoading = false;
+        isDonorDetailsLoading = false;
       });
     }
   }
 
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFEEEEEE),
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: sColor,
         title: Row(
           children: [
             Container(
-              height: 50,
-              width: 50,
-              child: Image.asset('assets/logo.png'),
+                height: 50, width: 50, child: Image.asset('assets/logo.png')),
+            SizedBox(
+              width: 5,
             ),
             Text(
               widget.name,
@@ -70,16 +68,15 @@ class _DepartmentDetailsState extends State<DepartmentDetails> {
           crossAxisSpacing: 16.0,
           mainAxisSpacing: 16.0,
         ),
-        itemCount: departmentDetails?.length ?? 0,
+        itemCount: donorDetails?.length ?? 0,
         itemBuilder: (BuildContext context, int index) {
           return _buildGridItem(index);
         },
       ),
     );
   }
-
   Widget _buildGridItem(int index) {
-    DepartmentDetail? detail = departmentDetails![index];
+    DonorDetail? detail = donorDetails![index];
 
     return Card(
       elevation: 2.0,
@@ -92,12 +89,12 @@ class _DepartmentDetailsState extends State<DepartmentDetails> {
             Expanded(
               child: CircleAvatar(
                 radius: 49.0,
-                foregroundImage: NetworkImage(detail?.memberDetails?.photo ?? ''),
+                foregroundImage: NetworkImage(detail?.photo?? ''),
                 backgroundImage: AssetImage('assets/logo.png'),
               ),
             ),
             Text(
-              detail?.memberDetails?.name ?? 'No Name',
+              detail?.memberName ?? 'No Name',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 16.0,
@@ -105,7 +102,12 @@ class _DepartmentDetailsState extends State<DepartmentDetails> {
               ),
             ),
             Text(
-              detail?.officer?[0].title ?? 'No Post',
+              'Donated at: ${detail?.donatedAt!.substring(0, 11) ?? 'No Date'}',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w700, color: ttColor),
+            ),
+
+            Text('Club : ${detail?.club?? 'No Post'}',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w700, color: sColor),
             ),

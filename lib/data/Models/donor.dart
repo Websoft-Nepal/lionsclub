@@ -1,12 +1,12 @@
 // https://api.lionsclubsdistrict325jnepal.org.np/api/donor
 
-class donor {
+class Donor {
   int? id;
   String? title;
 
-  donor({this.id, this.title});
+  Donor({this.id, this.title});
 
-  donor.fromJson(Map<String, dynamic> json) {
+  Donor.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
   }

@@ -19,7 +19,7 @@ class _Zone_DirectoryState extends State<Zone_Directory> {
   @override
   void initState() {
     super.initState();
-    _fetchZoneData(AppUrl.zoneDepartmentEndPoint);
+    _fetchZoneData("https://api.lionsclubsdistrict325jnepal.org.np/api/zone"); // Use the zone API endpoint
   }
 
   Future<void> _fetchZoneData(String apiUrl) async {
@@ -39,6 +39,7 @@ class _Zone_DirectoryState extends State<Zone_Directory> {
       });
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
