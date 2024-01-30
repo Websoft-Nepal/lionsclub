@@ -88,7 +88,7 @@ class _ClubState extends State<Club> {
             padding: const EdgeInsets.all(8.0),
             child: Card(
               child: SizedBox(
-                width: 350,
+                width: 400,
                 child: TextField(
                   controller: searchController,
                   onChanged: _filterClubs,
@@ -120,7 +120,7 @@ class _ClubState extends State<Club> {
           Expanded(
             child: ListView.builder(
               shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
+              // physics: const NeverScrollableScrollPhysics(),
               itemCount: filteredClubs.length,
               itemBuilder: (context, index) {
                 return Padding(
@@ -159,10 +159,10 @@ class _ClubState extends State<Club> {
                                         filteredClubs[index]
                                             .name!
                                             .length >
-                                            18
+                                            20
                                         ? filteredClubs[index]
                                         .name!
-                                        .substring(0, 18)
+                                        .substring(0, 20)
                                         : filteredClubs[index].name ?? '',
                                     style: TextStyle(
                                       fontSize: 16,

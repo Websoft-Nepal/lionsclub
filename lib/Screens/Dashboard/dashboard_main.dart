@@ -150,7 +150,7 @@ class _MainBoardState extends State<MainBoard> {
                     color: ttColor,
                     iconName: 'News',
                     onPressed: () {
-                      Navigator.pushNamed(context, RoutesName.news);
+                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  News()));
                     },
                   ),
                 ],

@@ -55,9 +55,10 @@ class _DepartmentDetailsState extends State<DepartmentDetails> {
               child: Image.asset('assets/logo.png'),
             ),
             Text(
-              widget.name,
+              widget.name.length <= 20 ? widget.name : widget.name.substring(0, 20)+ '...',
               style: TextStyle(color: Colors.white),
             ),
+
             Spacer(
               flex: 2,
             )

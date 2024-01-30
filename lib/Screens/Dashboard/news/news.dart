@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lionsclub/Screens/Dashboard/news/news_widget.dart';
 import 'package:lionsclub/view_model/NewsEvents.dart';
-
 import '../../../../main.dart';
 import 'News_details.dart';
-import '../../../Utils/Components/appurl.dart';
-import '../../../data/Models/news_events.dart';
-import '../../../data/network/api_services.dart';
 import 'package:provider/provider.dart';
 class News extends StatefulWidget {
   const News({super.key});

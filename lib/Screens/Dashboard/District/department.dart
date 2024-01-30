@@ -118,9 +118,13 @@ class _District_DirectoryState extends State<District_Directory> {
           color: sColor,
           elevation: 5,
           child: Center(
-            child: Text(
-              directories[index].title ?? 'Title $index',
-              style: TextStyle(color: Colors.white),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                directories[index].title ?? 'Title $index',
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ),
         ),

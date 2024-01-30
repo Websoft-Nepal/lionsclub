@@ -41,16 +41,16 @@ class _SignInState extends State<SignIn> {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Card(
-            child: Container(
+            child: SizedBox(
               width: 300,
               child: TextField(
                 style: TextStyle(color: Colors.black),
                 decoration: InputDecoration(
                   hintText: 'Password',
-                  hintStyle: TextStyle(color: Colors.grey),
+                  hintStyle: const TextStyle(color: Colors.grey),
                   filled: true,
                   fillColor: Colors.white,
-                  prefixIcon: Icon(
+                  prefixIcon: const Icon(
                     Icons.lock,
                     color: sColor,
                   ),
