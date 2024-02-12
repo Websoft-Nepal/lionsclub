@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:lionsclub/Screens/Dashboard/focus_program/FocusProgramList.dart';
 import 'package:lionsclub/Screens/Dashboard/donor/donor_screen.dart';
@@ -12,7 +13,7 @@ import 'package:lionsclub/Screens/Home/News%20_crausel/Crausel.dart';
 import 'package:lionsclub/Screens/Dashboard/news/news.dart';
 import 'package:lionsclub/main.dart';
 import 'package:provider/provider.dart';
-import '../../Utils/Route/route_name.dart';
+import 'package:connectivity/connectivity.dart';
 import 'focus_program/Focus_program_widget.dart';
 import '../../Custom_Widget/icon.dart';
 import '../../Utils/Components/appurl.dart';
@@ -28,20 +29,29 @@ class MainBoard extends StatefulWidget {
 }
 
 class _MainBoardState extends State<MainBoard> {
+  bool isLoading = true;
+  bool _isConnected = true;
   List<program> programs = [];
   void initState() {
     super.initState();
-    // Example usage with a different URL for programs
+    _checkInternetConnection();
     _fetchProgramData(AppUrl.programEndPoint);
   }
-
+  Future<void> _checkInternetConnection() async {
+    var connectivityResult = await Connectivity().checkConnectivity();
+    setState(() {
+      _isConnected = connectivityResult != ConnectivityResult.none;
+    });
+  }
   Future<void> _fetchProgramData(String apiUrl) async {
     try {
       List<program> programData = await ApiService.fetchData(apiUrl, (data) => program.fromJson(data));
       Provider.of<ProgramProvider>(context, listen: false).setPrograms(programData);
       setState(() {
+
         programs = programData;
       });
+      isLoading = false;
     } catch (e) {
       // Handle error
       if (kDebugMode) {
@@ -59,12 +69,7 @@ class _MainBoardState extends State<MainBoard> {
 
   @override
   Widget build(BuildContext context) {
-
-
-
-
-
-    return Scaffold(
+        return _isConnected ?Scaffold(
       backgroundColor: Colors.white,
       body: ListView(children: [
         // -->1st
@@ -216,7 +221,7 @@ class _MainBoardState extends State<MainBoard> {
             ],
           ),
         ),
-        SingleChildScrollView(
+        isLoading ? _buildLoadingIndicator():SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
             children: List.generate(
@@ -249,6 +254,85 @@ class _MainBoardState extends State<MainBoard> {
 
             ],
           ),
-        );
+        ):_buildNoInternetScreen();
+  }
+  Widget _buildNoInternetScreen() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            Icons.wifi_off,
+            size: 100,
+            color: Colors.red,
+          ),
+          SizedBox(height: 20),
+          Text(
+            'No Internet Connection',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              _checkInternetConnection();
+            },
+            child: Text('Retry'),
+          ),
+        ],
+      ),
+    );
+  }
+  Widget _buildLoadingIndicator() {
+    return Shimmer.fromColors(
+      baseColor: Colors.grey[300]!,
+      highlightColor: Colors.grey[100]!,
+      child: CarouselSlider.builder(
+        options: CarouselOptions(
+          height: 300.0,
+          viewportFraction: 0.8,
+          autoPlay: true,
+          autoPlayInterval: Duration(seconds: 7),
+          autoPlayCurve: Curves.fastOutSlowIn,
+          scrollDirection: Axis.horizontal,
+        ),
+        itemCount: 5, // Number of skeleton items
+        itemBuilder: (BuildContext context, int index, int realIndex) {
+          return buildSkeletonItem();
+        },
+      ),
+    );
+  }
+  Widget buildSkeletonItem() {
+    return Container(
+      width: 300,
+      child: Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Container(
+              width: 250,
+              height: 150,
+              color: Colors.grey, // Skeleton color
+            ),
+            SizedBox(height: 10),
+            Container(
+              height: 10,
+              width: 150,
+              color: Colors.grey, // Skeleton color
+            ),
+            SizedBox(height: 5),
+            Container(
+              height: 10,
+              width: 100,
+              color: Colors.grey, // Skeleton color
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
