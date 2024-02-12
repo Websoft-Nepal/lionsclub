@@ -8,7 +8,7 @@ import '../../../data/Models/news_events.dart';
 import '../../../data/network/api_services.dart';
 import '../../../main.dart';
 import '../../../view_model/NewsEvents.dart';
-import 'package:shimmer/shimmer.dart'; // Import the shimmer package
+import 'package:shimmer/shimmer.dart';
 
 
 class Crausel_news extends StatefulWidget {
@@ -34,13 +34,13 @@ class _Crausel_newsState extends State<Crausel_news> {
       Provider.of<NewsEventsProvider>(context, listen: false).setNewsEvents(data);
       setState(() {
         newsevent = data;
-        isLoading = false; // Set isLoading to false after data is fetched
+        isLoading = false;
       });
     } catch (e) {
       // Handle error
       print('Error: $e');
       setState(() {
-        isLoading = false; // Set isLoading to false in case of an error
+        isLoading = false;
       });
     }
   }
@@ -48,7 +48,7 @@ class _Crausel_newsState extends State<Crausel_news> {
   @override
   Widget build(BuildContext context) {
     return isLoading
-        ? _buildLoadingIndicator() // Show loading indicator while data is being fetched
+        ? _buildLoadingIndicator()
         : CarouselSlider.builder(
       options: CarouselOptions(
         height: 300.0,
@@ -131,7 +131,7 @@ class _Crausel_newsState extends State<Crausel_news> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
+            SizedBox(
               width: 250,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),

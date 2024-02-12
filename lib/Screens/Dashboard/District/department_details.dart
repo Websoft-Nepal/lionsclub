@@ -94,13 +94,13 @@ class _DepartmentDetailsState extends State<DepartmentDetails> {
               child: CircleAvatar(
                 radius: 49.0,
                 foregroundImage: NetworkImage(detail?.memberDetails?.photo ?? ''),
-                backgroundImage: AssetImage('assets/logo.png'),
+                backgroundImage: const AssetImage('assets/logo.png'),
               ),
             ),
             Text(
-              detail?.memberDetails?.name ?? 'No Name',
+              detail.memberDetails?.name ?? 'No Name',
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 14.0,
                 fontWeight: FontWeight.bold,
               ),
@@ -108,7 +108,7 @@ class _DepartmentDetailsState extends State<DepartmentDetails> {
             Text(
               detail?.officer?[0].title ?? 'No Post',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w700, color: sColor),
+              style: const TextStyle(fontSize: 12.0, fontWeight: FontWeight.w700, color: sColor),
             ),
           ],
         ),

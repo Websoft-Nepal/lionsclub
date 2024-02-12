@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:lionsclub/Screens/Dashboard/focus_program/FocusProgramList.dart';
@@ -21,7 +22,7 @@ import '../../view_model/FocusProgram.dart';
 import 'message.dart';
 
 class MainBoard extends StatefulWidget {
-   MainBoard({super.key});
+   const MainBoard({super.key});
   @override
   State<MainBoard> createState() => _MainBoardState();
 }
@@ -43,7 +44,9 @@ class _MainBoardState extends State<MainBoard> {
       });
     } catch (e) {
       // Handle error
-      print('Error fetching program data: $e');
+      if (kDebugMode) {
+        print('Error fetching program data: $e');
+      }
     }
   }
 
@@ -68,12 +71,12 @@ class _MainBoardState extends State<MainBoard> {
         // ClipRRect(
         //     borderRadius: BorderRadius.circular(200),
         //     child: Image.asset('assets/officer.png',fit: BoxFit.fill,)),
-     Padding(
-       padding: const EdgeInsets.all(8.0),
+     const Padding(
+       padding: EdgeInsets.all(8.0),
        child: Text('Welcome to Lions District 325 m,Nepal',style: TextStyle(color: sColor,fontWeight: FontWeight.bold,fontSize: 21),),
      ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
+        const Padding(
+          padding: EdgeInsets.all(8.0),
           child: Text('"Lead With Empathy"',style: TextStyle(color: tColor,fontSize:18,fontWeight: FontWeight.bold),),
         ),
         Padding(
@@ -106,14 +109,12 @@ class _MainBoardState extends State<MainBoard> {
             ),
           ),
         ),
-
-
         const Padding(
           padding: EdgeInsets.only(left: 8.0,right: 8,top:8,bottom: 20),
           child: Text('Dashboard',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
         ),
          Padding(
-          padding: EdgeInsets.only(left:18.0,right: 18),
+          padding: const EdgeInsets.only(left:18.0,right: 18),
           child: Column(
             children: [
               Row(
@@ -132,7 +133,7 @@ class _MainBoardState extends State<MainBoard> {
                   MyCustomIconButton(
                     icon:Icons.people,
                     color: sColor,
-                    iconName: 'Clubs', // You can pass the icon name dynamically
+                    iconName: 'Clubs',
                     onPressed: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) =>  Club()));
                     },
@@ -140,9 +141,9 @@ class _MainBoardState extends State<MainBoard> {
                   MyCustomIconButton(
                     icon:Icons.map,
                     color: pColor,
-                    iconName: '   Zonal\nDirectory', // You can pass the icon name dynamically
+                    iconName: '   Zonal\nDirectory',
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  Zone_Directory()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  const Zone_Directory()));
                     },
                   ),
                   MyCustomIconButton(
@@ -150,12 +151,12 @@ class _MainBoardState extends State<MainBoard> {
                     color: ttColor,
                     iconName: 'News',
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  News()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  const News()));
                     },
                   ),
                 ],
               ),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -163,15 +164,15 @@ class _MainBoardState extends State<MainBoard> {
                   MyCustomIconButton(
                     icon:Icons.location_on,
                     color: pColor,
-                    iconName: '  District\nDirectory', // You can pass the icon name dynamically
+                    iconName: '  District\nDirectory',
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  District_Directory()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  const District_Directory()));
                     },
                   ),
                   MyCustomIconButton(
                     icon:Icons.store,
                     color: zColor,
-                    iconName: ' Regional\nDirectory', // You can pass the icon name dynamically
+                    iconName: ' Regional\nDirectory',
                     onPressed: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) =>  RegionDepartmentScreen()));
                     },
@@ -179,17 +180,17 @@ class _MainBoardState extends State<MainBoard> {
                   MyCustomIconButton(
                     icon:Icons.center_focus_strong,
                     color: sColor,
-                    iconName: '   Focus\nProgram ', // You can pass the icon name dynamically
+                    iconName: '   Focus\nProgram ',
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  FocusList()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  const FocusList()));
                     },
                   ),
                   MyCustomIconButton(
                     icon:Icons.done_all_rounded,
                     color: Colors.greenAccent,
-                    iconName: ' Donor', // You can pass the icon name dynamically
+                    iconName: ' Donor',
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  Donor_Screen()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  const Donor_Screen()));
                     },
                   ),
                 ],

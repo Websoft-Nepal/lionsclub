@@ -108,7 +108,6 @@ class _DonorDetailsState extends State<DonorDetails> {
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w700, color: ttColor),
             ),
-
             Text('Club : ${detail?.club?.toLowerCase()?? 'No Post'}',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w700, color: sColor),

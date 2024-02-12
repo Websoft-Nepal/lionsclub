@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
 
       ),
-      home: Home1(),
+      home: const Home1(),
     );
   }
 }
