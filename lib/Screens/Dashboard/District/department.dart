@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:lionsclub/Screens/Dashboard/District/department_details.dart';
 import 'package:lionsclub/data/Models/department/department.dart';
+import '../../../data/network/api_pdfServices.dart';
 import '../../../data/network/api_services.dart';
 import '../../../main.dart';
 
@@ -13,6 +14,7 @@ class District_Directory extends StatefulWidget {
 }
 
 class _District_DirectoryState extends State<District_Directory> {
+  late String localPath;
   List<department> directories = [];
 
   bool isLoading = true;
@@ -21,6 +23,12 @@ class _District_DirectoryState extends State<District_Directory> {
   void initState() {
     super.initState();
     _fetchData("https://api.lionsclubsdistrict325jnepal.org.np/api/department");
+    ApiServiceProvider.loadPDF().then((value) {
+      setState(() {
+        localPath = value;
+      });
+    });
+
   }
 
   Future<void> _fetchData(String apiUrl) async {
@@ -43,23 +51,34 @@ class _District_DirectoryState extends State<District_Directory> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFEEEEEE),
-      appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.white),
-        backgroundColor: Color(0xFF11468F),
-        title: Row(
-          children: [
-            Container(
-                height: 50, width: 50, child: Image.asset('assets/logo.png')),
-            Text(
-              'District Directory',
-              style: TextStyle(color: Colors.white),
-            ),
-            Spacer(
-              flex: 2,
-            )
-          ],
-        ),
-      ),
+      // appBar: AppBar(
+      //   iconTheme: IconThemeData(color: Colors.white),
+      //   backgroundColor: sColor,
+      //   title: Row(
+      //     children: [
+      //       SizedBox(
+      //         height: 60,
+      //         width: 60,
+      //         child: Image.asset('assets/logo_main.png'),
+      //       ),
+      //       SizedBox(
+      //         height: 50,
+      //         width: 50,
+      //         child: Image.asset('assets/logo.png'),
+      //       ),
+      //       SizedBox(
+      //         width: 5,
+      //       ),
+      //       Text(
+      //         'District Directory',
+      //         style: TextStyle(color: Colors.white),
+      //       ),
+      //       Spacer(
+      //         flex: 2,
+      //       ),
+      //     ],
+      //   ),
+      // ),
       body: isLoading
           ? _buildSkeletonLoading()
           : GridView.builder(

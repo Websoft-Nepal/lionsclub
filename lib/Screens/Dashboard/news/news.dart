@@ -24,15 +24,25 @@ class _NewsState extends State<News> {
         title: Row(
           children: [
             SizedBox(
-                height: 50, width: 50, child: Image.asset('assets/logo.png')),
-            Spacer(),
-            const Text(
+              height: 60,
+              width: 60,
+              child: Image.asset('assets/logo_main.png'),
+            ),
+            SizedBox(
+              height: 50,
+              width: 50,
+              child: Image.asset('assets/logo.png'),
+            ),
+            SizedBox(
+              width: 5,
+            ),
+            Text(
               'News',
               style: TextStyle(color: Colors.white),
             ),
             Spacer(
               flex: 2,
-            )
+            ),
           ],
         ),
       ),

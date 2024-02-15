@@ -54,12 +54,17 @@ class _ClubState extends State<Club> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFEEEEEE),
-      appBar: AppBar(
+      appBar:AppBar(
         iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: sColor,
         title: Row(
           children: [
-            Container(
+            SizedBox(
+              height: 60,
+              width: 60,
+              child: Image.asset('assets/logo_main.png'),
+            ),
+            SizedBox(
               height: 50,
               width: 50,
               child: Image.asset('assets/logo.png'),

@@ -52,8 +52,14 @@ class _DepartmentDetailsState extends State<DepartmentDetails> {
             Container(
               height: 50,
               width: 50,
+              child: Image.asset('assets/logo_main.png'),
+            ),
+            Container(
+              height: 50,
+              width: 50,
               child: Image.asset('assets/logo.png'),
             ),
+
             Text(
               widget.name.length <= 20 ? widget.name : widget.name.substring(0, 20)+ '...',
               style: TextStyle(color: Colors.white),

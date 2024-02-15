@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:lionsclub/Screens/Dashboard/District/directiry_listtile.dart';
+import 'package:lionsclub/Screens/Dashboard/donor/donor_screen.dart';
 import 'package:lionsclub/Screens/Dashboard/zone_directory.dart';
 import 'package:lionsclub/Screens/Dashboard/District/department_details.dart';
 import 'package:lionsclub/Screens/Dashboard/District/department.dart';
@@ -36,13 +38,13 @@ class _Home1State extends State<Home1> {
                     children: [
 
                       SizedBox(
-                          height: 100,
-                          width: 100,
+                          height: 80,
+                          width: 80,
                           child: Image.asset('assets/logo.png')),
                       SizedBox(
                           height: 100,
                           width: 100,
-                          child: Image.asset('assets/logo.png')),
+                          child: Image.asset('assets/districk325M.png')),
 
                     ],
                   ),
@@ -102,7 +104,7 @@ class _Home1State extends State<Home1> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => District_Directory()),
+                  MaterialPageRoute(builder: (context) => Listtile()),
                 );
               },
             ),
@@ -142,6 +144,24 @@ class _Home1State extends State<Home1> {
                 );
               },
             ),
+            ListTile(
+              title: Row(
+                children: [
+                  Icon(Icons.done_all_rounded,color: sColor,),
+                  SizedBox(width: 10),
+                  Text(
+                    'Donor',
+                    style: TextStyle(color: Color(0xFF141414)),
+                  ),
+                ],
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Donor_Screen()),
+                );
+              },
+            ),
           ],
         ),
       ),
@@ -153,7 +173,7 @@ class _Home1State extends State<Home1> {
             Container(
                 height: 60, width: 60, child: Image.asset('assets/logo.png')),
             Container(
-                height: 60, width: 60, child: Image.asset('assets/logo.png')),
+                height: 70, width: 70, child: Image.asset('assets/districk325M.png')),
             Spacer(),
             Padding(
               padding: const EdgeInsets.all(8.0),

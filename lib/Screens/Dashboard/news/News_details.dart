@@ -30,19 +30,26 @@ class _NewsDetailsState extends State<NewsDetails> {
         backgroundColor: sColor,
         title: Row(
           children: [
-            Container(
+            SizedBox(
+              height: 60,
+              width: 60,
+              child: Image.asset('assets/logo_main.png'),
+            ),
+            SizedBox(
               height: 50,
               width: 50,
               child: Image.asset('assets/logo.png'),
             ),
-            // Spacer(),
+            SizedBox(
+              width: 5,
+            ),
             Text(
               'News Details',
               style: TextStyle(color: Colors.white),
             ),
             Spacer(
               flex: 2,
-            )
+            ),
           ],
         ),
       ),

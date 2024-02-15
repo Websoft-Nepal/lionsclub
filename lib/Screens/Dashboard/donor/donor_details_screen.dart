@@ -48,6 +48,11 @@ class _DonorDetailsState extends State<DonorDetails> {
         backgroundColor: sColor,
         title: Row(
           children: [
+            SizedBox(
+              height: 60,
+              width: 60,
+              child: Image.asset('assets/logo_main.png'),
+            ),
             Container(
                 height: 50, width: 50, child: Image.asset('assets/logo.png')),
             SizedBox(
@@ -66,8 +71,8 @@ class _DonorDetailsState extends State<DonorDetails> {
       body:isDonorDetailsLoading?SkeletonMember(): GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          crossAxisSpacing: 20.0,
-          mainAxisSpacing: 20.0,
+          crossAxisSpacing: 5.0,
+          mainAxisSpacing: 5.0,
         ),
         itemCount: donorDetails?.length ?? 0,
         itemBuilder: (BuildContext context, int index) {
@@ -79,40 +84,43 @@ class _DonorDetailsState extends State<DonorDetails> {
   Widget _buildGridItem(int index) {
     DonorDetail? detail = donorDetails![index];
 
-    return Card(
-      elevation: 2.0,
-      child: Padding(
-        padding: EdgeInsets.all(15.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Expanded(
-              child: CircleAvatar(
-                radius: 50.0,
-                foregroundImage: NetworkImage(detail?.photo?? ''),
-                backgroundImage: AssetImage('assets/logo.png'),
-              ),
-            ),
+    return Expanded(
+      child: Card (
+        elevation: 2.0,
+        child: Padding(
+          padding: EdgeInsets.all(15.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
 
-            Text(
-              detail?.memberName ?? 'No Name',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 14.0,
-                fontWeight: FontWeight.bold,
+              Expanded(
+                child: CircleAvatar(
+                  radius: 50.0,
+                  foregroundImage: NetworkImage(detail?.photo?? ''),
+                  backgroundImage: AssetImage('assets/logo.png'),
+                ),
               ),
-            ),
-            Text(
-              'Donated at: ${detail?.donatedAt!.substring(0, 11) ?? 'No Date'}',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w700, color: ttColor),
-            ),
-            Text('Club : ${detail?.club?.toLowerCase()?? 'No Post'}',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w700, color: sColor),
-            ),
-          ],
+
+              Text(
+                detail?.memberName ?? 'No Name',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Text(
+                'Donated at: ${detail?.donatedAt!.substring(0, 11) ?? 'No Date'}',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w700, color: ttColor),
+              ),
+              Text('Club : ${detail?.club?.toLowerCase()?? 'No Post'}',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w700, color: sColor),
+              ),
+            ],
+          ),
         ),
       ),
     );

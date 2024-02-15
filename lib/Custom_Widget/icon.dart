@@ -23,6 +23,7 @@ class MyCustomIconButton extends StatelessWidget {
           Icon(icon, color: color), // You can customize the color here
           SizedBox(height: 6),
           Text(iconName,
+            textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w100,

@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:lionsclub/Screens/Dashboard/District/padhoo.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:lionsclub/Screens/Dashboard/focus_program/FocusProgramList.dart';
@@ -14,6 +15,9 @@ import 'package:lionsclub/Screens/Dashboard/news/news.dart';
 import 'package:lionsclub/main.dart';
 import 'package:provider/provider.dart';
 import 'package:connectivity/connectivity.dart';
+import 'Padhaoo/padhoo_aviyan.dart';
+import 'Padhaoo/pdf.dart';
+import 'focus_program/FocusProgram_Details.dart';
 import 'focus_program/Focus_program_widget.dart';
 import '../../Custom_Widget/icon.dart';
 import '../../Utils/Components/appurl.dart';
@@ -36,6 +40,15 @@ class _MainBoardState extends State<MainBoard> {
     super.initState();
     _checkInternetConnection();
     _fetchProgramData(AppUrl.programEndPoint);
+  }
+  String breakText(String text, int maxLength) {
+    if (text.length <= maxLength) {
+      return text;
+    } else {
+      String firstPart = text.substring(0, maxLength);
+      String secondPart = text.substring(maxLength);
+      return '$firstPart\n$secondPart';
+    }
   }
   Future<void> _checkInternetConnection() async {
     var connectivityResult = await Connectivity().checkConnectivity();
@@ -69,6 +82,9 @@ class _MainBoardState extends State<MainBoard> {
 
   @override
   Widget build(BuildContext context) {
+
+    final programProvider = Provider.of<ProgramProvider>(context);
+    final programs = programProvider.programs;
         return _isConnected ?Scaffold(
       backgroundColor: Colors.white,
       body: ListView(children: [
@@ -77,13 +93,197 @@ class _MainBoardState extends State<MainBoard> {
         //     borderRadius: BorderRadius.circular(200),
         //     child: Image.asset('assets/officer.png',fit: BoxFit.fill,)),
      const Padding(
-       padding: EdgeInsets.all(8.0),
-       child: Text('Welcome to Lions District 325 m,Nepal',style: TextStyle(color: sColor,fontWeight: FontWeight.bold,fontSize: 21),),
+       padding: EdgeInsets.only(top:8.0,left: 8.0),
+       child: Text('Lions Clubs International \nDistrict 325M, Nepal',style: TextStyle(color: sColor,fontWeight: FontWeight.bold,fontSize: 21),textAlign: TextAlign.center,),
      ),
         const Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Text('"Lead With Empathy"',style: TextStyle(color: tColor,fontSize:18,fontWeight: FontWeight.bold),),
+          padding: EdgeInsets.only(bottom: 8.0,left: 8),
+          child: Text('"Together We Can"',textAlign:TextAlign.center,style: TextStyle(color: tColor,fontSize:18,fontWeight: FontWeight.bold),),
         ),
+
+            Padding(
+              padding: const EdgeInsets.only(left:32.0,right: 32),
+              child: ClipRRect(
+                borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(150.0),
+                bottomRight: Radius.circular(150.0),
+                ),
+                child: Image.asset('assets/officerlion.jpg')),
+            ),
+
+
+        SizedBox(height: 25,),
+        // const Padding(
+        //   padding: EdgeInsets.only(left: 8.0,right: 8,top:8,bottom: 20),
+        //   child: Text('Dashboard',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
+        // ),
+         Padding(
+          padding: const EdgeInsets.only(left:18.0,right: 18),
+          child: Column(
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+
+
+                  MyCustomIconButton(
+                    icon:Icons.people,
+                    color: sColor,
+                    iconName: 'Clubs',
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  Club()));
+                    },
+                  ),
+                  // MyCustomIconButton(
+                  //   icon:Icons.map,
+                  //   color: pColor,
+                  //   iconName: '   Zonal\nDirectory',
+                  //   onPressed: () {
+                  //     Navigator.push(context, MaterialPageRoute(builder: (context) =>  const Zone_Directory()));
+                  //   },
+                  // ),
+
+                  MyCustomIconButton(
+                    icon:Icons.location_on,
+                    color: pColor,
+                    iconName: '  District\nDirectory',
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  Padhoo()));
+                    },
+                  ),
+                  MyCustomIconButton(
+                    icon:Icons.newspaper,
+                    color: ttColor,
+                    iconName: 'News',
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  const News()));
+                    },
+                  ),
+                  MyCustomIconButton(
+                    icon: Icons.menu_book_rounded,
+                    color: zColor,
+                    iconName: ' Padhaoo\n Aviyan', // You can pass the icon name dynamically
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => PdfViewerScreen()));
+                    },
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10,),
+
+              const Divider(height: 2,),
+              const SizedBox(height: 15,),
+              isLoading?_buildLoadingIndicator():Container(
+                child: Column(
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+
+                        MyCustomIconButton(
+                          icon:Icons.done_all_rounded,
+                          color: zColor,
+                          iconName: breakText(programs[1].title!,11),
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) =>   FocusProgram_Details(
+                              title: programs[1].title!,
+                              imageUrl: programs[1].photo!,
+                              description: programs[1].detail!, date: programs[1].postDate!,
+                            ),));
+                          },
+                        ),
+                        MyCustomIconButton(
+                          icon:Icons.done_all_rounded,
+                          color: sColor,
+                          iconName: breakText(programs[2].title!,11),
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) =>   FocusProgram_Details(
+                              title: programs[2].title!,
+                              imageUrl: programs[2].photo!,
+                              description: programs[2].detail!, date: programs[2].postDate!,
+                            )));
+                          },
+                        ),
+                        MyCustomIconButton(
+                          icon:Icons.done_all_rounded,
+                          color: Colors.greenAccent,
+                          iconName: breakText(programs[3].title!,11),
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) =>  FocusProgram_Details(
+                              title: programs[3].title!,
+                              imageUrl: programs[3].photo!,
+                              description: programs[3].detail!, date: programs[3].postDate!,
+                            )));
+                          },
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 5,),
+
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+
+                        MyCustomIconButton(
+                          icon:Icons.done_all_rounded,
+                          color: zColor,
+                          iconName: breakText(programs[4].title!,11),
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) =>   FocusProgram_Details(
+                              title: programs[4].title!,
+                              imageUrl: programs[4].photo!,
+                              description: programs[4].detail!, date: programs[4].postDate!,
+                            )));
+                          },
+                        ),
+                        MyCustomIconButton(
+                          icon:Icons.done_all_rounded,
+                          color: sColor,
+                          iconName: breakText(programs[5].title!,11),
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) =>  FocusProgram_Details(
+                              title: programs[5].title!,
+                              imageUrl: programs[5].photo!,
+                              description: programs[5].detail!, date: programs[5].postDate!,
+                            )));
+                          },
+                        ),
+                        MyCustomIconButton(
+                          icon:Icons.done_all_rounded,
+                          color: Colors.greenAccent,
+                          iconName: breakText(programs[5].title!,11),
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) =>  const Donor_Screen()));
+                          },
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              )
+
+            ],
+          ),
+        ),
+
+        const SizedBox(height: 15,),
+        Padding(
+          padding: const EdgeInsets.only(right:8.0,left: 8.0,top: 8.0,bottom: 0),
+          child: Row(
+            children: [
+              const Text('Latest News ',style: TextStyle(fontSize: 18,fontWeight:FontWeight.bold),),
+              const Spacer(),
+              IconButton(onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>News()));
+              }, icon:Icon(Icons.arrow_forward,color: zColor,))
+            ],
+          ),
+        ),
+
+        Crausel_news(),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: CarouselSlider.builder(
@@ -114,142 +314,38 @@ class _MainBoardState extends State<MainBoard> {
             ),
           ),
         ),
-        const Padding(
-          padding: EdgeInsets.only(left: 8.0,right: 8,top:8,bottom: 20),
-          child: Text('Dashboard',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
-        ),
-         Padding(
-          padding: const EdgeInsets.only(left:18.0,right: 18),
-          child: Column(
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  MyCustomIconButton(
-                    icon: Icons.person,
-                    color: zColor,
-                    iconName: '     Hello\nChairman', // You can pass the icon name dynamically
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const Message()));
-                    },
-                  ),
-
-                  MyCustomIconButton(
-                    icon:Icons.people,
-                    color: sColor,
-                    iconName: 'Clubs',
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  Club()));
-                    },
-                  ),
-                  MyCustomIconButton(
-                    icon:Icons.map,
-                    color: pColor,
-                    iconName: '   Zonal\nDirectory',
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  const Zone_Directory()));
-                    },
-                  ),
-                  MyCustomIconButton(
-                    icon:Icons.newspaper,
-                    color: ttColor,
-                    iconName: 'News',
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  const News()));
-                    },
-                  ),
-                ],
-              ),
-              const SizedBox(height: 10,),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  MyCustomIconButton(
-                    icon:Icons.location_on,
-                    color: pColor,
-                    iconName: '  District\nDirectory',
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  const District_Directory()));
-                    },
-                  ),
-                  MyCustomIconButton(
-                    icon:Icons.store,
-                    color: zColor,
-                    iconName: ' Regional\nDirectory',
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  RegionDepartmentScreen()));
-                    },
-                  ),
-                  MyCustomIconButton(
-                    icon:Icons.center_focus_strong,
-                    color: sColor,
-                    iconName: '   Focus\nProgram ',
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  const FocusList()));
-                    },
-                  ),
-                  MyCustomIconButton(
-                    icon:Icons.done_all_rounded,
-                    color: Colors.greenAccent,
-                    iconName: ' Donor',
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  const Donor_Screen()));
-                    },
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
+        // -->2nd
+        // Padding(
+        //   padding: const EdgeInsets.only(right:8.0,left: 8.0,top: 8.0,bottom: 0),
+        //   child: Row(
+        //     children: [
+        //       const Text('Focus Program',style: TextStyle(fontSize: 18,fontWeight:FontWeight.bold),),
+        //       const Spacer(),
+        //
+        //       IconButton(onPressed: (){
+        //         Navigator.push(context, MaterialPageRoute(builder: (context)=>FocusList()));
+        //       }, icon: Icon(Icons.arrow_forward,color: zColor,))
+        //       // TextButton(onPressed: () {  },
+        //       // child: const Text('View more',style: TextStyle(fontSize: 14,color:zColor),))
+        //     ],
+        //   ),
+        // ),
+        // isLoading ? _buildLoadingIndicator():SingleChildScrollView(
+        //   scrollDirection: Axis.horizontal,
+        //   child: Row(
+        //     children: List.generate(
+        //       programs.length,
+        //           (index) => ProgramCard(
+        //         title: programs[index].title ?? 'No Title',
+        //         imageUrl: programs[index].photo ?? '', description: programs[index].detail?? '', date: programs[index].postDate?? '',
+        //       ),
+        //     ),
+        //   ),
+        // ),
 
         const SizedBox(height: 15,),
         // -->2nd
-        Padding(
-          padding: const EdgeInsets.only(right:8.0,left: 8.0,top: 8.0,bottom: 0),
-          child: Row(
-            children: [
-              const Text('Focus Program',style: TextStyle(fontSize: 18,fontWeight:FontWeight.bold),),
-              const Spacer(),
 
-              IconButton(onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>FocusList()));
-              }, icon: Icon(Icons.arrow_forward,color: zColor,))
-              // TextButton(onPressed: () {  },
-              // child: const Text('View more',style: TextStyle(fontSize: 14,color:zColor),))
-            ],
-          ),
-        ),
-        isLoading ? _buildLoadingIndicator():SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: List.generate(
-              programs.length,
-                  (index) => ProgramCard(
-                title: programs[index].title ?? 'No Title',
-                imageUrl: programs[index].photo ?? '', description: programs[index].detail?? '', date: programs[index].postDate?? '',
-              ),
-            ),
-          ),
-        ),
-
-        const SizedBox(height: 15,),
-        // -->2nd
-        Padding(
-          padding: const EdgeInsets.only(right:8.0,left: 8.0,top: 8.0,bottom: 0),
-          child: Row(
-            children: [
-              const Text('Latest News ',style: TextStyle(fontSize: 18,fontWeight:FontWeight.bold),),
-              const Spacer(),
-              IconButton(onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>News()));
-              }, icon:Icon(Icons.arrow_forward,color: zColor,))
-            ],
-          ),
-        ),
-
-        Crausel_news(),
 
 
             ],
