@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lionsclub/Custom_Widget/skeleton_member.dart';
 import 'package:shimmer/shimmer.dart';
-import '../../data/Models/department/region.dart';
-import '../../data/network/api_services.dart';
-import 'club/Club_member_widget.dart';
+import '../../../data/Models/department/region.dart';
+import '../../../data/network/api_services.dart';
+import '../club/Club_member_widget.dart';
 
 class RegionDepartmentScreen extends StatefulWidget {
   @override
@@ -25,13 +25,13 @@ class _RegionDepartmentScreenState extends State<RegionDepartmentScreen> {
       List<region_department> data = await ApiService.fetchData(apiUrl, (data) => region_department.fromJson(data));
       setState(() {
         regionDepartments = data;
-        isLoading = false; // Set loading state to false when data is fetched
+        isLoading = false;
       });
     } catch (e) {
       // Handle error
       print('Error: $e');
       setState(() {
-        isLoading = false; // Set loading state to false when there's an error
+        isLoading = false;
       });
     }
   }
@@ -44,6 +44,11 @@ class _RegionDepartmentScreenState extends State<RegionDepartmentScreen> {
       backgroundColor: Color(0xFF11468F),
       title: Row(
         children: [
+          SizedBox(
+            height: 60,
+            width: 60,
+            child: Image.asset('assets/logo_main.png'),
+          ),
           Container(
             height: 50,
             width: 50,
@@ -51,11 +56,9 @@ class _RegionDepartmentScreenState extends State<RegionDepartmentScreen> {
           ),
           Text(
             'Regional Directory',
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.white,fontSize: 16),
           ),
-          Spacer(
-            flex: 2,
-          )
+
         ],
       ),
     ),

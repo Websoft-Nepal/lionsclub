@@ -29,6 +29,7 @@ class _NewsDetailsState extends State<NewsDetails> {
         iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: sColor,
         title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(
               height: 60,
@@ -40,16 +41,11 @@ class _NewsDetailsState extends State<NewsDetails> {
               width: 50,
               child: Image.asset('assets/logo.png'),
             ),
-            SizedBox(
-              width: 5,
-            ),
             Text(
               'News Details',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.white,fontSize: 20),
             ),
-            Spacer(
-              flex: 2,
-            ),
+
           ],
         ),
       ),

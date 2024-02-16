@@ -48,6 +48,7 @@ class _DepartmentDetailsState extends State<DepartmentDetails> {
         iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: sColor,
         title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
               height: 50,
@@ -62,12 +63,10 @@ class _DepartmentDetailsState extends State<DepartmentDetails> {
 
             Text(
               widget.name.length <= 20 ? widget.name : widget.name.substring(0, 20)+ '...',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.white,fontSize: 16),
             ),
 
-            Spacer(
-              flex: 2,
-            )
+
           ],
         ),
       ),

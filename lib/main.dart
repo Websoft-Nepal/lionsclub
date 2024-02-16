@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 // import 'package:lionsclub/Home/slider.dart';?
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lionsclub/view_model/FocusProgram.dart';
 import 'package:lionsclub/view_model/NewsEvents.dart';
@@ -13,7 +14,11 @@ const Color ttColor = Color(0xFF666666);
 const Color bColor = Color(0xFFEEEEEE);
 const Color zColor = Color(0xFFFF6347);
 const Color btnBg = Color(0xFFF8F2ED);
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Future.delayed(const Duration(seconds: 3));
+  FlutterNativeSplash.remove();
   runApp(
     MultiProvider(providers: [
       ChangeNotifierProvider(create: (_) => ProgramProvider()),

@@ -1,31 +1,21 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:lionsclub/Screens/Dashboard/District/padhoo.dart';
+import 'package:lionsclub/Screens/Dashboard/District/district_main_directory.dart';
+import 'package:lionsclub/Screens/Dashboard/Padhaoo/padhoo_aviyan.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:lionsclub/Screens/Dashboard/focus_program/FocusProgramList.dart';
-import 'package:lionsclub/Screens/Dashboard/donor/donor_screen.dart';
-import 'package:lionsclub/Screens/Dashboard/zone_directory.dart';
-import 'package:lionsclub/Screens/Dashboard/District/department_details.dart';
 import 'package:lionsclub/Screens/Dashboard/club/clubs.dart';
-import 'package:lionsclub/Screens/Dashboard/District/department.dart';
-import 'package:lionsclub/Screens/Dashboard/region_directory.dart';
 import 'package:lionsclub/Screens/Home/News%20_crausel/Crausel.dart';
 import 'package:lionsclub/Screens/Dashboard/news/news.dart';
 import 'package:lionsclub/main.dart';
 import 'package:provider/provider.dart';
 import 'package:connectivity/connectivity.dart';
-import 'Padhaoo/padhoo_aviyan.dart';
-import 'Padhaoo/pdf.dart';
 import 'focus_program/FocusProgram_Details.dart';
-import 'focus_program/Focus_program_widget.dart';
 import '../../Custom_Widget/icon.dart';
 import '../../Utils/Components/appurl.dart';
 import '../../data/Models/program.dart';
 import '../../data/network/api_services.dart';
 import '../../view_model/FocusProgram.dart';
-import 'message.dart';
-
 class MainBoard extends StatefulWidget {
    const MainBoard({super.key});
   @override
@@ -66,7 +56,6 @@ class _MainBoardState extends State<MainBoard> {
       });
       isLoading = false;
     } catch (e) {
-      // Handle error
       if (kDebugMode) {
         print('Error fetching program data: $e');
       }
@@ -88,10 +77,6 @@ class _MainBoardState extends State<MainBoard> {
         return _isConnected ?Scaffold(
       backgroundColor: Colors.white,
       body: ListView(children: [
-        // -->1st
-        // ClipRRect(
-        //     borderRadius: BorderRadius.circular(200),
-        //     child: Image.asset('assets/officer.png',fit: BoxFit.fill,)),
      const Padding(
        padding: EdgeInsets.only(top:8.0,left: 8.0),
        child: Text('Lions Clubs International \nDistrict 325M, Nepal',style: TextStyle(color: sColor,fontWeight: FontWeight.bold,fontSize: 21),textAlign: TextAlign.center,),
@@ -113,10 +98,6 @@ class _MainBoardState extends State<MainBoard> {
 
 
         SizedBox(height: 25,),
-        // const Padding(
-        //   padding: EdgeInsets.only(left: 8.0,right: 8,top:8,bottom: 20),
-        //   child: Text('Dashboard',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
-        // ),
          Padding(
           padding: const EdgeInsets.only(left:18.0,right: 18),
           child: Column(
@@ -125,8 +106,6 @@ class _MainBoardState extends State<MainBoard> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-
-
                   MyCustomIconButton(
                     icon:Icons.people,
                     color: sColor,
@@ -135,21 +114,12 @@ class _MainBoardState extends State<MainBoard> {
                       Navigator.push(context, MaterialPageRoute(builder: (context) =>  Club()));
                     },
                   ),
-                  // MyCustomIconButton(
-                  //   icon:Icons.map,
-                  //   color: pColor,
-                  //   iconName: '   Zonal\nDirectory',
-                  //   onPressed: () {
-                  //     Navigator.push(context, MaterialPageRoute(builder: (context) =>  const Zone_Directory()));
-                  //   },
-                  // ),
-
                   MyCustomIconButton(
                     icon:Icons.location_on,
                     color: pColor,
                     iconName: '  District\nDirectory',
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  Padhoo()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  District_main_directory()));
                     },
                   ),
                   MyCustomIconButton(
@@ -165,7 +135,7 @@ class _MainBoardState extends State<MainBoard> {
                     color: zColor,
                     iconName: ' Padhaoo\n Aviyan', // You can pass the icon name dynamically
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => PdfViewerScreen()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => Padhoo_Aviyan()));
                     },
                   ),
                 ],
@@ -224,7 +194,7 @@ class _MainBoardState extends State<MainBoard> {
 
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
 
                         MyCustomIconButton(
@@ -251,14 +221,7 @@ class _MainBoardState extends State<MainBoard> {
                             )));
                           },
                         ),
-                        MyCustomIconButton(
-                          icon:Icons.done_all_rounded,
-                          color: Colors.greenAccent,
-                          iconName: breakText(programs[5].title!,11),
-                          onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) =>  const Donor_Screen()));
-                          },
-                        ),
+
                       ],
                     ),
                   ],

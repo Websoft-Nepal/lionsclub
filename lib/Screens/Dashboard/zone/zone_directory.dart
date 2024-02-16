@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lionsclub/data/Models/department/zonal.dart';
 import 'package:lionsclub/main.dart';
-import '../../Utils/Components/appurl.dart';
-import '../../data/network/api_services.dart';
+import '../../../Utils/Components/appurl.dart';
+import '../../../data/network/api_services.dart';
 import 'package:shimmer/shimmer.dart';
 
 class Zone_Directory extends StatefulWidget {
@@ -49,6 +49,11 @@ class _Zone_DirectoryState extends State<Zone_Directory> {
         backgroundColor: Color(0xFF11468F),
         title: Row(
           children: [
+            SizedBox(
+              height: 60,
+              width: 60,
+              child: Image.asset('assets/logo_main.png'),
+            ),
             Container(
               height: 50,
               width: 50,
@@ -56,11 +61,9 @@ class _Zone_DirectoryState extends State<Zone_Directory> {
             ),
             Text(
               'Zone Directory',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.white,fontSize: 16),
             ),
-            Spacer(
-              flex: 2,
-            ),
+
           ],
         ),
       ),

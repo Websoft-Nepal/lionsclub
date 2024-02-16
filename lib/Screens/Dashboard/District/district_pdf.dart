@@ -1,46 +1,72 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pdfview/flutter_pdfview.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:http/http.dart' as http;
-import 'dart:io';
+import 'package:lionsclub/Custom_Widget/pdfviewer.dart';
+import 'package:lionsclub/Custom_Widget/skeleton_member.dart';
+import 'package:lionsclub/Screens/Dashboard/donor/donor_details_screen.dart';
 
+import '../../../data/network/api_services.dart';
 import '../../../main.dart';
+import 'package:lionsclub/data/Models/donor.dart';
 
-class District_Pdf extends StatefulWidget {
+class District_pdf extends StatefulWidget {
+  const District_pdf({super.key});
+
   @override
-  _District_PdfState createState() => _District_PdfState();
+  State<District_pdf> createState() => _District_pdfState();
 }
 
-class _District_PdfState extends State<District_Pdf> {
-  String? localPath;
-  final String pdfUrl = "https://www.ibm.com/downloads/cas/GJ5QVQ7X";
+class _District_pdfState extends State<District_pdf> {
+  List<Donor> donors = [];
+  bool isDonorLoading = true;
 
   @override
   void initState() {
     super.initState();
-    _loadPDF();
+    _fetchDonorData("https://api.lionsclubsdistrict325jnepal.org.np/api/donor");
   }
 
-  Future<void> _loadPDF() async {
-    var response = await http.get(Uri.parse(pdfUrl));
-    var dir = await getApplicationDocumentsDirectory();
-    File file = File("${dir.path}/downloaded_pdf.pdf");
-    file.writeAsBytesSync(response.bodyBytes, flush: true);
-    setState(() {
-      localPath = file.path;
-    });
+  Future<void> _fetchDonorData(String apiUrl) async {
+    try {
+      List<Donor> donorData = await ApiService.fetchData(
+        apiUrl,
+            (data) => Donor.fromJson(data),
+      );
+      setState(() {
+        donors = donorData;
+        isDonorLoading = false;
+      });
+    } catch (e) {
+      print('Error: $e');
+      setState(() {
+        isDonorLoading = false;
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: localPath != null
-          ? PDFView(
-        filePath: localPath!,
-      )
-          : Center(child: CircularProgressIndicator()),
+        backgroundColor: Color(0xFFEEEEEE),
+        body: isDonorLoading?const SkeletonMember():ListView.builder(
+          itemCount: donors.length,
+          itemBuilder: (BuildContext context, int index) {
+            return Card(
+              surfaceTintColor: pColor,
+              // color: zColor,
+              child: ListTile(
+                // tileColor: ,
+                leading: Text(donors[index].id.toString()+'.' ?? '',style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 18)),
+                title: Text(donors[index].title ?? 'No Title',style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 18),), // Provide a default value if title is null
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CustomPDFViewer(pdfUrl: 'https://www.ibm.com/downloads/cas/GJ5QVQ7X', title: 'pdf')),
+                  );
+                },
+              ),
+            );
+          },
+        )
+
     );
   }
 }
-
-

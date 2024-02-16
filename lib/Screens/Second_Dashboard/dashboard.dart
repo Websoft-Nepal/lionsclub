@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:lionsclub/main.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-import 'login.dart';
-
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
 
@@ -20,10 +17,11 @@ class _DashboardState extends State<Dashboard> {
       resizeToAvoidBottomInset: false,
       body: ListView(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SignIn(),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.all(8.0),
+          //   child: SignIn(),
+          // ),
+          Image.asset('assets/logo_main.png'),
           SizedBox(
             width: 100,
             child: const Divider(

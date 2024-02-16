@@ -5,8 +5,8 @@ import 'package:lionsclub/Screens/Dashboard/District/district_pdf.dart';
 
 import '../../../main.dart';
 
-class Padhoo extends StatelessWidget {
-  const Padhoo({Key? key});
+class District_main_directory extends StatelessWidget {
+  const District_main_directory({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +17,7 @@ class Padhoo extends StatelessWidget {
           iconTheme: IconThemeData(color: Colors.white),
           backgroundColor: sColor,
           title: Row(
+
             children: [
               SizedBox(
                 height: 60,
@@ -33,14 +34,15 @@ class Padhoo extends StatelessWidget {
               ),
               Text(
                 'District Directory',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.white,fontSize: 16),
               ),
-              Spacer(
-                flex: 2,
-              ),
+
             ],
           ),
           bottom: TabBar(
+            indicatorColor: Colors.white,
+            indicatorWeight: 5,
+            indicatorSize: TabBarIndicatorSize.tab,
             isScrollable: false,
             tabs: [
               Tab(child: Text('Home',style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.bold),),),
@@ -51,7 +53,7 @@ class Padhoo extends StatelessWidget {
         body: TabBarView(
           children: [
             Center(child: District_Directory()),
-            Center(child: District_Pdf()),
+            Center(child: District_pdf()),
           ],
         ),
       ),

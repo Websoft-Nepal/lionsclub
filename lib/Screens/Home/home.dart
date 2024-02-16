@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:lionsclub/Screens/Dashboard/District/directiry_listtile.dart';
+import 'package:lionsclub/Screens/Dashboard/District/district_main_directory.dart';
 import 'package:lionsclub/Screens/Dashboard/donor/donor_screen.dart';
-import 'package:lionsclub/Screens/Dashboard/zone_directory.dart';
+import 'package:lionsclub/Screens/Dashboard/zone/zone_directory.dart';
 import 'package:lionsclub/Screens/Dashboard/District/department_details.dart';
 import 'package:lionsclub/Screens/Dashboard/District/department.dart';
 import 'package:lionsclub/Screens/Second_Dashboard/dashboard.dart';
@@ -10,7 +11,7 @@ import 'package:lionsclub/Screens/Dashboard/dashboard_main.dart';
 import 'package:lionsclub/Screens/Dashboard/news/news.dart';
 import '../Dashboard/club/clubs.dart';
 import '../../main.dart';
-import '../Dashboard/region_directory.dart';
+import '../Dashboard/Region/region_directory.dart';
 
 class Home1 extends StatefulWidget {
   const Home1({super.key});
@@ -27,35 +28,39 @@ class _Home1State extends State<Home1> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Color(0xFF11468F),
-              ),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
+            SizedBox(
+             height:250,
+              child: DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Color(0xFF11468F),
+                ),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      // crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
 
-                      SizedBox(
-                          height: 80,
-                          width: 80,
-                          child: Image.asset('assets/logo.png')),
-                      SizedBox(
-                          height: 100,
-                          width: 100,
-                          child: Image.asset('assets/districk325M.png')),
+                        SizedBox(
+                            height: 80,
+                            width: 80,
+                            child: Image.asset('assets/logo.png')),
+                        SizedBox(
+                            height: 100,
+                            width: 100,
+                            child: Image.asset('assets/districk325M.png')),
 
-                    ],
-                  ),
-                  Text(
-                    'LION CLUB',
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w700),
-                  )
-                ],
+                      ],
+                    ),
+                    Text(
+                      'LION CLUB',
+                      style: TextStyle(
+                          fontSize: 30,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700),
+                    )
+                  ],
+                ),
               ),
             ),
             ListTile(
@@ -104,7 +109,7 @@ class _Home1State extends State<Home1> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Listtile()),
+                  MaterialPageRoute(builder: (context) => District_main_directory()),
                 );
               },
             ),
