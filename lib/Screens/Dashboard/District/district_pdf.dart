@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lionsclub/Custom_Widget/pdfviewer.dart';
 import 'package:lionsclub/Custom_Widget/skeleton_member.dart';
 import 'package:lionsclub/Screens/Dashboard/donor/donor_details_screen.dart';
+import 'package:lionsclub/Utils/Components/appurl.dart';
 
 import '../../../data/network/api_services.dart';
 import '../../../main.dart';
@@ -21,7 +22,7 @@ class _District_pdfState extends State<District_pdf> {
   @override
   void initState() {
     super.initState();
-    _fetchDonorData("https://api.lionsclubsdistrict325jnepal.org.np/api/donor");
+    _fetchDonorData(AppUrl.donorEndPoint);
   }
 
   Future<void> _fetchDonorData(String apiUrl) async {
