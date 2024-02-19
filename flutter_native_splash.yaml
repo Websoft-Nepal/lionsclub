@@ -6,9 +6,7 @@ flutter_native_splash:
   fullscreen: true
   android_12:
     color: "#11468F"
-    image: assets/main_logo1.png
+    image: "assets/main_logo1.png"
     android: true
     ios: true
     fullscreen: true
-#    fit: cover
-#  resizeMode: contain
