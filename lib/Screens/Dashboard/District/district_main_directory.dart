@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:lionsclub/Screens/Dashboard/District/department.dart';
 import 'package:lionsclub/Screens/Dashboard/District/district_pdf.dart';
-
-
 import '../../../main.dart';
-
 class District_main_directory extends StatelessWidget {
   const District_main_directory({Key? key});
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2, // Number of tabs
+      length: 2,
       child: Scaffold(
         appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.white),
@@ -51,6 +48,7 @@ class District_main_directory extends StatelessWidget {
           ),
         ),
         body: TabBarView(
+            physics: NeverScrollableScrollPhysics(),
           children: [
             Center(child: District_Directory()),
             Center(child: District_pdf()),

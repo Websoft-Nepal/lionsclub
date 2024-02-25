@@ -120,29 +120,6 @@ class _CustomPDFViewerState extends State<CustomPDFViewer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.white),
-        backgroundColor: sColor,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 60,
-              width: 60,
-              child: Image.asset('assets/logo_main.png'),
-            ),
-            SizedBox(
-              height: 50,
-              width: 50,
-              child: Image.asset('assets/logo.png'),
-            ),
-            Text(
-              widget.title,
-              style: TextStyle(color: Colors.white, fontSize: 20),
-            ),
-          ],
-        ),
-      ),
       body: localPath != null
           ? PDFView(
         filePath: localPath!,

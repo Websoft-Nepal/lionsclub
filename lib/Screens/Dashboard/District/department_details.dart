@@ -75,6 +75,7 @@ class _DepartmentDetailsState extends State<DepartmentDetails> {
           crossAxisCount: 2,
           crossAxisSpacing: 16.0,
           mainAxisSpacing: 16.0,
+
         ),
         itemCount: departmentDetails?.length ?? 0,
         itemBuilder: (BuildContext context, int index) {

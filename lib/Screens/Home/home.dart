@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
-import 'package:lionsclub/Screens/Dashboard/District/directiry_listtile.dart';
 import 'package:lionsclub/Screens/Dashboard/District/district_main_directory.dart';
 import 'package:lionsclub/Screens/Dashboard/donor/donor_screen.dart';
 import 'package:lionsclub/Screens/Dashboard/zone/zone_directory.dart';
-import 'package:lionsclub/Screens/Dashboard/District/department_details.dart';
-import 'package:lionsclub/Screens/Dashboard/District/department.dart';
 import 'package:lionsclub/Screens/Second_Dashboard/dashboard.dart';
 import 'package:lionsclub/Screens/Dashboard/dashboard_main.dart';
 import 'package:lionsclub/Screens/Dashboard/news/news.dart';
@@ -74,7 +71,10 @@ class _Home1State extends State<Home1> {
                 ],
               ),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Home1()),
+                );
               },
             ),
             ListTile(

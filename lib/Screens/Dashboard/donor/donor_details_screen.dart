@@ -73,6 +73,7 @@ class _DonorDetailsState extends State<DonorDetails> {
           crossAxisCount: 2,
           crossAxisSpacing: 5.0,
           mainAxisSpacing: 5.0,
+          childAspectRatio: 0.6,
         ),
         itemCount: donorDetails?.length ?? 0,
         itemBuilder: (BuildContext context, int index) {
@@ -96,7 +97,7 @@ class _DonorDetailsState extends State<DonorDetails> {
 
               Expanded(
                 child: CircleAvatar(
-                  radius: 50.0,
+                  radius: 70.0,
                   foregroundImage: NetworkImage(detail?.photo?? ''),
                   backgroundImage: AssetImage('assets/logo.png'),
                 ),

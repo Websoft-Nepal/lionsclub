@@ -96,50 +96,137 @@ class _MainBoardState extends State<MainBoard> {
                 child: Image.asset('assets/officerlion.jpg')),
             ),
 
+    Padding(
+      padding: const EdgeInsets.only(left:18.0,right:18,top: 30),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15)
+        ),
+        height: 250,
+        child: GridView.count(
+          physics: NeverScrollableScrollPhysics(),
+          crossAxisCount: 2,
+          mainAxisSpacing: 10,
+          crossAxisSpacing: 20,
+        addRepaintBoundaries: true,
+        addSemanticIndexes: true,
+        childAspectRatio: 1.5,
+        children: [
+          Card(
+          color: sColor,
+          child: Container(
+
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15)
+            ),
+            child:Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.people,color: Colors.white,size: 50,),
+                Text('Clubs',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),)
+              ],
+            ) ,
+          ),
+        ),
+          Card(
+            color: sColor,
+            child: Container(
+
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15)
+              ),
+              child:Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.map,color: Colors.white,size: 50,),
+                  Text('District Directory',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),)
+                ],
+              ) ,
+            ),
+          ),
+          Card(
+            color: sColor,
+            child: Container(
+
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15)
+              ),
+              child:Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.newspaper,color: Colors.white,size: 50,),
+                  Text('News',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),)
+                ],
+              ) ,
+            ),
+          ),
+          Card(
+            color: sColor,
+            child: Container(
+
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15)
+              ),
+              child:Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.menu_book,color: Colors.white,size: 50,),
+                  Text('Padhoo Aviyan',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),)
+                ],
+              ) ,
+            ),
+          ),
+
+
+        ],
+        ),
+      ),
+    ),
 
         SizedBox(height: 25,),
          Padding(
           padding: const EdgeInsets.only(left:18.0,right: 18),
           child: Column(
             children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  MyCustomIconButton(
-                    icon:Icons.people,
-                    color: sColor,
-                    iconName: 'Clubs',
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  Club()));
-                    },
-                  ),
-                  MyCustomIconButton(
-                    icon:Icons.location_on,
-                    color: pColor,
-                    iconName: '  District\nDirectory',
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  District_main_directory()));
-                    },
-                  ),
-                  MyCustomIconButton(
-                    icon:Icons.newspaper,
-                    color: ttColor,
-                    iconName: 'News',
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  const News()));
-                    },
-                  ),
-                  MyCustomIconButton(
-                    icon: Icons.menu_book_rounded,
-                    color: zColor,
-                    iconName: ' Padhaoo\n Aviyan', // You can pass the icon name dynamically
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => Padhoo_Aviyan()));
-                    },
-                  ),
-                ],
-              ),
+              // Row(
+              //   crossAxisAlignment: CrossAxisAlignment.start,
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     MyCustomIconButton(
+              //       icon:Icons.people,
+              //       color: sColor,
+              //       iconName: 'Clubs',
+              //       onPressed: () {
+              //         Navigator.push(context, MaterialPageRoute(builder: (context) =>  Club()));
+              //       },
+              //     ),
+              //     MyCustomIconButton(
+              //       icon:Icons.location_on,
+              //       color: pColor,
+              //       iconName: '  District\nDirectory',
+              //       onPressed: () {
+              //         Navigator.push(context, MaterialPageRoute(builder: (context) =>  District_main_directory()));
+              //       },
+              //     ),
+              //     MyCustomIconButton(
+              //       icon:Icons.newspaper,
+              //       color: ttColor,
+              //       iconName: 'News',
+              //       onPressed: () {
+              //         Navigator.push(context, MaterialPageRoute(builder: (context) =>  const News()));
+              //       },
+              //     ),
+              //     MyCustomIconButton(
+              //       icon: Icons.menu_book_rounded,
+              //       color: zColor,
+              //       iconName: ' Padhaoo\n Aviyan', // You can pass the icon name dynamically
+              //       onPressed: () {
+              //         Navigator.push(context, MaterialPageRoute(builder: (context) => Padhoo_Aviyan()));
+              //       },
+              //     ),
+              //   ],
+              // ),
+
               const SizedBox(height: 10,),
 
               const Divider(height: 2,),
@@ -191,7 +278,6 @@ class _MainBoardState extends State<MainBoard> {
                       ],
                     ),
                     const SizedBox(height: 5,),
-
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
