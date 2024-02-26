@@ -105,9 +105,10 @@ class _MainBoardState extends State<MainBoard> {
         height: 250,
         child: GridView.count(
           physics: NeverScrollableScrollPhysics(),
+          padding:EdgeInsets.all(20),
           crossAxisCount: 2,
           mainAxisSpacing: 10,
-          crossAxisSpacing: 20,
+          crossAxisSpacing: 50,
         addRepaintBoundaries: true,
         addSemanticIndexes: true,
         childAspectRatio: 1.5,
@@ -176,8 +177,6 @@ class _MainBoardState extends State<MainBoard> {
               ) ,
             ),
           ),
-
-
         ],
         ),
       ),
