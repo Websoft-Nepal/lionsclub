@@ -42,8 +42,8 @@ class District_main_directory extends StatelessWidget {
             indicatorSize: TabBarIndicatorSize.tab,
             isScrollable: false,
             tabs: [
-              Tab(child: Text('Home',style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.bold),),),
-              Tab(child: Text('pdf',style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.bold),),),
+              Tab(child: Icon(Icons.home,color: Colors.white)),
+              Tab(child: Icon(Icons.picture_as_pdf,color: Colors.white)),
             ],
           ),
         ),

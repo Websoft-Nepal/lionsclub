@@ -71,8 +71,6 @@ class _SignInState extends State<SignIn> {
     },
     style: ElevatedButton.styleFrom(
     padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-    primary: sColor,
-      onPrimary: Colors.white, // Text color
     shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(8.0), // Button border radius
     ),
