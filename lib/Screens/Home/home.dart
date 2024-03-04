@@ -10,13 +10,13 @@ import '../Dashboard/club/clubs.dart';
 import '../../main.dart';
 import '../Dashboard/Region/region_directory.dart';
 
-class Home1 extends StatefulWidget {
-  const Home1({super.key});
+class Home extends StatefulWidget {
+  const Home({super.key});
   @override
-  State<Home1> createState() => _Home1State();
+  State<Home> createState() => _HomeState();
 }
 
-class _Home1State extends State<Home1> {
+class _HomeState extends State<Home> {
   int currentPageIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -73,7 +73,7 @@ class _Home1State extends State<Home1> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Home1()),
+                  MaterialPageRoute(builder: (context) => Home()),
                 );
               },
             ),

@@ -7,6 +7,8 @@ import 'package:lionsclub/view_model/FocusProgram.dart';
 import 'package:lionsclub/view_model/NewsEvents.dart';
 import 'Screens/Home/home.dart';
 import 'package:provider/provider.dart';
+
+import 'Screens/SplashScreen.dart';
 const Color pColor = Color(0xFFFCCB08);
 const Color sColor = Color(0xFF11468F);
 const Color tColor = Color(0xFF141414);
@@ -31,8 +33,6 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -43,13 +43,12 @@ class MyApp extends StatelessWidget {
         textTheme: GoogleFonts.latoTextTheme(
           Theme.of(context).textTheme,
         ),
-        // primarySwatch: Colors.indigo,
         colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFFFCCB08)),
         primaryColor: pColor,
         useMaterial3: true,
 
       ),
-      home: const Home1(),
+      home: const SplashScreen(),
     );
   }
 }
