@@ -175,14 +175,17 @@ class _MainBoardState extends State<MainBoard> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Icon(
-                                    Icons.map,
-                                    color: Colors.white,
-                                    size: 50,
+                                  Expanded(
+                                    child: Icon(
+                                      Icons.map,
+                                      color: Colors.white,
+                                      size: 50,
+                                    ),
                                   ),
                                   Text(
                                     'District Directory',
                                     style: TextStyle(
+                                      
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold),
                                   )
