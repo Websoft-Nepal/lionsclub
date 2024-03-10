@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:lionsclub/Screens/Dashboard/District/district_main_directory.dart';
 import 'package:lionsclub/Screens/Dashboard/Padhaoo/padhoo_aviyan.dart';
 import 'package:lionsclub/Screens/Dashboard/focus_program/FocusProgramList.dart';
@@ -175,19 +176,18 @@ class _MainBoardState extends State<MainBoard> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Expanded(
-                                    child: Icon(
-                                      Icons.map,
-                                      color: Colors.white,
-                                      size: 50,
-                                    ),
+                                  Icon(
+                                    Icons.location_on,
+                                    color: Colors.white,
+                                    size: 50,
                                   ),
-                                  Text(
-                                    'District Directory',
-                                    style: TextStyle(
-                                      
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold),
+                                  Expanded(
+                                    child: Text(
+                                      'District Directory',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
                                   )
                                 ],
                               ),
@@ -235,11 +235,13 @@ class _MainBoardState extends State<MainBoard> {
                                     color: Colors.white,
                                     size: 50,
                                   ),
-                                  Text(
-                                    'Padhoo Aviyan',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold),
+                                  Expanded(
+                                    child: Text(
+                                      'Padhoo Aviyan',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
                                   )
                                 ],
                               ),
