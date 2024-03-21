@@ -28,16 +28,20 @@ class _ClubState extends State<Club> {
     try {
       List<club> data =
           await ApiService.fetchData(apiUrl, (data) => club.fromJson(data));
-      setState(() {
+     if(mounted){
+       setState(() {
         clubs = data;
         filteredClubs = data; // Initially, filteredClubs is the same as clubs
         isLoading = false;
       });
+     }
     } catch (e) {
       print('Error: $e');
-      setState(() {
+      if(mounted){
+        setState(() {
         isLoading = false;
       });
+      }
     }
   }
 

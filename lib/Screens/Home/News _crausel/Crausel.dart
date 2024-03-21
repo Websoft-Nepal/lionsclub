@@ -1,14 +1,14 @@
-import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/material.dart';
 import 'package:lionsclub/Screens/Dashboard/news/News_details.dart';
-import 'package:lionsclub/Screens/Dashboard/news/news.dart';
 import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
+
 import '../../../Utils/Components/appurl.dart';
 import '../../../data/Models/news_events.dart';
 import '../../../data/network/api_services.dart';
 import '../../../main.dart';
 import '../../../view_model/NewsEvents.dart';
-import 'package:shimmer/shimmer.dart';
 
 
 class Crausel_news extends StatefulWidget {
@@ -32,16 +32,20 @@ class _Crausel_newsState extends State<Crausel_news> {
     try {
       List<newsevents> data = await ApiService.fetchData(apiUrl, (data) => newsevents.fromJson(data));
       Provider.of<NewsEventsProvider>(context, listen: false).setNewsEvents(data);
-      setState(() {
+     if(mounted){
+       setState(() {
         newsevent = data;
         isLoading = false;
       });
+     }
     } catch (e) {
       // Handle error
       print('Error: $e');
-      setState(() {
+      if(mounted){
+        setState(() {
         isLoading = false;
       });
+      }
     }
   }
 

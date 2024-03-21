@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:lionsclub/Custom_Widget/skeleton_member.dart';
 import 'package:lionsclub/Screens/Dashboard/donor/donor_details_screen.dart';
+import 'package:lionsclub/data/Models/donor.dart';
 
 import '../../../data/network/api_services.dart';
 import '../../../main.dart';
-import 'package:lionsclub/data/Models/donor.dart';
 
 class Donor_Screen extends StatefulWidget {
   const Donor_Screen({super.key});

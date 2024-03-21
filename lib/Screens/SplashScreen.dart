@@ -1,6 +1,6 @@
-import 'package:lionsclub/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:lionsclub/main.dart';
 
 import 'Home/home.dart';
 class SplashScreen extends StatefulWidget {
@@ -27,6 +27,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
 
   @override
   void dispose(){
+    super.dispose();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,overlays: SystemUiOverlay.values);
   }
   @override
