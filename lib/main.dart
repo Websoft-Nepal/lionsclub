@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-// import 'package:lionsclub/Home/slider.dart';?
-import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lionsclub/view_model/FocusProgram.dart';
 import 'package:lionsclub/view_model/NewsEvents.dart';
-import 'Screens/Home/home.dart';
 import 'package:provider/provider.dart';
 
 import 'Screens/SplashScreen.dart';
+
 const Color pColor = Color(0xFFFCCB08);
 const Color sColor = Color(0xFF11468F);
 const Color tColor = Color(0xFF141414);
@@ -17,13 +15,14 @@ const Color zColor = Color(0xFFFF6347);
 const Color btnBg = Color(0xFFF8F2ED);
 Future<void> main() async {
   runApp(
-    MultiProvider(providers: [
-      ChangeNotifierProvider(create: (_) => ProgramProvider()),
-      ChangeNotifierProvider(create: (_) => NewsEventsProvider())
-    ],
-    child:MyApp(),
-    )
-      );
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ProgramProvider()),
+        ChangeNotifierProvider(create: (_) => NewsEventsProvider())
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -31,7 +30,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-
       debugShowCheckedModeBanner: false,
       title: 'LEO CLUB',
       theme: ThemeData(
@@ -41,10 +39,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFFFCCB08)),
         primaryColor: pColor,
         useMaterial3: true,
-
       ),
       home: const SplashScreen(),
     );
   }
 }
-
