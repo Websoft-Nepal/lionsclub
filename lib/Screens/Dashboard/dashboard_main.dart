@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:lionsclub/Custom_Widget/pdfviewer.dart';
 import 'package:lionsclub/Screens/Dashboard/District/district_main_directory.dart';
 import 'package:lionsclub/Screens/Dashboard/Padhaoo/padhoo_aviyan.dart';
 import 'package:lionsclub/Screens/Dashboard/focus_program/FocusProgramList.dart';
@@ -13,12 +16,14 @@ import 'package:lionsclub/Screens/Dashboard/news/news.dart';
 import 'package:lionsclub/main.dart';
 import 'package:provider/provider.dart';
 import 'package:connectivity/connectivity.dart';
+import '../../consts/app_consts.dart';
 import 'focus_program/FocusProgram_Details.dart';
 import '../../Custom_Widget/icon.dart';
 import '../../Utils/Components/appurl.dart';
 import '../../data/Models/program.dart';
 import '../../data/network/api_services.dart';
 import '../../view_model/FocusProgram.dart';
+import 'package:http/http.dart' as http;
 
 class MainBoard extends StatefulWidget {
   const MainBoard({super.key});
@@ -29,6 +34,9 @@ class MainBoard extends StatefulWidget {
 class _MainBoardState extends State<MainBoard> {
   bool isLoading = true;
   bool _isConnected = true;
+  bool isPadhooAviyanLoading = false;
+  bool isBloodBankLoading = false;
+
   List<program> programs = [];
   void initState() {
     super.initState();
@@ -67,6 +75,68 @@ class _MainBoardState extends State<MainBoard> {
       if (kDebugMode) {
         print('Error fetching program data: $e');
       }
+    }
+  }
+
+  fetchPadhaooAviyanPdf(
+    BuildContext context,
+  ) async {
+    try {
+      var res = await http.get(
+        Uri.parse("${AppConstants.baseURL}/padauabiyan/list"),
+      );
+
+      if (res.statusCode == 200) {
+        var data = jsonDecode(res.body);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CustomPDFViewer(
+              pdfUrl: data['pdf'],
+              title: 'Padhoo Aviyan',
+            ),
+          ),
+        );
+      } else {
+        throw Exception('Error fetching PDF');
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error fetching PDF'),
+        ),
+      );
+    }
+  }
+
+  fetchBloodBankPdf(
+    BuildContext context,
+  ) async {
+    try {
+      var res = await http.get(
+        Uri.parse("${AppConstants.baseURL}/bloodbank/list"),
+      );
+
+      if (res.statusCode == 200) {
+        var data = jsonDecode(res.body);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CustomPDFViewer(
+              pdfUrl: data['pdf'],
+              title: 'Blood Bank',
+            ),
+          ),
+        );
+      } else {
+        throw Exception('Error fetching PDF');
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error fetching PDF'),
+        ),
+      );
     }
   }
 
@@ -124,7 +194,7 @@ class _MainBoardState extends State<MainBoard> {
                   child: Container(
                     decoration:
                         BoxDecoration(borderRadius: BorderRadius.circular(15)),
-                    height: 250,
+                    height: 300,
                     child: GridView.count(
                       physics: NeverScrollableScrollPhysics(),
                       padding: EdgeInsets.all(20),
@@ -167,7 +237,13 @@ class _MainBoardState extends State<MainBoard> {
                           ),
                         ),
                         InkWell(
-                          onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => District_main_directory()));},
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        District_main_directory()));
+                          },
                           child: Card(
                             color: sColor,
                             child: Container(
@@ -195,7 +271,12 @@ class _MainBoardState extends State<MainBoard> {
                           ),
                         ),
                         InkWell(
-                          onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => News()));},
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => News()));
+                          },
                           child: Card(
                             color: sColor,
                             child: Container(
@@ -221,7 +302,18 @@ class _MainBoardState extends State<MainBoard> {
                           ),
                         ),
                         InkWell(
-                          onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => Padhoo_Aviyan()));},
+                          onTap: () async {
+                            if (isPadhooAviyanLoading) return;
+                            setState(() {
+                              isPadhooAviyanLoading = true;
+                            });
+
+                            await fetchPadhaooAviyanPdf(context);
+
+                            setState(() {
+                              isPadhooAviyanLoading = false;
+                            });
+                          },
                           child: Card(
                             color: sColor,
                             child: Container(
@@ -230,14 +322,73 @@ class _MainBoardState extends State<MainBoard> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Icon(
-                                    Icons.menu_book,
-                                    color: Colors.white,
-                                    size: 50,
-                                  ),
+                                  if (isPadhooAviyanLoading)
+                                    Padding(
+                                      padding: const EdgeInsets.all(16.0),
+                                      child: SizedBox(
+                                        width: 25,
+                                        height: 25,
+                                        child: CircularProgressIndicator(),
+                                      ),
+                                    )
+                                  else
+                                    Icon(
+                                      Icons.menu_book,
+                                      color: Colors.white,
+                                      size: 50,
+                                    ),
                                   Expanded(
                                     child: Text(
                                       'Padhoo Aviyan',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () async {
+                            if (isBloodBankLoading) return;
+                            setState(() {
+                              isBloodBankLoading = true;
+                            });
+
+                            await fetchBloodBankPdf(context);
+
+                            setState(() {
+                              isBloodBankLoading = false;
+                            });
+                          },
+                          child: Card(
+                            color: sColor,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15)),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  if (isBloodBankLoading)
+                                    Padding(
+                                      padding: const EdgeInsets.all(16.0),
+                                      child: SizedBox(
+                                        width: 25,
+                                        height: 25,
+                                        child: CircularProgressIndicator(),
+                                      ),
+                                    )
+                                  else
+                                    Icon(
+                                      Icons.bloodtype_rounded,
+                                      color: Colors.white,
+                                      size: 50,
+                                    ),
+                                  Expanded(
+                                    child: Text(
+                                      'Blood Bank',
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold),
@@ -263,7 +414,6 @@ class _MainBoardState extends State<MainBoard> {
                       const SizedBox(
                         height: 10,
                       ),
-
                       const Divider(
                         height: 2,
                       ),
@@ -276,7 +426,6 @@ class _MainBoardState extends State<MainBoard> {
                             style: TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.bold),
                           ),
-
                           IconButton(
                               onPressed: () {
                                 Navigator.push(
@@ -290,7 +439,6 @@ class _MainBoardState extends State<MainBoard> {
                               ))
                         ],
                       ),
-
                       isLoading
                           ? _buildLoadingIndicator()
                           : Container(
@@ -302,8 +450,11 @@ class _MainBoardState extends State<MainBoard> {
                                       // color: zColor,
                                       surfaceTintColor: sColor,
                                       child: ListTile(
-                                        leading:Icon(Icons.done_all_rounded),
-                                        title:Text(programs[1].title!,style: TextStyle(color: sColor,fontWeight: FontWeight.bold)),
+                                        leading: Icon(Icons.done_all_rounded),
+                                        title: Text(programs[1].title!,
+                                            style: TextStyle(
+                                                color: sColor,
+                                                fontWeight: FontWeight.bold)),
                                         onTap: () {
                                           Navigator.push(
                                               context,
@@ -324,20 +475,23 @@ class _MainBoardState extends State<MainBoard> {
                                       // color: zColor,
                                       surfaceTintColor: sColor,
                                       child: ListTile(
-                                        leading:Icon(Icons.done_all_rounded),
-                                        title:Text(programs[2].title!,style: TextStyle(color: sColor,fontWeight: FontWeight.bold)),
+                                        leading: Icon(Icons.done_all_rounded),
+                                        title: Text(programs[2].title!,
+                                            style: TextStyle(
+                                                color: sColor,
+                                                fontWeight: FontWeight.bold)),
                                         onTap: () {
                                           Navigator.push(
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) =>
                                                     FocusProgram_Details(
-                                                      title: programs[2].title!,
-                                                      imageUrl: programs[2].photo!,
-                                                      description:
+                                                  title: programs[2].title!,
+                                                  imageUrl: programs[2].photo!,
+                                                  description:
                                                       programs[2].detail!,
-                                                      date: programs[2].postDate!,
-                                                    ),
+                                                  date: programs[2].postDate!,
+                                                ),
                                               ));
                                         },
                                       ),
@@ -346,20 +500,23 @@ class _MainBoardState extends State<MainBoard> {
                                       // color: zColor,
                                       surfaceTintColor: sColor,
                                       child: ListTile(
-                                        leading:Icon(Icons.done_all_rounded),
-                                        title:Text(programs[3].title!,style: TextStyle(color: sColor,fontWeight: FontWeight.bold)),
+                                        leading: Icon(Icons.done_all_rounded),
+                                        title: Text(programs[3].title!,
+                                            style: TextStyle(
+                                                color: sColor,
+                                                fontWeight: FontWeight.bold)),
                                         onTap: () {
                                           Navigator.push(
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) =>
                                                     FocusProgram_Details(
-                                                      title: programs[3].title!,
-                                                      imageUrl: programs[3].photo!,
-                                                      description:
+                                                  title: programs[3].title!,
+                                                  imageUrl: programs[3].photo!,
+                                                  description:
                                                       programs[3].detail!,
-                                                      date: programs[3].postDate!,
-                                                    ),
+                                                  date: programs[3].postDate!,
+                                                ),
                                               ));
                                         },
                                       ),
@@ -368,20 +525,23 @@ class _MainBoardState extends State<MainBoard> {
                                       // color: zColor,
                                       surfaceTintColor: sColor,
                                       child: ListTile(
-                                        leading:Icon(Icons.done_all_rounded),
-                                        title:Text(programs[4].title!,style: TextStyle(color: sColor,fontWeight: FontWeight.bold)),
+                                        leading: Icon(Icons.done_all_rounded),
+                                        title: Text(programs[4].title!,
+                                            style: TextStyle(
+                                                color: sColor,
+                                                fontWeight: FontWeight.bold)),
                                         onTap: () {
                                           Navigator.push(
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) =>
                                                     FocusProgram_Details(
-                                                      title: programs[4].title!,
-                                                      imageUrl: programs[4].photo!,
-                                                      description:
+                                                  title: programs[4].title!,
+                                                  imageUrl: programs[4].photo!,
+                                                  description:
                                                       programs[4].detail!,
-                                                      date: programs[4].postDate!,
-                                                    ),
+                                                  date: programs[4].postDate!,
+                                                ),
                                               ));
                                         },
                                       ),
@@ -390,26 +550,27 @@ class _MainBoardState extends State<MainBoard> {
                                       // color: zColor,
                                       surfaceTintColor: sColor,
                                       child: ListTile(
-                                        leading:Icon(Icons.done_all_rounded),
-                                        title:Text(programs[5].title!,style: TextStyle(color: sColor,fontWeight: FontWeight.bold)),
+                                        leading: Icon(Icons.done_all_rounded),
+                                        title: Text(programs[5].title!,
+                                            style: TextStyle(
+                                                color: sColor,
+                                                fontWeight: FontWeight.bold)),
                                         onTap: () {
                                           Navigator.push(
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) =>
                                                     FocusProgram_Details(
-                                                      title: programs[5].title!,
-                                                      imageUrl: programs[5].photo!,
-                                                      description:
+                                                  title: programs[5].title!,
+                                                  imageUrl: programs[5].photo!,
+                                                  description:
                                                       programs[5].detail!,
-                                                      date: programs[5].postDate!,
-                                                    ),
+                                                  date: programs[5].postDate!,
+                                                ),
                                               ));
                                         },
                                       ),
                                     ),
-
-
                                   ],
                                 ),
                               ),
@@ -431,7 +592,6 @@ class _MainBoardState extends State<MainBoard> {
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold),
                       ),
-
                       IconButton(
                           onPressed: () {
                             Navigator.push(

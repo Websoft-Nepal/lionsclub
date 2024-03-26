@@ -1,11 +1,16 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:lionsclub/Screens/Dashboard/club/club_details.dart';
+import 'package:lionsclub/consts/app_consts.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../../../Custom_Widget/pdfviewer.dart';
 import '../../../Utils/Components/appurl.dart';
 import '../../../data/Models/club.dart';
 import '../../../data/network/api_services.dart';
 import '../../../main.dart';
+import 'package:http/http.dart' as http;
 
 class Club extends StatefulWidget {
   @override
@@ -16,6 +21,7 @@ class _ClubState extends State<Club> {
   List<club> clubs = [];
   List<club> filteredClubs = [];
   bool isLoading = true;
+  bool isPdfLoading = false;
   TextEditingController searchController = TextEditingController();
 
   @override
@@ -28,19 +34,19 @@ class _ClubState extends State<Club> {
     try {
       List<club> data =
           await ApiService.fetchData(apiUrl, (data) => club.fromJson(data));
-     if(mounted){
-       setState(() {
-        clubs = data;
-        filteredClubs = data; // Initially, filteredClubs is the same as clubs
-        isLoading = false;
-      });
-     }
+      if (mounted) {
+        setState(() {
+          clubs = data;
+          filteredClubs = data; // Initially, filteredClubs is the same as clubs
+          isLoading = false;
+        });
+      }
     } catch (e) {
       print('Error: $e');
-      if(mounted){
+      if (mounted) {
         setState(() {
-        isLoading = false;
-      });
+          isLoading = false;
+        });
       }
     }
   }
@@ -52,6 +58,37 @@ class _ClubState extends State<Club> {
               club.name?.toLowerCase().contains(query.toLowerCase()) ?? false)
           .toList();
     });
+  }
+
+  fetchPdf(
+    BuildContext context,
+  ) async {
+    try {
+      var res = await http.get(
+        Uri.parse("${AppConstants.baseURL}/clubpdf/list"),
+      );
+
+      if (res.statusCode == 200) {
+        var data = jsonDecode(res.body);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CustomPDFViewer(
+              pdfUrl: data['pdf'],
+              title: 'Clubs',
+            ),
+          ),
+        );
+      } else {
+        throw Exception('Error fetching PDF');
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error fetching PDF'),
+        ),
+      );
+    }
   }
 
   @override
@@ -122,10 +159,42 @@ class _ClubState extends State<Club> {
                 ),
                 // Total Clubs
                 Padding(
-                  padding: const EdgeInsets.only(left: 18.0),
-                  child: Text(
-                    'Total Clubs: ${filteredClubs.length}',
-                    textAlign: TextAlign.start,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 18.0,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Total Clubs: ${filteredClubs.length}',
+                        textAlign: TextAlign.start,
+                      ),
+                      if (isPdfLoading)
+                        SizedBox(
+                          width: 25,
+                          height: 25,
+                          child: CircularProgressIndicator(),
+                        )
+                      else
+                        IconButton(
+                          onPressed: () async {
+                            if (isPdfLoading) return;
+                            setState(() {
+                              isPdfLoading = true;
+                            });
+                            await fetchPdf(
+                              context,
+                            );
+
+                            setState(() {
+                              isPdfLoading = false;
+                            });
+                          },
+                          icon: Icon(
+                            Icons.picture_as_pdf,
+                          ),
+                        ),
+                    ],
                   ),
                 ),
                 // List Builder for Clubs
@@ -229,9 +298,8 @@ class _ClubState extends State<Club> {
                                                 ),
                                                 Text(
                                                   filteredClubs[index]
-                                                          .memberCount
-                                                          .toString() ??
-                                                      '',
+                                                      .memberCount
+                                                      .toString(),
                                                   style: TextStyle(
                                                     color: Color(0xFF666666),
                                                   ),

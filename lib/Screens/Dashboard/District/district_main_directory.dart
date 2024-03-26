@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lionsclub/Screens/Dashboard/District/department.dart';
 import 'package:lionsclub/Screens/Dashboard/District/district_pdf.dart';
 import '../../../main.dart';
+
 class District_main_directory extends StatelessWidget {
   const District_main_directory({Key? key});
 
@@ -14,7 +15,6 @@ class District_main_directory extends StatelessWidget {
           iconTheme: IconThemeData(color: Colors.white),
           backgroundColor: sColor,
           title: Row(
-
             children: [
               SizedBox(
                 height: 60,
@@ -31,9 +31,8 @@ class District_main_directory extends StatelessWidget {
               ),
               Text(
                 'District Directory',
-                style: TextStyle(color: Colors.white,fontSize: 16),
+                style: TextStyle(color: Colors.white, fontSize: 16),
               ),
-
             ],
           ),
           bottom: TabBar(
@@ -42,13 +41,13 @@ class District_main_directory extends StatelessWidget {
             indicatorSize: TabBarIndicatorSize.tab,
             isScrollable: false,
             tabs: [
-              Tab(child: Icon(Icons.home,color: Colors.white)),
-              Tab(child: Icon(Icons.picture_as_pdf,color: Colors.white)),
+              Tab(child: Icon(Icons.home, color: Colors.white)),
+              Tab(child: Icon(Icons.picture_as_pdf, color: Colors.white)),
             ],
           ),
         ),
         body: TabBarView(
-            physics: NeverScrollableScrollPhysics(),
+          physics: NeverScrollableScrollPhysics(),
           children: [
             Center(child: District_Directory()),
             Center(child: District_pdf()),

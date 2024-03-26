@@ -1,12 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:lionsclub/Custom_Widget/pdfviewer.dart';
-import 'package:lionsclub/Custom_Widget/skeleton_member.dart';
-import 'package:lionsclub/Screens/Dashboard/donor/donor_details_screen.dart';
-import 'package:lionsclub/Utils/Components/appurl.dart';
-
-import '../../../data/network/api_services.dart';
-import '../../../main.dart';
-import 'package:lionsclub/data/Models/donor.dart';
+import '../../../consts/app_consts.dart';
+import 'package:http/http.dart' as http;
 
 class District_pdf extends StatefulWidget {
   const District_pdf({super.key});
@@ -16,39 +13,52 @@ class District_pdf extends StatefulWidget {
 }
 
 class _District_pdfState extends State<District_pdf> {
-  List<Donor> donors = [];
-  bool isDonorLoading = true;
-
+  bool isFetched = false;
+  String? pdfUrl;
   @override
   void initState() {
     super.initState();
-    _fetchDonorData(AppUrl.donorEndPoint);
+    fetchPdf(context);
   }
 
-  Future<void> _fetchDonorData(String apiUrl) async {
+  fetchPdf(
+    BuildContext context,
+  ) async {
     try {
-      List<Donor> donorData = await ApiService.fetchData(
-        apiUrl,
-            (data) => Donor.fromJson(data),
+      var res = await http.get(
+        Uri.parse("${AppConstants.baseURL}/directory/list"),
       );
-      setState(() {
-        donors = donorData;
-        isDonorLoading = false;
-      });
+
+      if (res.statusCode == 200) {
+        var data = jsonDecode(res.body);
+        setState(() {
+          pdfUrl = data['pdf'];
+          isFetched = true;
+        });
+      } else {
+        throw Exception('Error fetching PDF');
+      }
     } catch (e) {
-      print('Error: $e');
-      setState(() {
-        isDonorLoading = false;
-      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error fetching PDF'),
+        ),
+      );
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xFFEEEEEE),
-        body: CustomPDFViewer(
-            pdfUrl: 'https://www.ibm.com/downloads/cas/GJ5QVQ7X',
-            title: 'pdf'));
+      backgroundColor: Color(0xFFEEEEEE),
+      body: isFetched
+          ? CustomPDFViewer(
+              pdfUrl: pdfUrl!,
+              title: 'District Directory',
+            )
+          : Center(
+              child: CircularProgressIndicator(),
+            ),
+    );
   }
 }
