@@ -2,20 +2,18 @@
 class club {
   int? id;
   String? name;
-  Null? logo;
+  Null logo;
   String? charterDate;
   int? memberCount;
   String? lionsYear;
 
   club(
-      {
-      this.id,
+      {this.id,
       this.name,
       this.logo,
       this.charterDate,
       this.memberCount,
-      this.lionsYear
-      });
+      this.lionsYear});
 
   club.fromJson(Map<String, dynamic> json) {
     id = json['id'];

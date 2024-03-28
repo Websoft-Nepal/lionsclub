@@ -6,7 +6,8 @@ import '../../../main.dart';
 class DepartmentDetails extends StatefulWidget {
   final dId, name;
 
-  const DepartmentDetails({Key? key, required this.dId, this.name}) : super(key: key);
+  const DepartmentDetails({Key? key, required this.dId, this.name})
+      : super(key: key);
 
   @override
   _DepartmentDetailsState createState() => _DepartmentDetailsState();
@@ -26,7 +27,7 @@ class _DepartmentDetailsState extends State<DepartmentDetails> {
     try {
       List<DepartmentDetail>? details = await ApiService.fetchData(
         "https://api.lionsclubsdistrict325jnepal.org.np/api/department_details/${widget.dId}",
-            (data) => DepartmentDetail.fromJson(data),
+        (data) => DepartmentDetail.fromJson(data),
       );
       setState(() {
         departmentDetails = details;
@@ -60,13 +61,12 @@ class _DepartmentDetailsState extends State<DepartmentDetails> {
               width: 50,
               child: Image.asset('assets/logo.png'),
             ),
-
             Text(
-              widget.name.length <= 20 ? widget.name : widget.name.substring(0, 20)+ '...',
-              style: TextStyle(color: Colors.white,fontSize: 16),
+              widget.name.length <= 20
+                  ? widget.name
+                  : widget.name.substring(0, 20) + '...',
+              style: TextStyle(color: Colors.white, fontSize: 16),
             ),
-
-
           ],
         ),
       ),
@@ -75,7 +75,6 @@ class _DepartmentDetailsState extends State<DepartmentDetails> {
           crossAxisCount: 2,
           crossAxisSpacing: 16.0,
           mainAxisSpacing: 16.0,
-
         ),
         itemCount: departmentDetails?.length ?? 0,
         itemBuilder: (BuildContext context, int index) {
@@ -99,7 +98,8 @@ class _DepartmentDetailsState extends State<DepartmentDetails> {
             Expanded(
               child: CircleAvatar(
                 radius: 49.0,
-                foregroundImage: NetworkImage(detail?.memberDetails?.photo ?? ''),
+                foregroundImage:
+                    NetworkImage(detail.memberDetails?.photo ?? ''),
                 backgroundImage: const AssetImage('assets/logo.png'),
               ),
             ),
@@ -112,9 +112,10 @@ class _DepartmentDetailsState extends State<DepartmentDetails> {
               ),
             ),
             Text(
-              detail?.officer?[0].title ?? 'No Post',
+              detail.officer?[0].title ?? 'No Post',
               textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 12.0, fontWeight: FontWeight.w700, color: sColor),
+              style: const TextStyle(
+                  fontSize: 12.0, fontWeight: FontWeight.w700, color: sColor),
             ),
           ],
         ),

@@ -10,12 +10,12 @@ class region_department {
 
   region_department(
       {this.photo,
-        this.memberName,
-        this.designation,
-        this.departmentName,
-        this.zoneCount,
-        this.lionYear,
-        this.zones});
+      this.memberName,
+      this.designation,
+      this.departmentName,
+      this.zoneCount,
+      this.lionYear,
+      this.zones});
 
   region_department.fromJson(Map<String, dynamic> json) {
     photo = json['photo'];
@@ -52,24 +52,24 @@ class Zones {
   String? title;
   String? lionYear;
   String? slug;
-  Null? region;
+  Null region;
   String? zone;
-  Null? position;
+  Null position;
   String? deleted;
   String? createdAt;
   String? updatedAt;
 
   Zones(
       {this.id,
-        this.title,
-        this.lionYear,
-        this.slug,
-        this.region,
-        this.zone,
-        this.position,
-        this.deleted,
-        this.createdAt,
-        this.updatedAt});
+      this.title,
+      this.lionYear,
+      this.slug,
+      this.region,
+      this.zone,
+      this.position,
+      this.deleted,
+      this.createdAt,
+      this.updatedAt});
 
   Zones.fromJson(Map<String, dynamic> json) {
     id = json['id'];

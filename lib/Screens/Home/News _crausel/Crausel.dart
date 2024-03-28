@@ -10,7 +10,6 @@ import '../../../data/network/api_services.dart';
 import '../../../main.dart';
 import '../../../view_model/NewsEvents.dart';
 
-
 class Crausel_news extends StatefulWidget {
   const Crausel_news({Key? key}) : super(key: key);
 
@@ -30,21 +29,24 @@ class _Crausel_newsState extends State<Crausel_news> {
 
   Future<void> _fetchData(String apiUrl) async {
     try {
-      List<newsevents> data = await ApiService.fetchData(apiUrl, (data) => newsevents.fromJson(data));
-      Provider.of<NewsEventsProvider>(context, listen: false).setNewsEvents(data);
-     if(mounted){
-       setState(() {
-        newsevent = data;
-        isLoading = false;
-      });
-     }
+      List<newsevents> data = await ApiService.fetchData(
+          apiUrl, (data) => newsevents.fromJson(data));
+      Provider.of<NewsEventsProvider>(context, listen: false)
+          .setNewsEvents(data);
+
+      if (mounted) {
+        setState(() {
+          newsevent = data;
+        });
+      }
     } catch (e) {
       // Handle error
       print('Error: $e');
-      if(mounted){
+    } finally {
+      if (mounted) {
         setState(() {
-        isLoading = false;
-      });
+          isLoading = false;
+        });
       }
     }
   }
@@ -53,26 +55,41 @@ class _Crausel_newsState extends State<Crausel_news> {
   Widget build(BuildContext context) {
     return isLoading
         ? _buildLoadingIndicator()
-        : CarouselSlider.builder(
-      options: CarouselOptions(
-        height: 300.0,
-        viewportFraction: 0.8,
-        autoPlay: true,
-        autoPlayInterval: Duration(seconds: 7),
-        autoPlayCurve: Curves.fastOutSlowIn,
-        scrollDirection: Axis.horizontal,
-      ),
-      itemCount: newsevent.length,
-      itemBuilder: (BuildContext context, int index, int realIndex) {
-        final event = newsevent[index];
-        return GestureDetector(
-          onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => NewsDetails(title: event.title ?? 'No Title', imageUrl: event.photo??'', details: event.detail ?? 'No Details', date: event.updatedAt ?? 'No Details',)));
-          },
-          child: buildCarouselItem(event.photo ?? 'No Image', event.title ?? 'No Title', event.updatedAt?.substring(0,10)),
-        );
-      },
-    );
+        : newsevent.isEmpty
+            ? Center(
+                child: SizedBox.shrink(),
+              )
+            : CarouselSlider.builder(
+                options: CarouselOptions(
+                  height: 300.0,
+                  viewportFraction: 0.8,
+                  autoPlay: true,
+                  autoPlayInterval: Duration(seconds: 7),
+                  autoPlayCurve: Curves.fastOutSlowIn,
+                  scrollDirection: Axis.horizontal,
+                ),
+                itemCount: newsevent.length,
+                itemBuilder: (BuildContext context, int index, int realIndex) {
+                  final event = newsevent[index];
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => NewsDetails(
+                                    title: event.title ?? 'No Title',
+                                    imageUrl: event.photo ?? '',
+                                    details: event.detail ?? 'No Details',
+                                    date: event.updatedAt ?? 'No Details',
+                                  )));
+                    },
+                    child: buildCarouselItem(
+                        event.photo ?? 'No Image',
+                        event.title ?? 'No Title',
+                        event.updatedAt?.substring(0, 10)),
+                  );
+                },
+              );
   }
 
   Widget _buildLoadingIndicator() {

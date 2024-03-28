@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lionsclub/Custom_Widget/skeleton_member.dart';
 import 'package:provider/provider.dart';
-import 'package:shimmer/shimmer.dart';
 import '../../../../main.dart';
 import 'FocusProgram_widgetforlist.dart';
 import 'FocusProgram_Details.dart';
-import '../news/news_widget.dart';
 import '../../../Utils/Components/appurl.dart';
 import '../../../data/Models/program.dart';
 import '../../../data/network/api_services.dart';
@@ -29,7 +27,8 @@ class _FocusListState extends State<FocusList> {
 
   Future<void> _fetchData(String apiUrl) async {
     try {
-      List<program> data = await ApiService.fetchData(apiUrl, (data) => program.fromJson(data));
+      List<program> data =
+          await ApiService.fetchData(apiUrl, (data) => program.fromJson(data));
       Provider.of<ProgramProvider>(context, listen: false).setPrograms(data);
       setState(() {
         isLoading = false;
@@ -74,30 +73,31 @@ class _FocusListState extends State<FocusList> {
       body: isLoading
           ? SkeletonMember()
           : Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ListView.builder(
-          itemCount: programs.length,
-          itemBuilder: (context, index) {
-            return FocusPrograms(
-              Title: programs[index].title ?? 'No Title',
-              ImageURl: programs[index].photo!,  // Assuming imageUrl is a property in your Program class
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => FocusProgram_Details(
-                      title: programs[index].title!,
-                      imageUrl: programs[index].photo!,
-                      description: programs[index].detail!, date: programs[index].postDate!,
-                    ),
-                  ),
-                );
-              },
-            );
-          },
-        ),
-      ),
+              padding: const EdgeInsets.all(8.0),
+              child: ListView.builder(
+                itemCount: programs.length,
+                itemBuilder: (context, index) {
+                  return FocusPrograms(
+                    Title: programs[index].title ?? 'No Title',
+                    ImageURl: programs[index]
+                        .photo!, // Assuming imageUrl is a property in your Program class
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FocusProgram_Details(
+                            title: programs[index].title!,
+                            imageUrl: programs[index].photo!,
+                            description: programs[index].detail!,
+                            date: programs[index].postDate!,
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
+              ),
+            ),
     );
   }
-
 }

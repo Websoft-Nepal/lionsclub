@@ -1,12 +1,8 @@
 import 'dart:convert';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:lionsclub/Custom_Widget/pdfviewer.dart';
 import 'package:lionsclub/Screens/Dashboard/District/district_main_directory.dart';
-import 'package:lionsclub/Screens/Dashboard/Padhaoo/padhoo_aviyan.dart';
 import 'package:lionsclub/Screens/Dashboard/focus_program/FocusProgramList.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -18,7 +14,6 @@ import 'package:provider/provider.dart';
 import 'package:connectivity/connectivity.dart';
 import '../../consts/app_consts.dart';
 import 'focus_program/FocusProgram_Details.dart';
-import '../../Custom_Widget/icon.dart';
 import '../../Utils/Components/appurl.dart';
 import '../../data/Models/program.dart';
 import '../../data/network/api_services.dart';
@@ -446,131 +441,42 @@ class _MainBoardState extends State<MainBoard> {
                                 padding: const EdgeInsets.all(8.0),
                                 child: Column(
                                   children: [
-                                    Card(
-                                      // color: zColor,
-                                      surfaceTintColor: sColor,
-                                      child: ListTile(
-                                        leading: Icon(Icons.done_all_rounded),
-                                        title: Text(programs[1].title!,
-                                            style: TextStyle(
+                                    ...List.generate(
+                                      programs.length,
+                                      (index) {
+                                        final program = programs[index];
+                                        return Card(
+                                          // color: zColor,
+                                          surfaceTintColor: sColor,
+                                          child: ListTile(
+                                            leading:
+                                                Icon(Icons.done_all_rounded),
+                                            title: Text(
+                                              program.title!,
+                                              style: TextStyle(
                                                 color: sColor,
-                                                fontWeight: FontWeight.bold)),
-                                        onTap: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    FocusProgram_Details(
-                                                  title: programs[1].title!,
-                                                  imageUrl: programs[1].photo!,
-                                                  description:
-                                                      programs[1].detail!,
-                                                  date: programs[1].postDate!,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            onTap: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      FocusProgram_Details(
+                                                    title: program.title!,
+                                                    imageUrl: program.photo!,
+                                                    description:
+                                                        program.detail!,
+                                                    date: program.postDate!,
+                                                  ),
                                                 ),
-                                              ));
-                                        },
-                                      ),
-                                    ),
-                                    Card(
-                                      // color: zColor,
-                                      surfaceTintColor: sColor,
-                                      child: ListTile(
-                                        leading: Icon(Icons.done_all_rounded),
-                                        title: Text(programs[2].title!,
-                                            style: TextStyle(
-                                                color: sColor,
-                                                fontWeight: FontWeight.bold)),
-                                        onTap: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    FocusProgram_Details(
-                                                  title: programs[2].title!,
-                                                  imageUrl: programs[2].photo!,
-                                                  description:
-                                                      programs[2].detail!,
-                                                  date: programs[2].postDate!,
-                                                ),
-                                              ));
-                                        },
-                                      ),
-                                    ),
-                                    Card(
-                                      // color: zColor,
-                                      surfaceTintColor: sColor,
-                                      child: ListTile(
-                                        leading: Icon(Icons.done_all_rounded),
-                                        title: Text(programs[3].title!,
-                                            style: TextStyle(
-                                                color: sColor,
-                                                fontWeight: FontWeight.bold)),
-                                        onTap: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    FocusProgram_Details(
-                                                  title: programs[3].title!,
-                                                  imageUrl: programs[3].photo!,
-                                                  description:
-                                                      programs[3].detail!,
-                                                  date: programs[3].postDate!,
-                                                ),
-                                              ));
-                                        },
-                                      ),
-                                    ),
-                                    Card(
-                                      // color: zColor,
-                                      surfaceTintColor: sColor,
-                                      child: ListTile(
-                                        leading: Icon(Icons.done_all_rounded),
-                                        title: Text(programs[4].title!,
-                                            style: TextStyle(
-                                                color: sColor,
-                                                fontWeight: FontWeight.bold)),
-                                        onTap: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    FocusProgram_Details(
-                                                  title: programs[4].title!,
-                                                  imageUrl: programs[4].photo!,
-                                                  description:
-                                                      programs[4].detail!,
-                                                  date: programs[4].postDate!,
-                                                ),
-                                              ));
-                                        },
-                                      ),
-                                    ),
-                                    Card(
-                                      // color: zColor,
-                                      surfaceTintColor: sColor,
-                                      child: ListTile(
-                                        leading: Icon(Icons.done_all_rounded),
-                                        title: Text(programs[5].title!,
-                                            style: TextStyle(
-                                                color: sColor,
-                                                fontWeight: FontWeight.bold)),
-                                        onTap: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    FocusProgram_Details(
-                                                  title: programs[5].title!,
-                                                  imageUrl: programs[5].photo!,
-                                                  description:
-                                                      programs[5].detail!,
-                                                  date: programs[5].postDate!,
-                                                ),
-                                              ));
-                                        },
-                                      ),
-                                    ),
+                                              );
+                                            },
+                                          ),
+                                        );
+                                      },
+                                    )
                                   ],
                                 ),
                               ),
@@ -593,16 +499,19 @@ class _MainBoardState extends State<MainBoard> {
                             fontSize: 18, fontWeight: FontWeight.bold),
                       ),
                       IconButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => News()));
-                          },
-                          icon: Icon(
-                            Icons.arrow_forward,
-                            color: zColor,
-                          ))
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => News(),
+                            ),
+                          );
+                        },
+                        icon: Icon(
+                          Icons.arrow_forward,
+                          color: zColor,
+                        ),
+                      ),
                     ],
                   ),
                 ),

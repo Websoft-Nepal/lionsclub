@@ -4,9 +4,10 @@ import 'package:lionsclub/Custom_Widget/skeleton_member.dart';
 import '../../../data/Models/donor_details.dart';
 import '../../../data/network/api_services.dart';
 import '../../../main.dart';
+
 class DonorDetails extends StatefulWidget {
-  final dId,name;
-  const DonorDetails({super.key,required this.dId,required this.name});
+  final dId, name;
+  const DonorDetails({super.key, required this.dId, required this.name});
 
   @override
   State<DonorDetails> createState() => _DonorDetailsState();
@@ -27,7 +28,7 @@ class _DonorDetailsState extends State<DonorDetails> {
     try {
       List<DonorDetail>? details = await ApiService.fetchData(
         "https://api.lionsclubsdistrict325jnepal.org.np/api/donor/${widget.dId}", // Replace with the actual donor ID
-            (data) => DonorDetail.fromJson(data),
+        (data) => DonorDetail.fromJson(data),
       );
       setState(() {
         donorDetails = details;
@@ -68,25 +69,28 @@ class _DonorDetailsState extends State<DonorDetails> {
           ],
         ),
       ),
-      body:isDonorDetailsLoading?SkeletonMember(): GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 5.0,
-          mainAxisSpacing: 5.0,
-          childAspectRatio: 0.6,
-        ),
-        itemCount: donorDetails?.length ?? 0,
-        itemBuilder: (BuildContext context, int index) {
-          return _buildGridItem(index);
-        },
-      ),
+      body: isDonorDetailsLoading
+          ? SkeletonMember()
+          : GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 5.0,
+                mainAxisSpacing: 5.0,
+                childAspectRatio: 0.6,
+              ),
+              itemCount: donorDetails?.length ?? 0,
+              itemBuilder: (BuildContext context, int index) {
+                return _buildGridItem(index);
+              },
+            ),
     );
   }
+
   Widget _buildGridItem(int index) {
     DonorDetail? detail = donorDetails![index];
 
     return Expanded(
-      child: Card (
+      child: Card(
         elevation: 2.0,
         child: Padding(
           padding: EdgeInsets.all(15.0),
@@ -94,17 +98,15 @@ class _DonorDetailsState extends State<DonorDetails> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-
               Expanded(
                 child: CircleAvatar(
                   radius: 70.0,
-                  foregroundImage: NetworkImage(detail?.photo?? ''),
+                  foregroundImage: NetworkImage(detail.photo ?? ''),
                   backgroundImage: AssetImage('assets/logo.png'),
                 ),
               ),
-
               Text(
-                detail?.memberName ?? 'No Name',
+                detail.memberName ?? 'No Name',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 14.0,
@@ -112,13 +114,18 @@ class _DonorDetailsState extends State<DonorDetails> {
                 ),
               ),
               Text(
-                'Donated at: ${detail?.donatedAt!.substring(0, 11) ?? 'No Date'}',
+                'Donated at: ${detail.donatedAt!.substring(0, 11)}',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w700, color: ttColor),
+                style: TextStyle(
+                    fontSize: 12.0,
+                    fontWeight: FontWeight.w700,
+                    color: ttColor),
               ),
-              Text('Club : ${detail?.club?.toLowerCase()?? 'No Post'}',
+              Text(
+                'Club : ${detail.club?.toLowerCase() ?? 'No Post'}',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w700, color: sColor),
+                style: TextStyle(
+                    fontSize: 12.0, fontWeight: FontWeight.w700, color: sColor),
               ),
             ],
           ),

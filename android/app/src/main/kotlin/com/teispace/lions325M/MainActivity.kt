@@ -1,4 +1,4 @@
-package com.example.lionsclub
+package com.teispace.lions325M
 
 import io.flutter.embedding.android.FlutterActivity
 
