@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lionsclub/Custom_Widget/skeleton_member.dart';
 
+import '../../../consts/app_consts.dart';
 import '../../../data/Models/donor_details.dart';
 import '../../../data/network/api_services.dart';
 import '../../../main.dart';
@@ -27,7 +28,7 @@ class _DonorDetailsState extends State<DonorDetails> {
   Future<void> _fetchDonorDetails() async {
     try {
       List<DonorDetail>? details = await ApiService.fetchData(
-        "https://api.lionsclubsdistrict325jnepal.org.np/api/donor/${widget.dId}", // Replace with the actual donor ID
+        "${AppConstants.baseURL}/donor/${widget.dId}", // Replace with the actual donor ID
         (data) => DonorDetail.fromJson(data),
       );
       setState(() {

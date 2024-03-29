@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lionsclub/consts/app_consts.dart';
 import '../../../data/Models/department/department_details.dart';
 import '../../../data/network/api_services.dart';
 import '../../../main.dart';
@@ -26,7 +27,7 @@ class _DepartmentDetailsState extends State<DepartmentDetails> {
   Future<void> _fetchDepartmentDetails() async {
     try {
       List<DepartmentDetail>? details = await ApiService.fetchData(
-        "https://api.lionsclubsdistrict325jnepal.org.np/api/department_details/${widget.dId}",
+        "${AppConstants.baseURL}/department_details/${widget.dId}",
         (data) => DepartmentDetail.fromJson(data),
       );
       setState(() {

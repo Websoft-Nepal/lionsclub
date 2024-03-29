@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lionsclub/Screens/Dashboard/club/Club_member_widget.dart';
 import 'package:lionsclub/Custom_Widget/skeleton_member.dart';
+import 'package:lionsclub/consts/app_consts.dart';
 import 'package:lionsclub/main.dart';
 import '../../../data/Models/clubMember.dart';
 import '../../../data/network/api_services.dart';
@@ -27,7 +28,7 @@ class _ClubDetAILSState extends State<ClubDetAILS> {
   Future<void> _fetchMembersData() async {
     try {
       List<ClubMember>? members = await ApiService.fetchData(
-        "https://api.lionsclubsdistrict325jnepal.org.np/api/club/${widget.clubId}/member",
+        "${AppConstants.baseURL}/club/${widget.clubId}/member",
         (data) => ClubMember.fromJson(data),
       );
       setState(() {

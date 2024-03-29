@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lionsclub/Screens/Dashboard/club/Club_member_widget.dart';
+import 'package:lionsclub/consts/app_consts.dart';
 import 'package:lionsclub/main.dart';
 import 'package:lionsclub/data/Models/clubMember.dart';
 import '../../../data/network/api_services.dart';
@@ -20,8 +21,7 @@ class _ClubDetailsScreenState extends State<ClubDetailsScreen> {
   void initState() {
     super.initState();
     // Example usage with a different URL for clubs
-    _fetchData(
-        'https://api.lionsclubsdistrict325jnepal.org.np/api/club/3/member');
+    _fetchData('${AppConstants.baseURL}/api/club/3/member');
   }
 
   Future<void> _fetchData(String apiUrl) async {

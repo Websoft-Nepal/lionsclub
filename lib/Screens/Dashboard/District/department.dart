@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:lionsclub/Screens/Dashboard/District/department_details.dart';
 import 'package:lionsclub/data/Models/department/department.dart';
+import '../../../consts/app_consts.dart';
 import '../../../data/network/api_pdfServices.dart';
 import '../../../data/network/api_services.dart';
 import '../../../main.dart';
@@ -22,19 +23,18 @@ class _District_DirectoryState extends State<District_Directory> {
   @override
   void initState() {
     super.initState();
-    _fetchData("https://api.lionsclubsdistrict325jnepal.org.np/api/department");
+    _fetchData("${AppConstants.baseURL}/department");
     ApiServiceProvider.loadPDF().then((value) {
       setState(() {
         localPath = value;
       });
     });
-
   }
 
   Future<void> _fetchData(String apiUrl) async {
     try {
-      List<department> data =
-      await ApiService.fetchData(apiUrl, (data) => department.fromJson(data));
+      List<department> data = await ApiService.fetchData(
+          apiUrl, (data) => department.fromJson(data));
       setState(() {
         directories = data;
         isLoading = false;
@@ -82,15 +82,15 @@ class _District_DirectoryState extends State<District_Directory> {
       body: isLoading
           ? _buildSkeletonLoading()
           : GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2, // Number of columns
-          childAspectRatio: 1.9, // Width to height ratio of each item
-        ),
-        itemCount: directories.length,
-        itemBuilder: (BuildContext context, int index) {
-          return _buildGridItem(index);
-        },
-      ),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, // Number of columns
+                childAspectRatio: 1.9, // Width to height ratio of each item
+              ),
+              itemCount: directories.length,
+              itemBuilder: (BuildContext context, int index) {
+                return _buildGridItem(index);
+              },
+            ),
     );
   }
 
@@ -128,7 +128,11 @@ class _District_DirectoryState extends State<District_Directory> {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => DepartmentDetails(dId: directories[index].id,name: directories[index].title ?? 'Title $index',)),
+          MaterialPageRoute(
+              builder: (context) => DepartmentDetails(
+                    dId: directories[index].id,
+                    name: directories[index].title ?? 'Title $index',
+                  )),
         );
       },
       child: Container(

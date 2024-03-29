@@ -3,6 +3,7 @@ import 'package:lionsclub/Custom_Widget/skeleton_member.dart';
 import 'package:lionsclub/Screens/Dashboard/donor/donor_details_screen.dart';
 import 'package:lionsclub/data/Models/donor.dart';
 
+import '../../../consts/app_consts.dart';
 import '../../../data/network/api_services.dart';
 import '../../../main.dart';
 
@@ -20,7 +21,7 @@ class _Donor_ScreenState extends State<Donor_Screen> {
   @override
   void initState() {
     super.initState();
-    _fetchDonorData("https://api.lionsclubsdistrict325jnepal.org.np/api/donor");
+    _fetchDonorData("${AppConstants.baseURL}/donor");
   }
 
   Future<void> _fetchDonorData(String apiUrl) async {
@@ -44,8 +45,8 @@ class _Donor_ScreenState extends State<Donor_Screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFEEEEEE),
-        appBar:AppBar(
+        backgroundColor: Color(0xFFEEEEEE),
+        appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.white),
           backgroundColor: sColor,
           title: Row(
@@ -73,27 +74,37 @@ class _Donor_ScreenState extends State<Donor_Screen> {
             ],
           ),
         ),
-      body: isDonorLoading?const SkeletonMember():ListView.builder(
-        itemCount: donors.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Card(
-            surfaceTintColor: pColor,
-            // color: zColor,
-            child: ListTile(
-              // tileColor: ,
-              leading: Text(donors[index].id.toString()+'.' ?? '',style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 18)),
-              title: Text(donors[index].title ?? 'No Title',style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 18),), // Provide a default value if title is null
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => DonorDetails(dId: donors[index].id,name: donors[index].title ?? 'Title $index',)),
-                );
-              },
-            ),
-          );
-        },
-      )
-
-    );
+        body: isDonorLoading
+            ? const SkeletonMember()
+            : ListView.builder(
+                itemCount: donors.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Card(
+                    surfaceTintColor: pColor,
+                    // color: zColor,
+                    child: ListTile(
+                      // tileColor: ,
+                      leading: Text(donors[index].id.toString() + '.' ?? '',
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 18)),
+                      title: Text(
+                        donors[index].title ?? 'No Title',
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18),
+                      ), // Provide a default value if title is null
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => DonorDetails(
+                                    dId: donors[index].id,
+                                    name: donors[index].title ?? 'Title $index',
+                                  )),
+                        );
+                      },
+                    ),
+                  );
+                },
+              ));
   }
 }

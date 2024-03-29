@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:http/http.dart' as http;
 
 class ApiService {
@@ -6,6 +7,7 @@ class ApiService {
       String apiUrl, T Function(Map<String, dynamic>) fromJson) async {
     print('Loading api .....');
     final response = await http.get(Uri.parse(apiUrl));
+    log(apiUrl);
     if (response.statusCode == 200) {
       print('Api Fetch completed');
       List<dynamic> jsonData = json.decode(response.body);

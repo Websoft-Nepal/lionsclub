@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lionsclub/Custom_Widget/skeleton_member.dart';
+import '../../../consts/app_consts.dart';
 import '../../../data/Models/department/region.dart';
 import '../../../data/network/api_services.dart';
 import '../club/Club_member_widget.dart';
@@ -16,8 +17,7 @@ class _RegionDepartmentScreenState extends State<RegionDepartmentScreen> {
   @override
   void initState() {
     super.initState();
-    _fetchData(
-        'https://api.lionsclubsdistrict325jnepal.org.np/api/department/region');
+    _fetchData('${AppConstants.baseURL}/department/region');
   }
 
   Future<void> _fetchData(String apiUrl) async {
